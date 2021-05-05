@@ -12,6 +12,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/pokemonList" />
+            <option value="$PROJECT_DIR$/pokemonList" />
+            <option value="$PROJECT_DIR$/service" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
