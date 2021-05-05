@@ -3,7 +3,7 @@ package com.vinicius.pokeapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import com.vinicius.service.service.PokeappService
+import com.vinicius.pokeapp.service.service.PokeappService
 import dagger.android.AndroidInjection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

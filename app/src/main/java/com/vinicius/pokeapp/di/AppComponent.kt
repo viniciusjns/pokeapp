@@ -2,7 +2,7 @@ package com.vinicius.pokeapp.di
 
 import android.app.Application
 import com.vinicius.pokeapp.PokeappApplication
-import com.vinicius.service.di.NetworkModule
+import com.vinicius.pokeapp.service.di.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
