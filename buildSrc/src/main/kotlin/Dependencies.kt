@@ -1,3 +1,48 @@
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+
+class DependenciesPlugin : Plugin<Project> {
+    override fun apply(target: Project) = Unit
+}
+
+object Android {
+    object Versions {
+        const val core = "1.3.2"
+        const val appCompat = "1.2.0"
+        const val material = "1.3.0"
+        const val constraint = "2.0.4"
+        const val recyclerView = "1.1.0"
+        const val cardview = "1.0.0"
+        const val legacy = "1.0.0"
+    }
+
+    const val core = "androidx.core:core-ktx:${Versions.core}"
+    const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    const val material = "com.google.android.material:material:${Versions.material}"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraint}"
+    const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val cardview = "androidx.cardview:cardview:${Versions.cardview}"
+    const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.legacy}"
+}
+
+object Kotlin {
+    object Versions {
+        const val stdlib = "1.4.32"
+    }
+
+    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.stdlib}"
+}
+
+object Gradle {
+    object Versions {
+        const val gradle = "4.1.3"
+        const val kotlin = "1.4.32"
+    }
+
+    const val buildTools = "com.android.tools.build:gradle:${Versions.gradle}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+}
+
 object Moshi {
     object Versions {
         const val moshi = "1.12.0"
@@ -49,4 +94,16 @@ object OkHttp {
     const val core = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
     const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val mockWebserver = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
+}
+
+object Test {
+    object Versions {
+        const val junit = "4.12"
+        const val ext = "1.1.2"
+        const val espresso = "3.3.0"
+    }
+
+    const val junit = "junit:junit:${Versions.junit}"
+    const val ext = "androidx.test.ext:junit:${Versions.ext}"
+    const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 }
