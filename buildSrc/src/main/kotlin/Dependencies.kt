@@ -107,3 +107,14 @@ object Test {
     const val ext = "androidx.test.ext:junit:${Versions.ext}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 }
+
+object Glide {
+    object Versions {
+        const val glide = "4.12.0"
+        const val palette = "2.1.2"
+    }
+
+    const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val palette = "com.github.florent37:glidepalette:${Versions.palette}"
+}

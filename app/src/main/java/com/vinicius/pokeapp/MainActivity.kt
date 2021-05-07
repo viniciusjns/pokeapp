@@ -2,7 +2,7 @@ package com.vinicius.pokeapp
 
 import android.os.Bundle
 import com.vinicius.pokeapp.core.BaseActivity
-import com.vinicius.pokeapp.pokemonlist.view.PokemonListFragment
+import com.vinicius.pokeapp.pokemonlist.view.fragments.PokemonListFragment
 
 class MainActivity : BaseActivity() {
 

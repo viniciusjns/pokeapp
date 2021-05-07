@@ -67,6 +67,11 @@ dependencies {
     implementation Coroutines.core
     implementation Coroutines.android
 
+    // glide
+    implementation Glide.core
+    implementation Glide.compiler
+    implementation Glide.palette
+
     // modules
     implementation project(":core")
     implementation project(":service")

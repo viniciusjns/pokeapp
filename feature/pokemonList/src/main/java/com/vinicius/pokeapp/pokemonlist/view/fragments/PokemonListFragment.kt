@@ -1,18 +1,14 @@
-package com.vinicius.pokeapp.pokemonlist.view
+package com.vinicius.pokeapp.pokemonlist.view.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.vinicius.pokeapp.core.BaseFragment
-import com.vinicius.pokeapp.service.response.Pokemon
+import com.vinicius.pokeapp.pokemonlist.view.adapters.PokemonListAdapter
 import com.vinicius.pokeapp.service.service.PokeappService
-import com.vinicius.pokemonlist.R
 import com.vinicius.pokemonlist.databinding.PokemonListFragmentBinding
-import dagger.android.AndroidInjection
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,6 +21,7 @@ class PokemonListFragment : BaseFragment() {
     lateinit var pokeappService: PokeappService
 
     private lateinit var binding: PokemonListFragmentBinding
+    private lateinit var pokemonListAdapter: PokemonListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,14 +35,18 @@ class PokemonListFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         CoroutineScope(Dispatchers.IO).launch {
-//            val result = pokeappService.fetchPokemonList(
-//                limit = 20,
-//                offset = 0
-//            )
-            val result = pokeappService.fetchPokemonById(1)
+            val result = pokeappService.fetchPokemonList(
+                limit = 200,
+                offset = 0
+            ).results
+            val sort = result.sortedBy { it.getNumber() }
+            pokemonListAdapter = PokemonListAdapter(sort)
+//            val result = pokeappService.fetchPokemonById(1)
             withContext(Dispatchers.Main) {
-//                teste.text = result.results.toString()
-                binding.teste.text = result.name
+                binding.rvPokemonList.apply {
+                    layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    adapter = pokemonListAdapter
+                }
             }
         }
     }
