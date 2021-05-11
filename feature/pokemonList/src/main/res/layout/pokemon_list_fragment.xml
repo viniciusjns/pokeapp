@@ -4,16 +4,73 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/giv_loading"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/pikachu_running"
+        app:layout_constraintTop_toTopOf="@+id/rv_pokemon_list"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_pokemon_list"
+        app:layout_constraintStart_toStartOf="@+id/rv_pokemon_list"
+        app:layout_constraintEnd_toEndOf="@+id/rv_pokemon_list"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_pokeball_head"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <TextView
         android:id="@+id/tv_title"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginStart="@dimen/dimen_24dp"
         android:text="@string/poke_list_frag_title"
-        android:textSize="@dimen/dimen_32sp"
-        android:fontFamily="@font/reggae_one_regular"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="64sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/one_brush"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_label_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginStart="@dimen/dimen_24dp"
+        android:layout_marginEnd="@dimen/dimen_24dp"
+        android:text="@string/poke_list_frag_search_label"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/sf_pro_display_regular"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginStart="@dimen/dimen_24dp"
+        android:layout_marginEnd="@dimen/dimen_24dp"
+        android:fontFamily="@font/sf_pro_display_regular"
+        android:textColor="@color/gray"
+        android:hint="@string/poke_list_frag_search_hint"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -21,7 +78,8 @@
         android:id="@+id/rv_pokemon_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintTop_toBottomOf="@+id/et_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

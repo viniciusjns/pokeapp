@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.core
+package com.vinicius.pokeapp.core.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

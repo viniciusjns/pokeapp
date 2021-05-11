@@ -3,7 +3,7 @@
     package="com.vinicius.core">
 
     <application>
-        <activity android:name="com.vinicius.pokeapp.core.BaseActivity"></activity>
+        <activity android:name="com.vinicius.pokeapp.core.views.BaseActivity"></activity>
     </application>
 
 </manifest>

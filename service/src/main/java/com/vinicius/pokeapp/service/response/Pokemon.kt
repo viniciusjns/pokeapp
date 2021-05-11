@@ -5,11 +5,13 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Pokemon(
+    @field:Json(name = "id") val id: Int,
     @field:Json(name = "name") val name: String,
-    @field:Json(name = "url") val url: String?
+    @field:Json(name = "url") val url: String?,
+    @field:Json(name = "types") val types: List<String>?,
+    @field:Json(name = "image") val image: String?,
 ) {
-
-    fun getCode() = url?.split("/".toRegex())?.dropLast(1)?.last()
+    private fun getCode() = url?.split("/".toRegex())?.dropLast(1)?.last() ?: id.toString()
 
     fun getCapsName(): String = name.substring(0).capitalize()
 

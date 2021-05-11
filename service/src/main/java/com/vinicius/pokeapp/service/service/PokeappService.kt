@@ -5,6 +5,7 @@ import com.vinicius.pokeapp.service.response.Pokemon
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface PokeappService {
 
@@ -18,5 +19,8 @@ interface PokeappService {
     suspend fun fetchPokemonById(
         @Path("id") id: Int = 1
     ): Pokemon
+
+    @GET("https://pokemon-db-json.herokuapp.com/")
+    suspend fun fetchPokemonsHeroku(): List<Pokemon>
 
 }

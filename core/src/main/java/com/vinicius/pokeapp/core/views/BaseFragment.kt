@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.core
+package com.vinicius.pokeapp.core.views
 
 import android.os.Bundle
 import android.view.LayoutInflater

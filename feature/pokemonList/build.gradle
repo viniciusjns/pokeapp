@@ -72,6 +72,8 @@ dependencies {
     implementation Glide.compiler
     implementation Glide.palette
 
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+
     // modules
     implementation project(":core")
     implementation project(":service")
