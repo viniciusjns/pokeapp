@@ -1,48 +1,22 @@
 package com.vinicius.pokeapp.core.ui
 
-import androidx.annotation.ColorRes
-
-object Colors {
-
-    enum class Type(val color: String) {
-        BUG("#8CB230"),
-        DARK("#58575F"),
-        DRAGON("#0F6AC0"),
-        ELECTRIC("#EED535"),
-        FAIRY("#ED6EC7"),
-        FIGHTING("#D04164"),
-        FIRE("#FD7D24"),
-        FLYING("#748FC9"),
-        GHOST("#556AAE"),
-        GRASS("#62B957"),
-        GROUND("#DD7748"),
-        ICE("#61CEC0"),
-        NORMAL("#9DA0AA"),
-        POISON("#A552CC"),
-        PSYCHIC("#EA5D60"),
-        ROCK("#BAAB82"),
-        STEEL("#417D9A"),
-        WATER("#4A90DA"),
-    }
-
-    enum class BackgroundType(val color: String) {
-        BUG("#8BD674"),
-        DARK("#6F6E78"),
-        DRAGON("#7383B9"),
-        ELECTRIC("#F2CB55"),
-        FAIRY("#EBA8C3"),
-        FIGHTING("#EB4971"),
-        FIRE("#FFA756"),
-        FLYING("#83A2E3"),
-        GHOST("#8571BE"),
-        GRASS("#8BBE8A"),
-        GROUND("#F78551"),
-        ICE("#91D8DF"),
-        NORMAL("#B5B9C4"),
-        POISON("#9F6E97"),
-        PSYCHIC("#FF6568"),
-        ROCK("#D4C294"),
-        STEEL("#4C91B2"),
-        WATER("#58ABF6"),
-    }
+enum class Colors(val type: String, val background: String) {
+    BUG("#8CB230", "#8BD674"),
+    DARK("#58575F", "#6F6E78"),
+    DRAGON("#0F6AC0", "#7383B9"),
+    ELECTRIC("#EED535", "#F2CB55"),
+    FAIRY("#ED6EC7", "#EBA8C3"),
+    FIGHTING("#D04164", "#EB4971"),
+    FIRE("#FD7D24", "#FFA756"),
+    FLYING("#748FC9", "#83A2E3"),
+    GHOST("#556AAE", "#8571BE"),
+    GRASS("#62B957", "#8BBE8A"),
+    GROUND("#DD7748", "#F78551"),
+    ICE("#61CEC0", "#91D8DF"),
+    NORMAL("#9DA0AA", "#B5B9C4"),
+    POISON("#A552CC", "#9F6E97"),
+    PSYCHIC("#EA5D60", "#FF6568"),
+    ROCK("#BAAB82", "#D4C294"),
+    STEEL("#417D9A", "#4C91B2"),
+    WATER("#4A90DA", "#58ABF6"),
 }

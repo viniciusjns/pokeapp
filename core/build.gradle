@@ -33,6 +33,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 }
 
@@ -52,6 +53,11 @@ dependencies {
     // coroutines
     implementation Coroutines.core
     implementation Coroutines.android
+
+    // glide
+    implementation Glide.core
+    implementation Glide.compiler
+    implementation Glide.palette
 
     testImplementation UnitTest.junit
     androidTestImplementation UnitTest.ext
