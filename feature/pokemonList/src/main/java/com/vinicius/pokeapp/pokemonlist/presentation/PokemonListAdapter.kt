@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.pokemonlist.view.adapters
+package com.vinicius.pokeapp.pokemonlist.presentation
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.github.florent37.glidepalette.BitmapPalette
-import com.github.florent37.glidepalette.GlidePalette
 import com.vinicius.pokeapp.core.ui.Colors
 import com.vinicius.pokeapp.core.ui.Icons
 import com.vinicius.pokeapp.service.response.Pokemon

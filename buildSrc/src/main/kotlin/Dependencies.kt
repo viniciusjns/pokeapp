@@ -14,6 +14,7 @@ object Android {
         const val recyclerView = "1.1.0"
         const val cardview = "1.0.0"
         const val legacy = "1.0.0"
+        const val lifecycle = "2.3.1"
     }
 
     const val core = "androidx.core:core-ktx:${Versions.core}"
@@ -23,6 +24,8 @@ object Android {
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val cardview = "androidx.cardview:cardview:${Versions.cardview}"
     const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.legacy}"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
 }
 
 object Kotlin {
@@ -96,7 +99,7 @@ object OkHttp {
     const val mockWebserver = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
 }
 
-object Test {
+object UnitTest {
     object Versions {
         const val junit = "4.12"
         const val ext = "1.1.2"
@@ -117,4 +120,12 @@ object Glide {
     const val core = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val palette = "com.github.florent37:glidepalette:${Versions.palette}"
+}
+
+object GifImageView {
+    object Versions {
+        const val gif = "1.2.22"
+    }
+
+    const val gif = "pl.droidsonroids.gif:android-gif-drawable:${Versions.gif}"
 }

@@ -46,6 +46,7 @@ dependencies {
     implementation Android.recyclerview
     implementation Android.cardview
     implementation Android.legacySupport
+    implementation Android.viewModel
 
     // dagger2
     implementation Dagger.core
@@ -58,27 +59,26 @@ dependencies {
     implementation Retrofit.moshiConverter
     implementation Retrofit.coroutinesAdapter
 
-    implementation Moshi.core
-
+    // okhttp
     implementation OkHttp.core
     implementation OkHttp.loggingInterceptor
 
-    // coroutines
-    implementation Coroutines.core
-    implementation Coroutines.android
+    // moshi
+    implementation Moshi.core
 
     // glide
     implementation Glide.core
     implementation Glide.compiler
     implementation Glide.palette
 
-    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+    // gif imageview
+    implementation GifImageView.gif
 
     // modules
     implementation project(":core")
     implementation project(":service")
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation UnitTest.junit
+    androidTestImplementation UnitTest.ext
+    androidTestImplementation UnitTest.espresso
 }

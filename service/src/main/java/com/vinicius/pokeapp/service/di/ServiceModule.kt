@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-open class NetworkModule {
+open class ServiceModule {
 
     @Provides
     @Singleton

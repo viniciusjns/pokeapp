@@ -61,7 +61,10 @@ dependencies {
     implementation Coroutines.core
     implementation Coroutines.android
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // modules
+    implementation project(":core")
+
+    testImplementation UnitTest.junit
+    androidTestImplementation UnitTest.ext
+    androidTestImplementation UnitTest.espresso
 }

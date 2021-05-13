@@ -1,19 +1,10 @@
 package com.vinicius.pokeapp.service.service
 
-import com.vinicius.pokeapp.service.response.PokemonList
 import com.vinicius.pokeapp.service.response.Pokemon
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface PokeappService {
-
-    @GET("pokemon")
-    suspend fun fetchPokemonList(
-        @Query("limit") limit: Int = 20,
-        @Query("offset") offset: Int = 0
-    ): PokemonList
 
     @GET("pokemon/{id}")
     suspend fun fetchPokemonById(
@@ -21,6 +12,6 @@ interface PokeappService {
     ): Pokemon
 
     @GET("https://pokemon-db-json.herokuapp.com/")
-    suspend fun fetchPokemonsHeroku(): List<Pokemon>
+    suspend fun fetchPokemons(): List<Pokemon>
 
 }
