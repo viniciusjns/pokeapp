@@ -1,3 +1,4 @@
+include ':feature:pokemonDetail'
 include ':service'
 include ':feature:pokemonList'
 include ':pokemonList'

@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vinicius.pokeapp.core.views.BaseFragment
+import com.vinicius.pokeapp.pokemondetail.presentation.PokemonDetailFragment
+import com.vinicius.pokeapp.service.response.Pokemon
+import com.vinicius.pokemonlist.R
 import com.vinicius.pokemonlist.databinding.PokemonListFragmentBinding
+
 
 class PokemonListFragment : BaseFragment() {
 
@@ -34,15 +38,16 @@ class PokemonListFragment : BaseFragment() {
     private fun observeChanges() {
         viewModel.viewState.state.observe(
             viewLifecycleOwner, {
-                when(it) {
-                    PokemonListViewState.State.LOADING -> binding.givLoading.visibility = View.VISIBLE
+                when (it) {
+                    PokemonListViewState.State.LOADING -> binding.givLoading.visibility =
+                        View.VISIBLE
                     else -> binding.givLoading.visibility = View.GONE
                 }
             }
         )
         viewModel.viewState.action.observe(
             viewLifecycleOwner, {
-                when(it) {
+                when (it) {
                     is PokemonListViewState.Action.SetupPokemonList -> setupList()
                 }
             }
@@ -51,12 +56,27 @@ class PokemonListFragment : BaseFragment() {
 
     private fun setupList() {
         viewModel.viewState.pokemonLiveData.value?.let {
-            pokemonListAdapter = PokemonListAdapter(it)
+            pokemonListAdapter = PokemonListAdapter { pokemon ->
+                openPokemonDetail(pokemon)
+            }
+            pokemonListAdapter.updateList(it)
         }
         binding.rvPokemonList.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+            )
             adapter = pokemonListAdapter
         }
+    }
+
+    private fun openPokemonDetail(pokemon: Pokemon) {
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, PokemonDetailFragment.newInstance(pokemon))
+            .addToBackStack(null)
+            .commit()
     }
 
     companion object {

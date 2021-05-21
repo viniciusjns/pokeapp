@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <import type="com.vinicius.pokeapp.core.ui.Colors"/>
+
+        <variable
+            name="pokemon"
+            type="com.vinicius.pokeapp.service.response.Pokemon" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:bgColor="@{Colors.valueOf(pokemon.types[0].toUpperCase()).background}"
+        tools:background="@color/gray">
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="56dp"-->
+<!--            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
+<!--            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:alpha=".3"
+            android:gravity="center"
+            android:textSize="120sp"
+            android:text="@{pokemon.name}"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:maxLines="1"
+            android:fontFamily="@font/londrina_outline_regular"
+            tools:text="Bulbasaur"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_picture"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_margin="@dimen/dimen_24dp"
+            app:imageUrl="@{pokemon.imageUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_24dp"
+            android:text="@{pokemon.getNumber()}"
+            android:textSize="@dimen/dimen_12sp"
+            android:textColor="@color/dark_gray"
+            android:fontFamily="@font/sf_pro_display_bold"
+            tools:text="#001"
+            app:layout_constraintStart_toEndOf="@+id/iv_picture"
+            app:layout_constraintTop_toTopOf="@+id/iv_picture" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_24sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/sf_pro_display_bold"
+            app:capitalize="@{pokemon.name}"
+            tools:text="Bulbasaur"
+            app:layout_constraintTop_toBottomOf="@+id/tv_number"
+            app:layout_constraintStart_toStartOf="@+id/tv_number" />
+
+        <include
+            android:id="@+id/layout_type_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4dp"
+            layout="@layout/type_item"
+            app:type="@{pokemon.types[0]}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name" />
+
+        <include
+            android:id="@+id/layout_type_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            android:visibility="@{pokemon.types.size() > 1 ? View.VISIBLE : View.GONE}"
+            layout="@layout/type_item"
+            app:type="@{pokemon.types[1]}"
+            app:layout_constraintStart_toEndOf="@+id/layout_type_1"
+            app:layout_constraintTop_toTopOf="@+id/layout_type_1"
+            app:layout_constraintBottom_toBottomOf="@+id/layout_type_1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:background="@drawable/ic_balls"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_type_1"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen_24dp"
+            android:background="@drawable/rounded_detail_bg"
+            app:layout_constraintTop_toBottomOf="@id/iv_picture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

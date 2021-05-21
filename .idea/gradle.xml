@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/pokemonDetail" />
             <option value="$PROJECT_DIR$/feature/pokemonList" />
             <option value="$PROJECT_DIR$/pokemonList" />
             <option value="$PROJECT_DIR$/service" />

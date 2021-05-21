@@ -78,6 +78,7 @@ dependencies {
     // modules
     implementation project(":core")
     implementation project(":service")
+    implementation project(":feature:pokemonDetail")
 
     testImplementation UnitTest.junit
     androidTestImplementation UnitTest.ext

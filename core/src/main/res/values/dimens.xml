@@ -9,4 +9,5 @@
     <dimen name="dimen_12sp">12sp</dimen>
     <dimen name="dimen_24sp">24sp</dimen>
     <dimen name="dimen_32sp">32sp</dimen>
+    <dimen name="dimen_64sp">64sp</dimen>
 </resources>

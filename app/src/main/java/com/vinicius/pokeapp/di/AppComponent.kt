@@ -2,6 +2,7 @@ package com.vinicius.pokeapp.di
 
 import android.app.Application
 import com.vinicius.pokeapp.PokeappApplication
+import com.vinicius.pokeapp.pokemondetail.di.PokemonDetailModule
 import com.vinicius.pokeapp.pokemonlist.di.PokemonListModule
 import com.vinicius.pokeapp.service.di.ServiceModule
 import dagger.BindsInstance
@@ -18,6 +19,7 @@ import javax.inject.Singleton
         ActivityModule::class,
         ServiceModule::class,
         PokemonListModule::class,
+        PokemonDetailModule::class,
     ]
 )
 interface AppComponent {
