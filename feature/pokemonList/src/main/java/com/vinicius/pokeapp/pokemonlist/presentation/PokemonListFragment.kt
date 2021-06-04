@@ -11,7 +11,6 @@ import com.vinicius.pokeapp.service.response.Pokemon
 import com.vinicius.pokemonlist.R
 import com.vinicius.pokemonlist.databinding.PokemonListFragmentBinding
 
-
 class PokemonListFragment : BaseFragment() {
 
     private lateinit var binding: PokemonListFragmentBinding
@@ -29,10 +28,15 @@ class PokemonListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupList()
         observeChanges()
+    }
 
-        viewModel.dispatchViewAction(PokemonListViewAction.FetchPokemonHeroku)
-
+    private fun setupList() {
+        pokemonListAdapter = PokemonListAdapter { pokemon ->
+            openPokemonDetail(pokemon)
+        }
+        binding.rvPokemonList.adapter = pokemonListAdapter
     }
 
     private fun observeChanges() {
@@ -48,26 +52,15 @@ class PokemonListFragment : BaseFragment() {
         viewModel.viewState.action.observe(
             viewLifecycleOwner, {
                 when (it) {
-                    is PokemonListViewState.Action.SetupPokemonList -> setupList()
+                    is PokemonListViewState.Action.SetupPokemonList -> updateList()
                 }
             }
         )
     }
 
-    private fun setupList() {
+    private fun updateList() {
         viewModel.viewState.pokemonLiveData.value?.let {
-            pokemonListAdapter = PokemonListAdapter { pokemon ->
-                openPokemonDetail(pokemon)
-            }
             pokemonListAdapter.updateList(it)
-        }
-        binding.rvPokemonList.apply {
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.VERTICAL,
-                false
-            )
-            adapter = pokemonListAdapter
         }
     }
 

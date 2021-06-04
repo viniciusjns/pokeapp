@@ -12,6 +12,10 @@ class PokemonListViewModel @Inject constructor(
 
     override val viewState = PokemonListViewState()
 
+    init {
+        dispatchViewAction(PokemonListViewAction.FetchPokemonHeroku)
+    }
+
     override fun dispatchViewAction(viewAction: PokemonListViewAction) {
         when (viewAction) {
             is PokemonListViewAction.FetchPokemonHeroku -> {
