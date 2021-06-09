@@ -43,9 +43,22 @@ class PokemonListFragment : BaseFragment() {
         viewModel.viewState.state.observe(
             viewLifecycleOwner, {
                 when (it) {
-                    PokemonListViewState.State.LOADING -> binding.givLoading.visibility =
-                        View.VISIBLE
-                    else -> binding.givLoading.visibility = View.GONE
+                    PokemonListViewState.State.LOADING -> {
+                        binding.givLoading.visibility = View.VISIBLE
+                        binding.tvEmptyResult.visibility = View.GONE
+                    }
+                    PokemonListViewState.State.SUCCESS -> {
+                        binding.givLoading.visibility = View.GONE
+                        binding.tvEmptyResult.visibility = View.GONE
+                    }
+                    PokemonListViewState.State.EMPTY -> {
+                        binding.givLoading.visibility = View.GONE
+                        binding.tvEmptyResult.visibility = View.VISIBLE
+                    }
+                    PokemonListViewState.State.ERROR -> {
+                        binding.givLoading.visibility = View.GONE
+                        binding.tvEmptyResult.visibility = View.VISIBLE
+                    }
                 }
             }
         )

@@ -1,6 +1,5 @@
 package com.vinicius.pokeapp.pokemonlist.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.vinicius.pokeapp.service.response.Pokemon
 
@@ -11,7 +10,7 @@ class PokemonListViewState {
     val pokemonLiveData = MutableLiveData<List<Pokemon>>(null)
 
     enum class State {
-        LOADING, SUCCESS, ERROR
+        LOADING, SUCCESS, ERROR, EMPTY
     }
 
     sealed class Action {

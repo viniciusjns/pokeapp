@@ -19,21 +19,25 @@ class PokemonListViewModel @Inject constructor(
     override fun dispatchViewAction(viewAction: PokemonListViewAction) {
         when (viewAction) {
             is PokemonListViewAction.FetchPokemonHeroku -> {
-                fetchPokemonHeroku()
+                fetchPokemons()
             }
         }
     }
 
-    private fun fetchPokemonHeroku() {
+    private fun fetchPokemons() {
         viewModelScope.launch {
             viewState.state.value = PokemonListViewState.State.LOADING
             pokemonListUseCase.fetchPokemons().onSuccess {
-                viewState.state.value = PokemonListViewState.State.SUCCESS
+                if (it.isEmpty())
+                    viewState.state.value = PokemonListViewState.State.EMPTY
+                else
+                    viewState.state.value = PokemonListViewState.State.SUCCESS
                 viewState.pokemonLiveData.value = it
+                viewState.action.value = PokemonListViewState.Action.SetupPokemonList
             }.onError {
                 viewState.state.value = PokemonListViewState.State.ERROR
+                viewState.pokemonLiveData.value = emptyList()
             }
-            viewState.action.value = PokemonListViewState.Action.SetupPokemonList
         }
     }
 }

@@ -4,8 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.vinicius.pokeapp.core.di.ViewModelKey
 import com.vinicius.pokeapp.core.di.ViewModelProviderFactory
-import com.vinicius.pokeapp.pokemonlist.data.PokemonListRepository
-import com.vinicius.pokeapp.pokemonlist.data.PokemonListRepositoryImpl
+import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSource
+import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSource
+import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSourceImpl
+import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepository
+import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepositoryImpl
 import com.vinicius.pokeapp.pokemonlist.domain.PokemonListUseCase
 import com.vinicius.pokeapp.pokemonlist.domain.PokemonListUseCaseImpl
 import com.vinicius.pokeapp.pokemonlist.presentation.PokemonListFragment
@@ -20,6 +23,7 @@ import dagger.multibindings.IntoMap
     includes = [
         PokemonListFragmentModule::class,
         PokemonListRepositoryModule::class,
+        PokemonListDataSource::class,
         PokemonListUseCaseModule::class,
         PokemonListViewModelModule::class,
     ]
@@ -33,25 +37,45 @@ interface PokemonListFragmentModule {
 }
 
 @Module
+interface PokemonListDataSource {
+
+    @[Binds Reusable]
+    fun bindPokemonListRemoteDataSource(
+        pokemonListRemoteDataSource: PokemonListRemoteDataSourceImpl
+    ): PokemonListRemoteDataSource
+
+//    @[Binds Reusable]
+//    fun bindPokemonListLocalDataSource(pokemonListLocalDataSource: PokemonListLocalDataSource)
+}
+
+@Module
 interface PokemonListRepositoryModule {
 
     @[Binds Reusable]
-    fun bindPokemonRepository(pokemonRepository: PokemonListRepositoryImpl): PokemonListRepository
+    fun bindPokemonRepository(
+        pokemonRepository: PokemonListRepositoryImpl
+    ): PokemonListRepository
 }
 
 @Module
 interface PokemonListUseCaseModule {
 
     @[Binds Reusable]
-    fun bindPokemonUseCase(pokemonUseCase: PokemonListUseCaseImpl): PokemonListUseCase
+    fun bindPokemonUseCase(
+        pokemonUseCase: PokemonListUseCaseImpl
+    ): PokemonListUseCase
 }
 
 @Module
 interface PokemonListViewModelModule {
 
     @[Binds IntoMap ViewModelKey(PokemonListViewModel::class)]
-    fun bindPokemonViewModel(pokemonListViewModel: PokemonListViewModel): ViewModel
+    fun bindPokemonViewModel(
+        pokemonListViewModel: PokemonListViewModel
+    ): ViewModel
 
     @[Binds Reusable]
-    fun bindViewModelFactory(factory: ViewModelProviderFactory): ViewModelProvider.Factory
+    fun bindViewModelFactory(
+        factory: ViewModelProviderFactory
+    ): ViewModelProvider.Factory
 }
