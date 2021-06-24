@@ -10,7 +10,7 @@
 
         <variable
             name="pokemon"
-            type="com.vinicius.pokeapp.service.response.Pokemon" />
+            type="com.vinicius.pokeapp.pokemondetail.presentation.PokemonDetailUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,15 +20,6 @@
         app:bgColor="@{Colors.valueOf(pokemon.types[0].toUpperCase()).background}"
         tools:background="@color/gray">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbar"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="56dp"-->
-<!--            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
-<!--            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent" />-->
         <include
             android:id="@+id/toolbar"
             layout="@layout/layout_toolbar"
@@ -117,15 +108,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_type_1"/>
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_24dp"
+            android:background="@android:color/transparent"
+            app:tabIndicatorHeight="0dp"
+            app:tabTextColor="@android:color/white"
+            app:tabSelectedTextColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/iv_picture"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <View
+            android:id="@+id/view_info"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/dimen_24dp"
             android:background="@drawable/rounded_detail_bg"
-            app:layout_constraintTop_toBottomOf="@id/iv_picture"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_pokemon_detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/view_info"
+            app:layout_constraintStart_toStartOf="@id/view_info"
+            app:layout_constraintEnd_toEndOf="@id/view_info"
+            app:layout_constraintBottom_toBottomOf="@id/view_info"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

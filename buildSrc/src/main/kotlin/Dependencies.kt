@@ -121,11 +121,3 @@ object Glide {
     const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val palette = "com.github.florent37:glidepalette:${Versions.palette}"
 }
-
-object GifImageView {
-    object Versions {
-        const val gif = "1.2.22"
-    }
-
-    const val gif = "pl.droidsonroids.gif:android-gif-drawable:${Versions.gif}"
-}

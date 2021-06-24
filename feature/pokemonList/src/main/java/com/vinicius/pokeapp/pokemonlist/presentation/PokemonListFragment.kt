@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.vinicius.pokeapp.core.views.BaseFragment
 import com.vinicius.pokeapp.pokemondetail.presentation.PokemonDetailFragment
-import com.vinicius.pokeapp.service.response.Pokemon
 import com.vinicius.pokemonlist.R
 import com.vinicius.pokemonlist.databinding.PokemonListFragmentBinding
 
@@ -28,8 +27,15 @@ class PokemonListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupLoad()
         setupList()
         observeChanges()
+    }
+
+    private fun setupLoad() {
+        Glide.with(this).asGif()
+            .load(R.drawable.pikachu_running)
+            .into(binding.ivLoading)
     }
 
     private fun setupList() {
@@ -44,19 +50,19 @@ class PokemonListFragment : BaseFragment() {
             viewLifecycleOwner, {
                 when (it) {
                     PokemonListViewState.State.LOADING -> {
-                        binding.givLoading.visibility = View.VISIBLE
+                        binding.ivLoading.visibility = View.VISIBLE
                         binding.tvEmptyResult.visibility = View.GONE
                     }
                     PokemonListViewState.State.SUCCESS -> {
-                        binding.givLoading.visibility = View.GONE
+                        binding.ivLoading.visibility = View.GONE
                         binding.tvEmptyResult.visibility = View.GONE
                     }
                     PokemonListViewState.State.EMPTY -> {
-                        binding.givLoading.visibility = View.GONE
+                        binding.ivLoading.visibility = View.GONE
                         binding.tvEmptyResult.visibility = View.VISIBLE
                     }
                     PokemonListViewState.State.ERROR -> {
-                        binding.givLoading.visibility = View.GONE
+                        binding.ivLoading.visibility = View.GONE
                         binding.tvEmptyResult.visibility = View.VISIBLE
                     }
                 }
@@ -72,15 +78,21 @@ class PokemonListFragment : BaseFragment() {
     }
 
     private fun updateList() {
-        viewModel.viewState.pokemonLiveData.value?.let {
+        viewModel.viewState.pokemonLiveData.observe(viewLifecycleOwner, {
             pokemonListAdapter.updateList(it)
-        }
+        })
     }
 
-    private fun openPokemonDetail(pokemon: Pokemon) {
+    private fun openPokemonDetail(pokemon: PokemonListUiModel) {
         requireActivity().supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container, PokemonDetailFragment.newInstance(pokemon))
+            .setCustomAnimations(
+                R.anim.slide_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.slide_out
+            )
+            .replace(R.id.container, PokemonDetailFragment.newInstance(pokemon.toPokemonDetailModel()))
             .addToBackStack(null)
             .commit()
     }

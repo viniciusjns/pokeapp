@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -71,9 +72,6 @@ dependencies {
     implementation Glide.core
     implementation Glide.compiler
     implementation Glide.palette
-
-    // gif imageview
-    implementation GifImageView.gif
 
     // modules
     implementation project(":core")

@@ -1,35 +1,33 @@
 package com.vinicius.pokeapp.pokemondetail.presentation
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.transition.TransitionInflater
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.vinicius.pokeapp.core.views.BaseFragment
-import com.vinicius.pokeapp.service.response.Pokemon
 import com.vinicius.pokemondetail.databinding.PokemonDetailFragmentBinding
 
 private const val POKEMON = "POKEMON"
 
 class PokemonDetailFragment : BaseFragment() {
 
-    private var pokemon: Pokemon? = null
+    private var pokemon: PokemonDetailUiModel? = null
 
     private lateinit var binding: PokemonDetailFragmentBinding
 //    private val viewModel by lazy { getViewModel(PokemonDetailViewModel::class.java) }
 
+    private val infoTitles = listOf("About", "Stats", "Evolution")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.fade)
-        exitTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.slide_left)
-        enterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.slide_right)
+        arguments?.let {
+            pokemon = it.getParcelable(POKEMON)
+        }
     }
 
     override fun onCreateView(
@@ -43,12 +41,17 @@ class PokemonDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        pokemon = arguments?.getParcelable(POKEMON)
         binding.pokemon = pokemon
 
         binding.toolbar.backButton.setOnClickListener {
             activity?.onBackPressed()
         }
+
+        val adapter = PokemonDetailPagerAdapter(requireActivity())
+        binding.vpPokemonDetail.adapter = adapter
+        TabLayoutMediator(binding.tabLayout, binding.vpPokemonDetail) { tab, position ->
+            tab.text = infoTitles[position]
+        }.attach()
 
         observeChanges()
     }
@@ -58,13 +61,27 @@ class PokemonDetailFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(pokemon: Pokemon): PokemonDetailFragment {
+        fun newInstance(pokemon: PokemonDetailUiModel): PokemonDetailFragment {
             return PokemonDetailFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(POKEMON, pokemon)
                 }
             }
         }
+    }
+
+    private inner class PokemonDetailPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+
+        override fun getItemCount() = infoTitles.size
+
+        override fun createFragment(position: Int): Fragment =
+            when (position) {
+                0 -> PokemonAboutFragment.newInstance(pokemon)
+                1 -> PokemonStatsFragment.newInstance(pokemon)
+                2 -> PokemonEvolutionFragment.newInstance(pokemon)
+                else -> PokemonAboutFragment.newInstance(pokemon)
+            }
+
     }
 
 }

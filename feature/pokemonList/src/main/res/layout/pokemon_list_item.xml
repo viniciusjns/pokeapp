@@ -10,7 +10,7 @@
 
         <variable
             name="pokemon"
-            type="com.vinicius.pokeapp.service.response.Pokemon" />
+            type="com.vinicius.pokeapp.pokemonlist.presentation.PokemonListUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -43,3 +43,10 @@ fun setBackgroundColor(view: View, color: String?) {
         view.setBackgroundColor(it.toColorInt())
     }
 }
+
+@BindingAdapter("txtColor")
+fun setTextColor(textView: TextView, color: String?) {
+    color?.let {
+        textView.setTextColor(color.toColorInt())
+    }
+}

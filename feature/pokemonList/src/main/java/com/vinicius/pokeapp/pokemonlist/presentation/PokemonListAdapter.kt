@@ -1,19 +1,16 @@
 package com.vinicius.pokeapp.pokemonlist.presentation
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.vinicius.pokeapp.service.response.Pokemon
 import com.vinicius.pokemonlist.databinding.PokemonListItemBinding
 
 class PokemonListAdapter(
-    private val showPokemonDetail: (Pokemon) -> Unit
+    private val showPokemonDetail: (PokemonListUiModel) -> Unit
 ) : RecyclerView.Adapter<PokemonListAdapter.ViewHolder>() {
 
-    private val pokemons = mutableListOf<Pokemon>()
+    private val pokemons = mutableListOf<PokemonListUiModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = PokemonListItemBinding.inflate(
@@ -29,7 +26,7 @@ class PokemonListAdapter(
 
     override fun getItemCount(): Int = pokemons.size
 
-    fun updateList(newList: List<Pokemon>) {
+    fun updateList(newList: List<PokemonListUiModel>) {
         val diffResult = DiffUtil.calculateDiff(PokemonDiffCallback(this.pokemons, newList))
         this.pokemons.clear()
         this.pokemons.addAll(newList)
@@ -40,7 +37,7 @@ class PokemonListAdapter(
         private val binding: PokemonListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(pokemon: Pokemon) {
+        fun onBind(pokemon: PokemonListUiModel) {
             binding.pokemon = pokemon
 
             binding.root.setOnClickListener {
@@ -51,8 +48,8 @@ class PokemonListAdapter(
 }
 
 class PokemonDiffCallback(
-    val newList: List<Pokemon>,
-    val oldList: List<Pokemon>
+    val newList: List<PokemonListUiModel>,
+    val oldList: List<PokemonListUiModel>
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size

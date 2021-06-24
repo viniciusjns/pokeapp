@@ -1,5 +1,6 @@
 package com.vinicius.pokeapp.pokemondetail.di
 
+import com.vinicius.pokeapp.pokemondetail.presentation.PokemonAboutFragment
 import com.vinicius.pokeapp.pokemondetail.presentation.PokemonDetailFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -18,6 +19,9 @@ object PokemonDetailModule
 interface PokemonDetailFragmentModule {
     @ContributesAndroidInjector
     fun bindPokemonDetailFragment(): PokemonDetailFragment
+
+    @ContributesAndroidInjector
+    fun bindPokemonAboutFragment(): PokemonAboutFragment
 }
 
 //@Module

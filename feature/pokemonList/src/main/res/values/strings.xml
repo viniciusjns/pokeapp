@@ -2,7 +2,7 @@
     <string name="poke_list_frag_title">Pokeapp</string>
     <string name="poke_list_frag_search_label">Search for Pokémon by name or using the National Pokédex number</string>
     <string name="poke_list_frag_search_hint">What Pokémon are you looking for</string>
-    <string name="poke_list_frag_empty_result">No data was found!</string>
+    <string name="poke_list_frag_empty_result">No pokemon was found!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
