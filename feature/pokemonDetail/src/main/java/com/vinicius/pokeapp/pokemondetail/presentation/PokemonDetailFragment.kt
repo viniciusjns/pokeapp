@@ -12,13 +12,14 @@ import com.vinicius.pokeapp.core.views.BaseFragment
 import com.vinicius.pokemondetail.databinding.PokemonDetailFragmentBinding
 
 private const val POKEMON = "POKEMON"
+private const val POKEMON_ID = "POKEMON_ID"
 
 class PokemonDetailFragment : BaseFragment() {
 
     private var pokemon: PokemonDetailUiModel? = null
 
     private lateinit var binding: PokemonDetailFragmentBinding
-//    private val viewModel by lazy { getViewModel(PokemonDetailViewModel::class.java) }
+    private val viewModel by lazy { getViewModel(PokemonDetailViewModel::class.java) }
 
     private val infoTitles = listOf("About", "Stats", "Evolution")
 
@@ -26,7 +27,8 @@ class PokemonDetailFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            pokemon = it.getParcelable(POKEMON)
+//            pokemon = it.getParcelable(POKEMON)
+            viewModel.getPokemonById(it.getInt(POKEMON_ID))
         }
     }
 
@@ -41,7 +43,7 @@ class PokemonDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.pokemon = pokemon
+//        binding.pokemon = pokemon
 
         binding.toolbar.backButton.setOnClickListener {
             activity?.onBackPressed()
@@ -57,17 +59,27 @@ class PokemonDetailFragment : BaseFragment() {
     }
 
     private fun observeChanges() {
-
+        viewModel.pokemonDetailLiveData.observe(viewLifecycleOwner, {
+            binding.pokemon = it
+            this.pokemon = it
+        })
     }
 
     companion object {
-        fun newInstance(pokemon: PokemonDetailUiModel): PokemonDetailFragment {
-            return PokemonDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(POKEMON, pokemon)
-                }
-            }
+//        fun newInstance(pokemon: PokemonDetailUiModel): PokemonDetailFragment {
+//            return PokemonDetailFragment().apply {
+//                arguments = Bundle().apply {
+//                    putParcelable(POKEMON, pokemon)
+//                }
+//            }
+//        }
+fun newInstance(pokemonId: Int): PokemonDetailFragment {
+    return PokemonDetailFragment().apply {
+        arguments = Bundle().apply {
+            putInt(POKEMON_ID, pokemonId)
         }
+    }
+}
     }
 
     private inner class PokemonDetailPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
@@ -76,10 +88,10 @@ class PokemonDetailFragment : BaseFragment() {
 
         override fun createFragment(position: Int): Fragment =
             when (position) {
-                0 -> PokemonAboutFragment.newInstance(pokemon)
-                1 -> PokemonStatsFragment.newInstance(pokemon)
-                2 -> PokemonEvolutionFragment.newInstance(pokemon)
-                else -> PokemonAboutFragment.newInstance(pokemon)
+                0 -> PokemonAboutFragment.newInstance(pokemon?.pokemonAboutModel)
+                1 -> PokemonStatsFragment.newInstance(pokemon?.pokemonStatsModel)
+                2 -> PokemonEvolutionFragment.newInstance(pokemon?.pokemonEvolutionModel)
+                else -> PokemonAboutFragment.newInstance(pokemon?.pokemonAboutModel)
             }
 
     }

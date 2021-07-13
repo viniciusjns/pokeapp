@@ -1,24 +1,18 @@
 package com.vinicius.pokeapp.pokemondetail.presentation
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonAboutModel
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonEvolutionModel
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel
 
-@Parcelize
 data class PokemonDetailUiModel(
     val id: String,
     val name: String,
     val types: List<String>?,
     val imageUrl: String?,
-    val description: String?,
-    val species: String?,
-    val height: String?,
-    val weight: String?,
-    val evYield: String?,
-    val catchRate: String?,
-    val baseFriendship: String?,
-    val baseExp: String?,
-    val growthRate: String?,
-) : Parcelable {
+    val pokemonAboutModel: PokemonAboutModel,
+    val pokemonStatsModel: PokemonStatsModel,
+    val pokemonEvolutionModel: PokemonEvolutionModel,
+) {
 
     fun getNumber(): String {
         val number = id.padStart(3, '0')

@@ -2,7 +2,6 @@ package com.vinicius.pokeapp.pokemonlist.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.vinicius.pokeapp.core.views.BaseViewModel
-import com.vinicius.pokeapp.pokemonlist.domain.PokemonDomainModel
 import com.vinicius.pokeapp.pokemonlist.domain.PokemonListUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,15 +38,6 @@ class PokemonListViewModel @Inject constructor(
                         name = it.name,
                         types = it.types,
                         imageUrl = it.imageUrl,
-                        description = it.description,
-                        species = it.species,
-                        height = it.height,
-                        weight = it.weight,
-                        evYield = it.evYield,
-                        catchRate = it.catchRate,
-                        baseFriendship = it.baseFriendship,
-                        baseExp = it.baseExp,
-                        growthRate = it.growthRate,
                     )
                 }
                 viewState.action.value = PokemonListViewState.Action.SetupPokemonList

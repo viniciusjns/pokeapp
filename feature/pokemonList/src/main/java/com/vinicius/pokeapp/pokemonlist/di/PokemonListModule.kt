@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.vinicius.pokeapp.core.di.ViewModelKey
 import com.vinicius.pokeapp.core.di.ViewModelProviderFactory
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSource
+import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSourceImpl
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSource
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSourceImpl
 import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepository
@@ -44,16 +45,18 @@ interface PokemonListDataSource {
         pokemonListRemoteDataSource: PokemonListRemoteDataSourceImpl
     ): PokemonListRemoteDataSource
 
-//    @[Binds Reusable]
-//    fun bindPokemonListLocalDataSource(pokemonListLocalDataSource: PokemonListLocalDataSource)
+    @[Binds Reusable]
+    fun bindPokemonListLocalDataSource(
+        pokemonListLocalDataSource: PokemonListLocalDataSourceImpl
+    ): PokemonListLocalDataSource
 }
 
 @Module
 interface PokemonListRepositoryModule {
 
     @[Binds Reusable]
-    fun bindPokemonRepository(
-        pokemonRepository: PokemonListRepositoryImpl
+    fun bindPokemonListRepository(
+        pokemonListRepository: PokemonListRepositoryImpl
     ): PokemonListRepository
 }
 
@@ -61,8 +64,8 @@ interface PokemonListRepositoryModule {
 interface PokemonListUseCaseModule {
 
     @[Binds Reusable]
-    fun bindPokemonUseCase(
-        pokemonUseCase: PokemonListUseCaseImpl
+    fun bindPokemonListUseCase(
+        pokemonListUseCase: PokemonListUseCaseImpl
     ): PokemonListUseCase
 }
 
@@ -70,7 +73,7 @@ interface PokemonListUseCaseModule {
 interface PokemonListViewModelModule {
 
     @[Binds IntoMap ViewModelKey(PokemonListViewModel::class)]
-    fun bindPokemonViewModel(
+    fun bindPokemonListViewModel(
         pokemonListViewModel: PokemonListViewModel
     ): ViewModel
 

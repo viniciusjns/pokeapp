@@ -92,7 +92,7 @@ class PokemonListFragment : BaseFragment() {
                 R.anim.fade_in,
                 R.anim.slide_out
             )
-            .replace(R.id.container, PokemonDetailFragment.newInstance(pokemon.toPokemonDetailModel()))
+            .replace(R.id.container, PokemonDetailFragment.newInstance(pokemon.id.toInt()))
             .addToBackStack(null)
             .commit()
     }

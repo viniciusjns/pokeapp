@@ -9,6 +9,10 @@
     <string name="frag_poke_about_base_friendship">Base Friendship</string>
     <string name="frag_poke_about_base_exp">Base Exp</string>
     <string name="frag_poke_about_growth_rate">Growth Rate</string>
+    <string name="frag_poke_about_breeding">Breeding</string>
+    <string name="frag_poke_about_gender">Gender</string>
+    <string name="frag_poke_about_egg_groups">Egg Groups</string>
+    <string name="frag_poke_about_egg_cycles">Egg Cycles</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

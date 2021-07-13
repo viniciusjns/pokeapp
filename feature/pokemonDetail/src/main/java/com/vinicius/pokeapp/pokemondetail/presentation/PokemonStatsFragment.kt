@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel
 import com.vinicius.pokemondetail.databinding.PokemonStatsFragmentBinding
 
 private const val POKEMON = "POKEMON"
 
 class PokemonStatsFragment : Fragment() {
-    private var pokemon: PokemonDetailUiModel? = null
+    private var pokemon: PokemonStatsModel? = null
 
     private lateinit var binding: PokemonStatsFragmentBinding
 
@@ -36,7 +37,7 @@ class PokemonStatsFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(pokemon: PokemonDetailUiModel?) =
+        fun newInstance(pokemon: PokemonStatsModel?) =
             PokemonStatsFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(POKEMON, pokemon)
