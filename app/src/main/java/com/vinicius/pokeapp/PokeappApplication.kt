@@ -13,8 +13,6 @@ class PokeappApplication : Application(), HasAndroidInjector {
     @Inject
     lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Any>
 
-    lateinit var appComponent: AppComponent
-
     override fun androidInjector(): AndroidInjector<Any> = dispatchingActivityInjector
 
     override fun onCreate() {
@@ -24,12 +22,9 @@ class PokeappApplication : Application(), HasAndroidInjector {
     }
 
     private fun initInjector() {
-        appComponent = getDaggerAppComponent()
-        appComponent.inject(this)
-    }
-
-    private fun getDaggerAppComponent() =
         DaggerAppComponent.builder()
             .application(this)
             .build()
+            .inject(this)
+    }
 }

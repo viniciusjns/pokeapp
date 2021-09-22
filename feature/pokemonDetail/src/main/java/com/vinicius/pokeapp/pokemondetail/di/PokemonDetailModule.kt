@@ -74,6 +74,4 @@ interface PokemonDetailViewModelModule {
         pokemonDetailViewModel: PokemonDetailViewModel
     ): ViewModel
 
-//    @[Binds Reusable]
-//    fun bindViewModelFactory(factory: ViewModelProviderFactory): ViewModelProvider.Factory
 }

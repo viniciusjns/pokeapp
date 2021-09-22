@@ -77,8 +77,4 @@ interface PokemonListViewModelModule {
         pokemonListViewModel: PokemonListViewModel
     ): ViewModel
 
-    @[Binds Reusable]
-    fun bindViewModelFactory(
-        factory: ViewModelProviderFactory
-    ): ViewModelProvider.Factory
 }

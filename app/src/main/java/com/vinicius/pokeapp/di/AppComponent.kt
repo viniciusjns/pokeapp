@@ -2,6 +2,7 @@ package com.vinicius.pokeapp.di
 
 import android.app.Application
 import com.vinicius.pokeapp.PokeappApplication
+import com.vinicius.pokeapp.core.di.CoreModule
 import com.vinicius.pokeapp.pokemondetail.di.PokemonDetailModule
 import com.vinicius.pokeapp.pokemonlist.di.PokemonListModule
 import com.vinicius.pokeapp.service.di.ServiceModule
@@ -14,10 +15,12 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [AndroidInjectionModule::class,
+    modules = [
+        AndroidInjectionModule::class,
         AndroidSupportInjectionModule::class,
         ActivityModule::class,
         ServiceModule::class,
+        CoreModule::class,
         PokemonListModule::class,
         PokemonDetailModule::class,
     ]
