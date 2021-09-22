@@ -1,8 +1,7 @@
-package com.vinicius.pokeapp.pokemondetail.presentation
+package com.vinicius.pokeapp.pokemondetail.presentation.model
 
-import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonAboutModel
-import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonEvolutionModel
-import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel
+import androidx.core.graphics.toColorInt
+import com.vinicius.pokeapp.core.ui.Colors
 
 data class PokemonDetailUiModel(
     val id: String,
@@ -18,4 +17,8 @@ data class PokemonDetailUiModel(
         val number = id.padStart(3, '0')
         return "#${number}"
     }
+
+    fun getTypeColor(): Int = types?.let {
+        Colors.valueOf(it[0].toUpperCase()).type.toColorInt()
+    } ?: "#000000".toColorInt()
 }

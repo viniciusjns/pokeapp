@@ -1,7 +1,6 @@
 package com.vinicius.pokeapp.pokemonlist.presentation
 
 import android.os.Parcelable
-import com.vinicius.pokeapp.pokemondetail.presentation.PokemonDetailUiModel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

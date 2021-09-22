@@ -52,7 +52,26 @@ class PokemonDetailUseCaseImpl @Inject constructor(
                         specialDefense = it.baseStats?.specialDefense,
                         speed = it.baseStats?.speed,
                     ),
-                    typeDefences = null
+                    typeDefenses = TypeDefenses(
+                        normal = it.typeDefenses?.normal,
+                        fire = it.typeDefenses?.fire,
+                        water = it.typeDefenses?.water,
+                        electric = it.typeDefenses?.electric,
+                        grass = it.typeDefenses?.grass,
+                        ice = it.typeDefenses?.ice,
+                        fighting = it.typeDefenses?.fighting,
+                        poison = it.typeDefenses?.poison,
+                        ground = it.typeDefenses?.ground,
+                        flying = it.typeDefenses?.flying,
+                        psychic = it.typeDefenses?.psychic,
+                        bug = it.typeDefenses?.bug,
+                        rock = it.typeDefenses?.rock,
+                        ghost = it.typeDefenses?.ghost,
+                        dragon = it.typeDefenses?.dragon,
+                        dark = it.typeDefenses?.dark,
+                        steel = it.typeDefenses?.steel,
+                        fairy = it.typeDefenses?.fairy,
+                    )
                 )
             }
             .mapError { "" }

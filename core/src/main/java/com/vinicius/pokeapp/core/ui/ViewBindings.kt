@@ -3,6 +3,7 @@ package com.vinicius.pokeapp.core.ui
 import android.content.res.ColorStateList
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.databinding.BindingAdapter
@@ -45,8 +46,20 @@ fun setBackgroundColor(view: View, color: String?) {
 }
 
 @BindingAdapter("txtColor")
-fun setTextColor(textView: TextView, color: String?) {
+fun setTextColor(textView: TextView, color: Int?) {
     color?.let {
-        textView.setTextColor(color.toColorInt())
+        textView.setTextColor(color)
     }
+}
+
+@BindingAdapter("progressColor")
+fun setProgressColor(progressBar: ProgressBar, color: Int?) {
+    color?.let {
+        progressBar.progressTintList = ColorStateList.valueOf(it)
+    }
+}
+
+@BindingAdapter("progressValue")
+fun setProgressValue(progressBar: ProgressBar, value: String) {
+    progressBar.progress = value.toInt()
 }

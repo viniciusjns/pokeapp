@@ -16,6 +16,7 @@ data class PokemonResponse(
     @field:Json(name = "training") val training: Training?,
     @field:Json(name = "breedings") val breedings: Breedings?,
     @field:Json(name = "baseStats") val baseStats: BaseStats?,
+    @field:Json(name = "typeDefences") val typeDefenses: TypeDefenses?,
 )
 
 @JsonClass(generateAdapter = true)
@@ -54,4 +55,26 @@ data class BaseStats(
     @field:Json(name = "specialAttack") val specialAttack: List<Int>?,
     @field:Json(name = "specialDefence") val specialDefense: List<Int>?,
     @field:Json(name = "speed") val speed: List<Int>?,
+)
+
+@JsonClass(generateAdapter = true)
+data class TypeDefenses(
+    @field:Json(name = "normal") val normal: Double?,
+    @field:Json(name = "fire") val fire: Double?,
+    @field:Json(name = "water") val water: Double?,
+    @field:Json(name = "electric") val electric: Double?,
+    @field:Json(name = "grass") val grass: Double?,
+    @field:Json(name = "ice") val ice: Double?,
+    @field:Json(name = "fighting") val fighting: Double?,
+    @field:Json(name = "poison") val poison: Double?,
+    @field:Json(name = "ground") val ground: Double?,
+    @field:Json(name = "flying") val flying: Double?,
+    @field:Json(name = "psychic") val psychic: Double?,
+    @field:Json(name = "bug") val bug: Double?,
+    @field:Json(name = "rock") val rock: Double?,
+    @field:Json(name = "ghost") val ghost: Double?,
+    @field:Json(name = "dragon") val dragon: Double?,
+    @field:Json(name = "darl") val dark: Double?,
+    @field:Json(name = "steel") val steel: Double?,
+    @field:Json(name = "fairy") val fairy: Double?,
 )

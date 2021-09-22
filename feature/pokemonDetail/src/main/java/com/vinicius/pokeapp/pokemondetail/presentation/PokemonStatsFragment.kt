@@ -9,9 +9,11 @@ import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel
 import com.vinicius.pokemondetail.databinding.PokemonStatsFragmentBinding
 
 private const val POKEMON = "POKEMON"
+private const val COLOR_TYPE = "COLOR_TYPE"
 
 class PokemonStatsFragment : Fragment() {
     private var pokemon: PokemonStatsModel? = null
+    private var colorType = -1
 
     private lateinit var binding: PokemonStatsFragmentBinding
 
@@ -19,6 +21,7 @@ class PokemonStatsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             pokemon = it.getParcelable(POKEMON)
+            colorType = it.getInt(COLOR_TYPE)
         }
     }
 
@@ -34,13 +37,17 @@ class PokemonStatsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.pokemon = pokemon
+        binding.colorType = colorType
+
+        binding.rvTypeDefenses.adapter = pokemon?.let { PokemonTypeDefenseAdapter(it.typeDefenses) }
     }
 
     companion object {
-        fun newInstance(pokemon: PokemonStatsModel?) =
+        fun newInstance(pokemon: PokemonStatsModel?, colorType: Int?) =
             PokemonStatsFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(POKEMON, pokemon)
+                    putInt(COLOR_TYPE, colorType ?: -1)
                 }
             }
     }

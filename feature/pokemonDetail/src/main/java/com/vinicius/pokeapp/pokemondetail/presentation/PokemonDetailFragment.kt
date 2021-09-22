@@ -9,9 +9,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.vinicius.pokeapp.core.views.BaseFragment
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonDetailUiModel
 import com.vinicius.pokemondetail.databinding.PokemonDetailFragmentBinding
 
-private const val POKEMON = "POKEMON"
 private const val POKEMON_ID = "POKEMON_ID"
 
 class PokemonDetailFragment : BaseFragment() {
@@ -27,7 +27,6 @@ class PokemonDetailFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-//            pokemon = it.getParcelable(POKEMON)
             viewModel.getPokemonById(it.getInt(POKEMON_ID))
         }
     }
@@ -42,8 +41,6 @@ class PokemonDetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        binding.pokemon = pokemon
 
         binding.toolbar.backButton.setOnClickListener {
             activity?.onBackPressed()
@@ -66,20 +63,13 @@ class PokemonDetailFragment : BaseFragment() {
     }
 
     companion object {
-//        fun newInstance(pokemon: PokemonDetailUiModel): PokemonDetailFragment {
-//            return PokemonDetailFragment().apply {
-//                arguments = Bundle().apply {
-//                    putParcelable(POKEMON, pokemon)
-//                }
-//            }
-//        }
-fun newInstance(pokemonId: Int): PokemonDetailFragment {
-    return PokemonDetailFragment().apply {
-        arguments = Bundle().apply {
-            putInt(POKEMON_ID, pokemonId)
+        fun newInstance(pokemonId: Int): PokemonDetailFragment {
+            return PokemonDetailFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(POKEMON_ID, pokemonId)
+                }
+            }
         }
-    }
-}
     }
 
     private inner class PokemonDetailPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
@@ -88,10 +78,10 @@ fun newInstance(pokemonId: Int): PokemonDetailFragment {
 
         override fun createFragment(position: Int): Fragment =
             when (position) {
-                0 -> PokemonAboutFragment.newInstance(pokemon?.pokemonAboutModel)
-                1 -> PokemonStatsFragment.newInstance(pokemon?.pokemonStatsModel)
-                2 -> PokemonEvolutionFragment.newInstance(pokemon?.pokemonEvolutionModel)
-                else -> PokemonAboutFragment.newInstance(pokemon?.pokemonAboutModel)
+                0 -> PokemonAboutFragment.newInstance(pokemon?.pokemonAboutModel, pokemon?.getTypeColor())
+                1 -> PokemonStatsFragment.newInstance(pokemon?.pokemonStatsModel, pokemon?.getTypeColor())
+                2 -> PokemonEvolutionFragment.newInstance(pokemon?.pokemonEvolutionModel, pokemon?.getTypeColor())
+                else -> PokemonAboutFragment.newInstance(pokemon?.pokemonAboutModel, pokemon?.getTypeColor())
             }
 
     }

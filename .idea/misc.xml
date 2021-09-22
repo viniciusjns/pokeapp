@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_about_fragment.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_evolution_fragment.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_defense.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_special_attack.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_special_defense.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_speed.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_stats_attack_layout.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_stats_fragment.xml" value="0.33" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_stats_hp_layout.xml" value="0.25" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_type_defense_item.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonList/src/main/res/layout/pokemon_list_item.xml" value="0.14437689969604864" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

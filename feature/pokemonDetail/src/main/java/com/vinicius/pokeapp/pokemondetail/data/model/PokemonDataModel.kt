@@ -12,7 +12,7 @@ data class PokemonDataModel(
     val training: Training?,
     val breedings: Breedings?,
     val baseStats: BaseStats?,
-    val typeDefences: TypeDefences?,
+    val typeDefenses: TypeDefenses?,
 )
 
 data class Training(
@@ -48,23 +48,23 @@ data class BaseStats(
     val speed: List<Int>?,
 )
 
-data class TypeDefences(
-    val normal: Int?,
-    val fire: Int?,
-    val water: Int?,
-    val electric: Int?,
-    val grass: Int?,
-    val ice: Int?,
-    val fighting: Int?,
-    val poison: Int?,
-    val ground: Int?,
-    val flying: Int?,
-    val psychic: Int?,
-    val bug: Int?,
-    val rock: Int?,
-    val ghost: Int?,
-    val dragon: Int?,
-    val darl: Int?,
-    val steel: Int?,
-    val fairy: Int?,
+data class TypeDefenses(
+    val normal: Double?,
+    val fire: Double?,
+    val water: Double?,
+    val electric: Double?,
+    val grass: Double?,
+    val ice: Double?,
+    val fighting: Double?,
+    val poison: Double?,
+    val ground: Double?,
+    val flying: Double?,
+    val psychic: Double?,
+    val bug: Double?,
+    val rock: Double?,
+    val ghost: Double?,
+    val dragon: Double?,
+    val dark: Double?,
+    val steel: Double?,
+    val fairy: Double?,
 )

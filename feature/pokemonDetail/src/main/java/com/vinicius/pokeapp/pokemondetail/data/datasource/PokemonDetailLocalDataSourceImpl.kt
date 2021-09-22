@@ -53,7 +53,26 @@ class PokemonDetailLocalDataSourceImpl @Inject constructor(
                     specialDefense = result.baseStats?.specialDefense,
                     speed = result.baseStats?.speed,
                 ),
-                typeDefences = null
+                typeDefenses = TypeDefenses(
+                    normal = result.typeDefenses?.normal,
+                    fire = result.typeDefenses?.fire,
+                    water = result.typeDefenses?.water,
+                    electric = result.typeDefenses?.electric,
+                    grass = result.typeDefenses?.grass,
+                    ice = result.typeDefenses?.ice,
+                    fighting = result.typeDefenses?.fighting,
+                    poison = result.typeDefenses?.poison,
+                    ground = result.typeDefenses?.ground,
+                    flying = result.typeDefenses?.flying,
+                    psychic = result.typeDefenses?.psychic,
+                    bug = result.typeDefenses?.bug,
+                    rock = result.typeDefenses?.rock,
+                    ghost = result.typeDefenses?.ghost,
+                    dragon = result.typeDefenses?.dragon,
+                    dark = result.typeDefenses?.dark,
+                    steel = result.typeDefenses?.steel,
+                    fairy = result.typeDefenses?.fairy,
+                )
             )
             return Result.Success(pokemonDataModel)
         } catch (ex: Exception) {
