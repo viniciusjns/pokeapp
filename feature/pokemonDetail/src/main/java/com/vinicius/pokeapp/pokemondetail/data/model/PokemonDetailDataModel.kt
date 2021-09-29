@@ -1,6 +1,6 @@
 package com.vinicius.pokeapp.pokemondetail.data.model
 
-data class PokemonDataModel(
+data class PokemonDetailDataModel(
     val id: String,
     val name: String,
     val types: List<String>?,

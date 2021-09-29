@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.core.data
+package com.vinicius.pokeapp.service.response
 
 sealed class Result<out D, out E> {
     data class Success<D>(val value: D) : Result<D, Nothing>()

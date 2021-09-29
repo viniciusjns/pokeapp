@@ -17,4 +17,5 @@ data class PokemonAboutModel(
     val gender: String?,
     val eggGroups: String?,
     val eggCycles: String?,
+    val baseColor: Int
 ) : Parcelable

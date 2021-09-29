@@ -13,6 +13,7 @@ class PokemonStatsModel(
     val specialDefense: List<String>?,
     val speed: List<String>?,
     val typeDefenses: List<Pair<TypeDefense, String?>>,
+    val baseColor: Int
 ) : Parcelable
 
 enum class TypeDefense(val icon: Int) {

@@ -5,10 +5,6 @@
 
     <data>
         <variable
-            name="colorType"
-            type="Integer" />
-
-        <variable
             name="pokemon"
             type="com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel" />
     </data>
@@ -61,7 +57,7 @@
             android:layout_marginStart="@dimen/dimen_16dp"
             android:layout_marginEnd="@dimen/dimen_16dp"
             app:progressValue="@{pokemon.hp[0]}"
-            app:progressColor="@{colorType}"
+            app:progressColor="@{pokemon.baseColor}"
             app:layout_constraintStart_toEndOf="@+id/tv_stats_label"
             app:layout_constraintTop_toTopOf="@+id/tv_stats_label"
             app:layout_constraintBottom_toBottomOf="@+id/tv_stats_label"

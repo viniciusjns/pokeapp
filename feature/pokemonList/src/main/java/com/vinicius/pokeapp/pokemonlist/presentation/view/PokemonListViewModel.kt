@@ -1,13 +1,15 @@
-package com.vinicius.pokeapp.pokemonlist.presentation
+package com.vinicius.pokeapp.pokemonlist.presentation.view
 
 import androidx.lifecycle.viewModelScope
 import com.vinicius.pokeapp.core.views.BaseViewModel
-import com.vinicius.pokeapp.pokemonlist.domain.PokemonListUseCase
+import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCase
+import com.vinicius.pokeapp.pokemonlist.presentation.mapper.PokemonListPresentationMapper
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PokemonListViewModel @Inject constructor(
-    private val pokemonListUseCase: PokemonListUseCase
+    private val pokemonListUseCase: PokemonListUseCase,
+    private val pokemonListPresentationMapper: PokemonListPresentationMapper
 ) : BaseViewModel<PokemonListViewState, PokemonListViewAction>() {
 
     override val viewState = PokemonListViewState()
@@ -32,13 +34,8 @@ class PokemonListViewModel @Inject constructor(
                     viewState.state.value = PokemonListViewState.State.EMPTY
                 else
                     viewState.state.value = PokemonListViewState.State.SUCCESS
-                viewState.pokemonLiveData.value = it.map {
-                    PokemonListUiModel(
-                        id = it.id,
-                        name = it.name,
-                        types = it.types,
-                        imageUrl = it.imageUrl,
-                    )
+                viewState.pokemonLiveData.value = it.map { pokemonListDomainModel ->
+                    pokemonListPresentationMapper.mapFrom(pokemonListDomainModel)
                 }
                 viewState.action.value = PokemonListViewState.Action.SetupPokemonList
             }.onError {

@@ -17,8 +17,4 @@ data class PokemonDetailUiModel(
         val number = id.padStart(3, '0')
         return "#${number}"
     }
-
-    fun getTypeColor(): Int = types?.let {
-        Colors.valueOf(it[0].toUpperCase()).type.toColorInt()
-    } ?: "#000000".toColorInt()
 }

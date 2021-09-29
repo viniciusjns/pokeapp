@@ -1,19 +1,17 @@
 package com.vinicius.pokeapp.pokemonlist.di
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.vinicius.pokeapp.core.di.ViewModelKey
-import com.vinicius.pokeapp.core.di.ViewModelProviderFactory
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSource
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSourceImpl
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSource
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSourceImpl
 import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepository
 import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepositoryImpl
-import com.vinicius.pokeapp.pokemonlist.domain.PokemonListUseCase
-import com.vinicius.pokeapp.pokemonlist.domain.PokemonListUseCaseImpl
-import com.vinicius.pokeapp.pokemonlist.presentation.PokemonListFragment
-import com.vinicius.pokeapp.pokemonlist.presentation.PokemonListViewModel
+import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCase
+import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCaseImpl
+import com.vinicius.pokeapp.pokemonlist.presentation.view.PokemonListFragment
+import com.vinicius.pokeapp.pokemonlist.presentation.view.PokemonListViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Reusable
@@ -22,23 +20,15 @@ import dagger.multibindings.IntoMap
 
 @Module(
     includes = [
-        PokemonListFragmentModule::class,
-        PokemonListRepositoryModule::class,
-        PokemonListDataSource::class,
-        PokemonListUseCaseModule::class,
-        PokemonListViewModelModule::class,
+        PokemonListDataModule::class,
+        PokemonListDomainModule::class,
+        PokemonListPresentationModule::class,
     ]
 )
 object PokemonListModule
 
 @Module
-interface PokemonListFragmentModule {
-    @ContributesAndroidInjector
-    fun bindPokemonListFragment(): PokemonListFragment
-}
-
-@Module
-interface PokemonListDataSource {
+interface PokemonListDataModule {
 
     @[Binds Reusable]
     fun bindPokemonListRemoteDataSource(
@@ -49,10 +39,6 @@ interface PokemonListDataSource {
     fun bindPokemonListLocalDataSource(
         pokemonListLocalDataSource: PokemonListLocalDataSourceImpl
     ): PokemonListLocalDataSource
-}
-
-@Module
-interface PokemonListRepositoryModule {
 
     @[Binds Reusable]
     fun bindPokemonListRepository(
@@ -61,7 +47,7 @@ interface PokemonListRepositoryModule {
 }
 
 @Module
-interface PokemonListUseCaseModule {
+interface PokemonListDomainModule {
 
     @[Binds Reusable]
     fun bindPokemonListUseCase(
@@ -70,7 +56,10 @@ interface PokemonListUseCaseModule {
 }
 
 @Module
-interface PokemonListViewModelModule {
+interface PokemonListPresentationModule {
+
+    @ContributesAndroidInjector
+    fun bindPokemonListFragment(): PokemonListFragment
 
     @[Binds IntoMap ViewModelKey(PokemonListViewModel::class)]
     fun bindPokemonListViewModel(

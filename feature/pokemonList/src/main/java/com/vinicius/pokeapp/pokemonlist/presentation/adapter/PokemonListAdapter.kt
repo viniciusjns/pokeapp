@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.vinicius.pokeapp.pokemonlist.presentation.model.PokemonListUiModel
 import com.vinicius.pokemonlist.databinding.PokemonListItemBinding
 
 class PokemonListAdapter(

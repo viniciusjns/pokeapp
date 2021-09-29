@@ -1,28 +1,25 @@
-package com.vinicius.pokeapp.pokemondetail.presentation
+package com.vinicius.pokeapp.pokemondetail.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vinicius.pokeapp.core.views.BaseFragment
-import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonAboutModel
-import com.vinicius.pokemondetail.databinding.PokemonAboutFragmentBinding
+import com.vinicius.pokeapp.pokemondetail.presentation.adapter.PokemonTypeDefenseAdapter
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel
+import com.vinicius.pokemondetail.databinding.PokemonStatsFragmentBinding
 
 private const val POKEMON = "POKEMON"
-private const val COLOR_TYPE = "COLOR_TYPE"
 
-class PokemonAboutFragment : BaseFragment() {
-    private var pokemon: PokemonAboutModel? = null
-    private var colorType = -1
+class PokemonStatsFragment : BaseFragment() {
+    private var pokemon: PokemonStatsModel? = null
 
-    private lateinit var binding: PokemonAboutFragmentBinding
+    private lateinit var binding: PokemonStatsFragmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             pokemon = it.getParcelable(POKEMON)
-            colorType = it.getInt(COLOR_TYPE)
         }
     }
 
@@ -30,7 +27,7 @@ class PokemonAboutFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = PokemonAboutFragmentBinding.inflate(inflater)
+        binding = PokemonStatsFragmentBinding.inflate(inflater)
         return binding.root
     }
 
@@ -38,15 +35,15 @@ class PokemonAboutFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.pokemon = pokemon
-        binding.colorType = colorType
+
+        binding.rvTypeDefenses.adapter = pokemon?.let { PokemonTypeDefenseAdapter(it.typeDefenses) }
     }
 
     companion object {
-        fun newInstance(pokemon: PokemonAboutModel?, colorType: Int?) =
-            PokemonAboutFragment().apply {
+        fun newInstance(pokemon: PokemonStatsModel?) =
+            PokemonStatsFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(POKEMON, pokemon)
-                    putInt(COLOR_TYPE, colorType ?: -1)
                 }
             }
     }

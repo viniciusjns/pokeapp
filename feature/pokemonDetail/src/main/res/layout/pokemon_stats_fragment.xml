@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="colorType"
-            type="Integer" />
-
         <variable
             name="pokemon"
             type="com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel" />
@@ -32,36 +27,30 @@
                 android:text="@string/frag_poke_stats_base_stats"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:txtColor="@{colorType}" />
+                app:txtColor="@{pokemon.baseColor}" />
 
             <include
                 layout="@layout/pokemon_layout_hp"
-                app:colorType="@{colorType}"
                 app:pokemon="@{pokemon}" />
 
             <include
                 layout="@layout/pokemon_layout_attack"
-                app:colorType="@{colorType}"
                 app:pokemon="@{pokemon}" />
 
             <include
                 layout="@layout/pokemon_layout_defense"
-                app:colorType="@{colorType}"
                 app:pokemon="@{pokemon}" />
 
             <include
                 layout="@layout/pokemon_layout_special_attack"
-                app:colorType="@{colorType}"
                 app:pokemon="@{pokemon}" />
 
             <include
                 layout="@layout/pokemon_layout_special_defense"
-                app:colorType="@{colorType}"
                 app:pokemon="@{pokemon}" />
 
             <include
                 layout="@layout/pokemon_layout_speed"
-                app:colorType="@{colorType}"
                 app:pokemon="@{pokemon}" />
 
             <TextView
@@ -73,7 +62,7 @@
                 android:text="@string/frag_poke_stats_type_defenses"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:txtColor="@{colorType}" />
+                app:txtColor="@{pokemon.baseColor}" />
 
             <TextView
                 android:id="@+id/tv_pokedex_type_defenses_label"

@@ -1,27 +1,24 @@
-package com.vinicius.pokeapp.pokemondetail.presentation
+package com.vinicius.pokeapp.pokemondetail.presentation.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonEvolutionModel
-import com.vinicius.pokemondetail.databinding.PokemonEvolutionFragmentBinding
+import com.vinicius.pokeapp.core.views.BaseFragment
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonAboutModel
+import com.vinicius.pokemondetail.databinding.PokemonAboutFragmentBinding
 
 private const val POKEMON = "POKEMON"
-private const val COLOR_TYPE = "COLOR_TYPE"
 
-class PokemonEvolutionFragment : Fragment() {
-    private var pokemon: PokemonEvolutionModel? = null
-    private var colorType = -1
+class PokemonAboutFragment : BaseFragment() {
+    private var pokemon: PokemonAboutModel? = null
 
-    private lateinit var binding: PokemonEvolutionFragmentBinding
+    private lateinit var binding: PokemonAboutFragmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             pokemon = it.getParcelable(POKEMON)
-            colorType = it.getInt(COLOR_TYPE)
         }
     }
 
@@ -29,7 +26,7 @@ class PokemonEvolutionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = PokemonEvolutionFragmentBinding.inflate(inflater)
+        binding = PokemonAboutFragmentBinding.inflate(inflater)
         return binding.root
     }
 
@@ -40,11 +37,10 @@ class PokemonEvolutionFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(pokemon: PokemonEvolutionModel?, colorType: Int?) =
-            PokemonEvolutionFragment().apply {
+        fun newInstance(pokemon: PokemonAboutModel?) =
+            PokemonAboutFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(POKEMON, pokemon)
-                    putInt(COLOR_TYPE, colorType ?: -1)
                 }
             }
     }

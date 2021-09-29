@@ -1,6 +1,6 @@
-package com.vinicius.pokeapp.pokemondetail.domain
+package com.vinicius.pokeapp.pokemondetail.domain.model
 
-data class PokemonDomainModel(
+data class PokemonDetailDomainModel(
     val id: String,
     val name: String,
     val types: List<String>?,

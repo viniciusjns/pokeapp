@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.pokemonlist.presentation
+package com.vinicius.pokeapp.pokemonlist.presentation.view
 
 sealed class PokemonListViewAction {
     object FetchPokemonHeroku : PokemonListViewAction()

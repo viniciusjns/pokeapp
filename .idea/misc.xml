@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_about_fragment.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_about_fragment.xml" value="0.18" />
         <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_evolution_fragment.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_attack.xml" value="0.29375" />
         <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_defense.xml" value="0.14437689969604864" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_hp.xml" value="0.29375" />
         <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_special_attack.xml" value="0.14437689969604864" />
         <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_special_defense.xml" value="0.14437689969604864" />
         <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_speed.xml" value="0.14437689969604864" />

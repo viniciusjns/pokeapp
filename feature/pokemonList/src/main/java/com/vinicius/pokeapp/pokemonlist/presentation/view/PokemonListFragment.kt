@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.pokemonlist.presentation
+package com.vinicius.pokeapp.pokemonlist.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.vinicius.pokeapp.core.views.BaseFragment
-import com.vinicius.pokeapp.pokemondetail.presentation.PokemonDetailFragment
+import com.vinicius.pokeapp.pokemondetail.presentation.view.PokemonDetailFragment
+import com.vinicius.pokeapp.pokemonlist.presentation.PokemonListAdapter
+import com.vinicius.pokeapp.pokemonlist.presentation.model.PokemonListUiModel
 import com.vinicius.pokemonlist.R
 import com.vinicius.pokemonlist.databinding.PokemonListFragmentBinding
 

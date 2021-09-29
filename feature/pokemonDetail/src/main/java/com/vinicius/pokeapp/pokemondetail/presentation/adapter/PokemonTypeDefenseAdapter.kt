@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.pokemondetail.presentation
+package com.vinicius.pokeapp.pokemondetail.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
