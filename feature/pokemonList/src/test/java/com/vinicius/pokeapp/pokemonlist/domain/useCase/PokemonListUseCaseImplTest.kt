@@ -1,7 +1,7 @@
 package com.vinicius.pokeapp.pokemonlist.domain.useCase
 
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
-import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepository
+import com.vinicius.pokeapp.pokemonlist.domain.repository.PokemonListRepository
 import com.vinicius.pokeapp.pokemonlist.domain.mapper.PokemonListDomainMapper
 import com.vinicius.pokeapp.service.response.Result
 import io.mockk.coEvery

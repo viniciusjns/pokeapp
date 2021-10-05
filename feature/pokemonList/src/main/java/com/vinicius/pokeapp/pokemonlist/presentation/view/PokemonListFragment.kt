@@ -29,6 +29,8 @@ class PokemonListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.dispatchViewAction(PokemonListViewAction.FetchPokemons)
+
         setupLoad()
         setupList()
         observeChanges()
@@ -49,8 +51,8 @@ class PokemonListFragment : BaseFragment() {
 
     private fun observeChanges() {
         viewModel.viewState.state.observe(
-            viewLifecycleOwner, {
-                when (it) {
+            viewLifecycleOwner, { state ->
+                when (state) {
                     PokemonListViewState.State.LOADING -> {
                         binding.ivLoading.visibility = View.VISIBLE
                         binding.tvEmptyResult.visibility = View.GONE
@@ -59,10 +61,7 @@ class PokemonListFragment : BaseFragment() {
                         binding.ivLoading.visibility = View.GONE
                         binding.tvEmptyResult.visibility = View.GONE
                     }
-                    PokemonListViewState.State.EMPTY -> {
-                        binding.ivLoading.visibility = View.GONE
-                        binding.tvEmptyResult.visibility = View.VISIBLE
-                    }
+                    PokemonListViewState.State.EMPTY,
                     PokemonListViewState.State.ERROR -> {
                         binding.ivLoading.visibility = View.GONE
                         binding.tvEmptyResult.visibility = View.VISIBLE
@@ -94,7 +93,7 @@ class PokemonListFragment : BaseFragment() {
                 R.anim.fade_in,
                 R.anim.slide_out
             )
-            .replace(R.id.container, PokemonDetailFragment.newInstance(pokemon.id.toInt()))
+            .add(R.id.container, PokemonDetailFragment.newInstance(pokemon.id.toInt()))
             .addToBackStack(null)
             .commit()
     }

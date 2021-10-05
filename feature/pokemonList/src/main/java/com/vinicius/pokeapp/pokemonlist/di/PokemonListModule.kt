@@ -6,7 +6,7 @@ import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSour
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSourceImpl
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSource
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSourceImpl
-import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepository
+import com.vinicius.pokeapp.pokemonlist.domain.repository.PokemonListRepository
 import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepositoryImpl
 import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCase
 import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCaseImpl

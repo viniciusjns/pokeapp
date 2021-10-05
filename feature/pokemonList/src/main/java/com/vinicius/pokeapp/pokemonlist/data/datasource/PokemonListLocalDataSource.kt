@@ -1,9 +1,9 @@
 package com.vinicius.pokeapp.pokemonlist.data.datasource
 
-import com.vinicius.pokeapp.service.response.Result
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
+import com.vinicius.pokeapp.service.response.ResultWrapper
 
 interface PokemonListLocalDataSource {
 
-    suspend fun fetchPokemons(): Result<List<PokemonListDataModel>, String>
+    suspend fun getPokemons(): ResultWrapper<List<PokemonListDataModel>>
 }

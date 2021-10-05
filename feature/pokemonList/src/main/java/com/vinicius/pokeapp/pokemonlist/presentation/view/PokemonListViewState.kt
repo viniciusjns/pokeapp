@@ -8,7 +8,6 @@ class PokemonListViewState {
     val action = MutableLiveData<Action>()
     val state = MutableLiveData<State>()
     val pokemonLiveData = MutableLiveData<List<PokemonListUiModel>>(null)
-//    val pokemonLiveData = _pokemonLiveData as LiveData<List<Pokemon>>
 
     enum class State {
         LOADING, SUCCESS, ERROR, EMPTY

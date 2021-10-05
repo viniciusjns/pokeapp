@@ -1,8 +1,8 @@
 package com.vinicius.pokeapp.pokemonlist.domain.useCase
 
-import com.vinicius.pokeapp.service.response.Result
 import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
+import com.vinicius.pokeapp.service.response.ResultWrapper
 
 interface PokemonListUseCase {
-    suspend fun fetchPokemons(): Result<List<PokemonListDomainModel>, String>
+    suspend fun getPokemons(): ResultWrapper<List<PokemonListDomainModel>>
 }

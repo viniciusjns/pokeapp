@@ -1,10 +1,11 @@
 package com.vinicius.pokeapp.pokemonlist.data.datasource
 
-import com.vinicius.pokeapp.service.response.Result
 import com.vinicius.pokeapp.pokemonlist.data.mapper.PokemonListDataMapper
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.service.PokemonSingleton
+import com.vinicius.pokeapp.service.response.ResultWrapper
 import com.vinicius.pokeapp.service.service.PokeappService
+import com.vinicius.pokeapp.service.util.safeApiCall
 import javax.inject.Inject
 
 class PokemonListRemoteDataSourceImpl @Inject constructor(
@@ -12,20 +13,12 @@ class PokemonListRemoteDataSourceImpl @Inject constructor(
     private val pokemonListDataMapper: PokemonListDataMapper
 ) : PokemonListRemoteDataSource {
 
-    override suspend fun fetchPokemons(): Result<List<PokemonListDataModel>, String> {
-        return try {
+    override suspend fun getPokemons(): ResultWrapper<List<PokemonListDataModel>> =
+        safeApiCall {
             val result = pokeappService.fetchPokemons()
-
-            if (result.isNullOrEmpty()) {
-                Result.Success(emptyList())
-            } else {
-                PokemonSingleton.pokemonList.addAll(result)
-                Result.Success(result.map {
-                    pokemonListDataMapper.mapFrom(it)
-                })
+            PokemonSingleton.pokemonList.addAll(result)
+            result.map {
+                pokemonListDataMapper.mapFrom(it)
             }
-        } catch (ex: Exception) {
-            Result.Error("")
         }
-    }
 }

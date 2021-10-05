@@ -1,9 +1,10 @@
 package com.vinicius.pokeapp.pokemonlist.data.repository
 
-import com.vinicius.pokeapp.service.response.Result
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSource
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSource
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
+import com.vinicius.pokeapp.pokemonlist.domain.repository.PokemonListRepository
+import com.vinicius.pokeapp.service.response.ResultWrapper
 import javax.inject.Inject
 
 class PokemonListRepositoryImpl @Inject constructor(
@@ -11,11 +12,14 @@ class PokemonListRepositoryImpl @Inject constructor(
     private val localDataSource: PokemonListLocalDataSource,
 ) : PokemonListRepository {
 
-    override suspend fun fetchPokemons(): Result<List<PokemonListDataModel>, String> {
-        val result = localDataSource.fetchPokemons()
-        if (result.handleResult().isNullOrEmpty()) {
-            return remoteDataSource.fetchPokemons()
+    override suspend fun getPokemons(): ResultWrapper<List<PokemonListDataModel>> {
+        return when(val result = localDataSource.getPokemons()) {
+            is ResultWrapper.Success -> {
+                result
+            }
+            else -> {
+                remoteDataSource.getPokemons()
+            }
         }
-        return result
     }
 }
