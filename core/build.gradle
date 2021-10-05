@@ -40,6 +40,7 @@ android {
 dependencies {
 
     implementation Kotlin.stdlib
+
     implementation Android.core
     implementation Android.appCompat
     implementation Android.material
@@ -59,7 +60,13 @@ dependencies {
     implementation Glide.compiler
     implementation Glide.palette
 
+    // test
     testImplementation UnitTest.junit
+    testImplementation UnitTest.junit
+    testImplementation UnitTest.mockk
+    testImplementation UnitTest.core
+    testImplementation Kotlin.junit
+    testImplementation Coroutines.test
     androidTestImplementation UnitTest.ext
     androidTestImplementation UnitTest.espresso
 }

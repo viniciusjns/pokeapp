@@ -30,16 +30,17 @@ object Android {
 
 object Kotlin {
     object Versions {
-        const val stdlib = "1.4.32"
+        const val kotlin = "1.5.10"
     }
 
-    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.stdlib}"
+    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    const val junit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
 }
 
 object Gradle {
     object Versions {
         const val gradle = "4.1.3"
-        const val kotlin = "1.4.32"
+        const val kotlin = "1.5.10"
     }
 
     const val buildTools = "com.android.tools.build:gradle:${Versions.gradle}"
@@ -58,7 +59,7 @@ object Moshi {
 
 object Coroutines {
     object Versions {
-        const val coroutines = "1.4.3"
+        const val coroutines = "1.5.1"
     }
 
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
@@ -104,11 +105,15 @@ object UnitTest {
         const val junit = "4.12"
         const val ext = "1.1.2"
         const val espresso = "3.3.0"
+        const val mockk = "1.12.0"
+        const val core = "2.1.0"
     }
 
     const val junit = "junit:junit:${Versions.junit}"
     const val ext = "androidx.test.ext:junit:${Versions.ext}"
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val core = "androidx.arch.core:core-testing:${Versions.core}"
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
 }
 
 object Glide {
