@@ -1,7 +1,6 @@
 include ':feature:pokemonDetail'
 include ':service'
 include ':feature:pokemonList'
-include ':pokemonList'
 include ':core'
 include ':app'
 rootProject.name = "PokeApp"

@@ -29,7 +29,7 @@ class PokemonListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.dispatchViewAction(PokemonListViewAction.FetchPokemons)
+        viewModel.dispatchViewAction(PokemonListViewAction.GetPokemons)
 
         setupLoad()
         setupList()

@@ -4,6 +4,9 @@ import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.pokemonlist.domain.repository.PokemonListRepository
 import com.vinicius.pokeapp.pokemonlist.domain.mapper.PokemonListDomainMapper
 import com.vinicius.pokeapp.core.util.Result
+import com.vinicius.pokeapp.core.util.ResultError
+import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainErrorModel
+import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -15,12 +18,12 @@ class PokemonListUseCaseImplTest {
     private val pokemonListRepository: PokemonListRepository = mockk()
     private val pokemonListDomainMapper: PokemonListDomainMapper = mockk()
 
-    private val pokemonListUseCase = GetPokemonsUseCaseImpl(
+    private val getPokemonsUseCase = GetPokemonsUseCaseImpl(
         pokemonListRepository, pokemonListDomainMapper
     )
 
     @Test
-    fun fetchPokemons_withListFull_returnSuccess() = runBlocking {
+    fun getPokemons_withListFull_returnSuccess() = runBlocking {
         val pokemonList = listOf(
             PokemonListDataModel(
                 id = "1",
@@ -31,16 +34,26 @@ class PokemonListUseCaseImplTest {
         )
         prepareScenario(Result.Success(pokemonList))
 
-        val result = pokemonListUseCase.fetchPokemons()
+        val result = getPokemonsUseCase()
 
-        assertTrue(result is Result.Success)
-        assertEquals(1, result.handleResult()?.size)
+        assertTrue(result is Result.Success &&
+                result.value.size == 1)
+    }
+
+    @Test
+    fun getPokemons_withEmptyList_returnError() = runBlocking {
+        prepareScenario(Result.Error(ResultError.GenericError))
+
+        val result = getPokemonsUseCase()
+
+        assertTrue(result is Result.Error &&
+            result.value == PokemonListDomainErrorModel.GenericError)
     }
 
     private fun prepareScenario(
-        pokemonListResult: Result<List<PokemonListDataModel>, String> = Result.Success(emptyList())
+        pokemonListResult: Result<List<PokemonListDataModel>, ResultError> = Result.Success(emptyList())
     ) {
-        coEvery { pokemonListRepository.fetchPokemons() } returns pokemonListResult
+        coEvery { pokemonListRepository.getPokemons() } returns pokemonListResult
         every { pokemonListDomainMapper.mapFrom(any()) } returns mockk()
     }
 }

@@ -17,7 +17,7 @@ class PokemonListViewModel @Inject constructor(
 
     override fun dispatchViewAction(viewAction: PokemonListViewAction) {
         when (viewAction) {
-            is PokemonListViewAction.FetchPokemons -> {
+            is PokemonListViewAction.GetPokemons -> {
                 getPokemons()
             }
         }

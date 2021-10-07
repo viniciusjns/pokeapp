@@ -1,26 +1,22 @@
 package com.vinicius.pokeapp.pokemonlist.presentation.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.vinicius.core.MainCoroutineRule
 import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
 import com.vinicius.pokeapp.pokemonlist.domain.useCase.GetPokemonsUseCase
 import com.vinicius.pokeapp.pokemonlist.presentation.mapper.PokemonListPresentationMapper
 import com.vinicius.pokeapp.core.util.Result
+import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainErrorModel
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 @ExperimentalCoroutinesApi
 class PokemonListViewModelTest {
-
-    @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
 
     @get:Rule
     var instantTask = InstantTaskExecutorRule()
@@ -33,17 +29,19 @@ class PokemonListViewModelTest {
     )
 
     @Test
-    fun fetchPokemons_onSuccess_withEmptyList() = mainCoroutineRule.runBlockingTest {
+    fun getPokemons_withEmptyList_returnSuccess() = runBlocking {
         prepareScenario()
 
-        viewModel.dispatchViewAction(PokemonListViewAction.FetchPokemons)
+        viewModel.dispatchViewAction(PokemonListViewAction.GetPokemons)
 
-        assertTrue(viewModel.viewState.pokemonLiveData.value!!.isEmpty())
-        assertEquals(PokemonListViewState.State.EMPTY, viewModel.viewState.state.value)
+        val actual = viewModel.viewState.pokemonLiveData.value
+
+        assertEquals(0, actual?.size)
+        assertEquals(PokemonListViewState.State.SUCCESS, viewModel.viewState.state.value)
     }
 
     @Test
-    fun fetchPokemons_onSuccess_withFullList() = mainCoroutineRule.runBlockingTest {
+    fun fetchPokemons_withFullList_returnSuccess() = runBlocking {
         prepareScenario(
             pokemonListResult = Result.Success(listOf(
                 PokemonListDomainModel(
@@ -55,28 +53,28 @@ class PokemonListViewModelTest {
             ))
         )
 
-        viewModel.dispatchViewAction(PokemonListViewAction.FetchPokemons)
+        viewModel.dispatchViewAction(PokemonListViewAction.GetPokemons)
 
         assertEquals(1, viewModel.viewState.pokemonLiveData.value?.size)
         assertEquals(PokemonListViewState.State.SUCCESS, viewModel.viewState.state.value)
     }
 
     @Test
-    fun fetchPokemons_onError_withEmptyList() = mainCoroutineRule.runBlockingTest {
+    fun fetchPokemons_withError_returnGenericError() = runBlocking {
         prepareScenario(
-            pokemonListResult = Result.Error("")
+            pokemonListResult = Result.Error(PokemonListDomainErrorModel.GenericError)
         )
 
-        viewModel.dispatchViewAction(PokemonListViewAction.FetchPokemons)
+        viewModel.dispatchViewAction(PokemonListViewAction.GetPokemons)
 
-        assertTrue(viewModel.viewState.pokemonLiveData.value!!.isEmpty())
+        assertEquals(0, viewModel.viewState.pokemonLiveData.value?.size)
         assertEquals(PokemonListViewState.State.ERROR, viewModel.viewState.state.value)
     }
 
     private fun prepareScenario(
-        pokemonListResult: Result<List<PokemonListDomainModel>, String> = Result.Success(emptyList())
+        pokemonListResult: Result<List<PokemonListDomainModel>, PokemonListDomainErrorModel> = Result.Success(emptyList())
     ) {
-        coEvery { pokemonListUseCase.fetchPokemons() } returns pokemonListResult
+        coEvery { pokemonListUseCase() } returns pokemonListResult
         every { pokemonListPresentationMapper.mapFrom(any()) } returns mockk()
     }
 

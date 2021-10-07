@@ -4,6 +4,7 @@ import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSour
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSource
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.core.util.Result
+import com.vinicius.pokeapp.core.util.ResultError
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
@@ -21,7 +22,7 @@ class PokemonListRepositoryImplTest {
     )
 
     @Test
-    fun fetchPokemons_withLocalDataSourceFull_returnSuccess() = runBlocking {
+    fun fetchPokemons_withLocalDataSourceSuccess_returnLocalDataSourceSuccess() = runBlocking {
         val localDataSourceList = listOf(
             PokemonListDataModel(
                 id = "1",
@@ -32,15 +33,14 @@ class PokemonListRepositoryImplTest {
         )
         prepareScenario(localDataSourceResult = Result.Success(localDataSourceList))
 
-        val result = pokemonListRepository.fetchPokemons()
+        val result = pokemonListRepository.getPokemons()
 
-        assertTrue(result is Result.Success)
-        assertEquals(1, result.handleResult()?.size)
+        assertTrue(result is Result.Success &&
+            result.value.size == 1)
     }
 
     @Test
-    fun fetchPokemons_withLocalDataSourceEmptyAndRemoteDataSourceFull_returnSuccess() = runBlocking {
-        val localDataSourceList = emptyList<PokemonListDataModel>()
+    fun fetchPokemons_withLocalDataSourceError_returnRemoteDataSourceSuccess() = runBlocking {
         val remoteDataSourceList = listOf(
             PokemonListDataModel(
                 id = "1",
@@ -50,36 +50,21 @@ class PokemonListRepositoryImplTest {
             )
         )
         prepareScenario(
-            localDataSourceResult = Result.Success(localDataSourceList),
+            localDataSourceResult = Result.Error(ResultError.GenericError),
             remoteDataSourceResult = Result.Success(remoteDataSourceList)
         )
 
-        val result = pokemonListRepository.fetchPokemons()
+        val result = pokemonListRepository.getPokemons()
 
-        assertTrue(result is Result.Success)
-        assertEquals(1, result.handleResult()?.size)
-    }
-
-    @Test
-    fun fetchPokemons_withLocalDataSourceEmptyAndRemoteDataSourceEmpty_returnSuccess() = runBlocking {
-        val localDataSourceList = emptyList<PokemonListDataModel>()
-        val remoteDataSourceList = emptyList<PokemonListDataModel>()
-        prepareScenario(
-            localDataSourceResult = Result.Success(localDataSourceList),
-            remoteDataSourceResult = Result.Success(remoteDataSourceList)
-        )
-
-        val result = pokemonListRepository.fetchPokemons()
-
-        assertTrue(result is Result.Success)
-        assertEquals(0, result.handleResult()?.size)
+        assertTrue(result is Result.Success &&
+                result.value.size == 1)
     }
 
     private fun prepareScenario(
-        localDataSourceResult: Result<List<PokemonListDataModel>, String> = Result.Success(emptyList()),
-        remoteDataSourceResult: Result<List<PokemonListDataModel>, String> = Result.Success(emptyList()),
+        localDataSourceResult: Result<List<PokemonListDataModel>, ResultError> = Result.Success(emptyList()),
+        remoteDataSourceResult: Result<List<PokemonListDataModel>, ResultError> = Result.Success(emptyList()),
     ) {
-        coEvery { localDataSource.fetchPokemons() } returns localDataSourceResult
-        coEvery { remoteDataSource.fetchPokemons() } returns remoteDataSourceResult
+        coEvery { localDataSource.getPokemons() } returns localDataSourceResult
+        coEvery { remoteDataSource.getPokemons() } returns remoteDataSourceResult
     }
 }
