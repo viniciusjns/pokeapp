@@ -3,9 +3,9 @@ package com.vinicius.pokeapp.pokemonlist.presentation.view
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.vinicius.core.MainCoroutineRule
 import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
-import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCase
+import com.vinicius.pokeapp.pokemonlist.domain.useCase.GetPokemonsUseCase
 import com.vinicius.pokeapp.pokemonlist.presentation.mapper.PokemonListPresentationMapper
-import com.vinicius.pokeapp.service.response.Result
+import com.vinicius.pokeapp.core.util.Result
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -25,7 +25,7 @@ class PokemonListViewModelTest {
     @get:Rule
     var instantTask = InstantTaskExecutorRule()
 
-    private val pokemonListUseCase: PokemonListUseCase = mockk()
+    private val pokemonListUseCase: GetPokemonsUseCase = mockk()
     private val pokemonListPresentationMapper: PokemonListPresentationMapper = mockk()
 
     private val viewModel = PokemonListViewModel(

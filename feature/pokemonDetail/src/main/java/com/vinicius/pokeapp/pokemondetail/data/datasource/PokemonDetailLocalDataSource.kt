@@ -1,6 +1,6 @@
 package com.vinicius.pokeapp.pokemondetail.data.datasource
 
-import com.vinicius.pokeapp.service.response.Result
+import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.pokemondetail.data.model.PokemonDetailDataModel
 
 interface PokemonDetailLocalDataSource {

@@ -1,6 +1,6 @@
 package com.vinicius.pokeapp.pokemondetail.domain.useCase
 
-import com.vinicius.pokeapp.service.response.Result
+import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonDetailDomainModel
 
 interface PokemonDetailUseCase {

@@ -2,7 +2,7 @@ package com.vinicius.pokeapp.pokemonlist.data.datasource
 
 import com.vinicius.pokeapp.pokemonlist.data.mapper.PokemonListDataMapper
 import com.vinicius.pokeapp.service.response.PokemonResponse
-import com.vinicius.pokeapp.service.response.Result
+import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.service.service.PokeappService
 import io.mockk.*
 import kotlinx.coroutines.runBlocking

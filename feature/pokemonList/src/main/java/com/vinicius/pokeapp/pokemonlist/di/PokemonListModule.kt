@@ -8,8 +8,8 @@ import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSou
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSourceImpl
 import com.vinicius.pokeapp.pokemonlist.domain.repository.PokemonListRepository
 import com.vinicius.pokeapp.pokemonlist.data.repository.PokemonListRepositoryImpl
-import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCase
-import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCaseImpl
+import com.vinicius.pokeapp.pokemonlist.domain.useCase.GetPokemonsUseCase
+import com.vinicius.pokeapp.pokemonlist.domain.useCase.GetPokemonsUseCaseImpl
 import com.vinicius.pokeapp.pokemonlist.presentation.view.PokemonListFragment
 import com.vinicius.pokeapp.pokemonlist.presentation.view.PokemonListViewModel
 import dagger.Binds
@@ -50,9 +50,9 @@ interface PokemonListDataModule {
 interface PokemonListDomainModule {
 
     @[Binds Reusable]
-    fun bindPokemonListUseCase(
-        pokemonListUseCase: PokemonListUseCaseImpl
-    ): PokemonListUseCase
+    fun bindGetPokemonsUseCase(
+        getPokemonsUseCase: GetPokemonsUseCaseImpl
+    ): GetPokemonsUseCase
 }
 
 @Module

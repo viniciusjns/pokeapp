@@ -1,44 +1,44 @@
 package com.vinicius.pokeapp.service.util
 
-import com.squareup.moshi.Moshi
-import com.vinicius.pokeapp.service.response.ErrorResponse
-import com.vinicius.pokeapp.service.response.ResultWrapper
+import com.vinicius.pokeapp.core.util.ResultError
+import com.vinicius.pokeapp.core.util.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
-import java.io.IOException
+import retrofit2.Response
 
 suspend fun <T> safeApiCall(
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
     apiCall: suspend () -> T
-): ResultWrapper<T> {
+): Result<T, ResultError> {
     return withContext(dispatcher) {
         try {
-            ResultWrapper.Success(apiCall.invoke())
-        } catch (throwable: Throwable) {
-            when (throwable) {
-                is IOException -> ResultWrapper.Error.GenericError
-                is HttpException -> {
-                    val code = throwable.code()
-                    val errorResponse = convertErrorBody(throwable)
-                    ResultWrapper.Error.NetworkError(code, errorResponse)
-                }
-                else -> {
-                    ResultWrapper.Error.GenericError
-                }
-            }
+            mapResponse(apiCall())
+        } catch (exception: Exception) {
+            if (exception is HttpException) {
+                Result.Error(
+                    ResultError.NetworkError(
+                        code = exception.response()?.code(),
+                        message = exception.message()
+                    )
+                )
+            } else
+                Result.Error(ResultError.GenericError)
         }
     }
 }
 
-private fun convertErrorBody(throwable: HttpException): ErrorResponse? {
-    return try {
-        throwable.response()?.errorBody()?.source()?.let {
-            val moshiAdapter = Moshi.Builder().build().adapter(ErrorResponse::class.java)
-            moshiAdapter.fromJson(it)
+private fun <T> mapResponse(response: T): Result<T, ResultError> {
+    return if (response !is Response<*>) {
+        Result.Success(response)
+    } else {
+        if (response.isSuccessful) {
+            Result.Success(response)
+        } else {
+            Result.Error(
+                ResultError.NetworkError(code = response.code(), message = response.message())
+            )
         }
-    } catch (exception: Exception) {
-        null
     }
 }

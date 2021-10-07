@@ -2,14 +2,14 @@ package com.vinicius.pokeapp.pokemonlist.presentation.view
 
 import androidx.lifecycle.viewModelScope
 import com.vinicius.pokeapp.core.views.BaseViewModel
-import com.vinicius.pokeapp.pokemonlist.domain.useCase.PokemonListUseCase
+import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainErrorModel
+import com.vinicius.pokeapp.pokemonlist.domain.useCase.GetPokemonsUseCase
 import com.vinicius.pokeapp.pokemonlist.presentation.mapper.PokemonListPresentationMapper
-import com.vinicius.pokeapp.service.response.ResultWrapper
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PokemonListViewModel @Inject constructor(
-    private val pokemonListUseCase: PokemonListUseCase,
+    private val getPokemonsUseCase: GetPokemonsUseCase,
     private val pokemonListPresentationMapper: PokemonListPresentationMapper
 ) : BaseViewModel<PokemonListViewState, PokemonListViewAction>() {
 
@@ -26,18 +26,20 @@ class PokemonListViewModel @Inject constructor(
     private fun getPokemons() {
         viewModelScope.launch {
             viewState.state.value = PokemonListViewState.State.LOADING
-            when (val result = pokemonListUseCase.getPokemons()) {
-                is ResultWrapper.Success -> {
-                    viewState.pokemonLiveData.value = result.value.map { pokemonListDomainModel ->
-                        pokemonListPresentationMapper.mapFrom(pokemonListDomainModel)
-                    }
-                    viewState.state.value = PokemonListViewState.State.SUCCESS
-                    viewState.action.value = PokemonListViewState.Action.SetupPokemonList
+            getPokemonsUseCase().mapSuccess {
+                viewState.pokemonLiveData.value = it.map { pokemonListDomainModel ->
+                    pokemonListPresentationMapper.mapFrom(pokemonListDomainModel)
                 }
-                is ResultWrapper.Error.GenericError,
-                is ResultWrapper.Error.NetworkError -> {
-                    viewState.state.value = PokemonListViewState.State.ERROR
-                    viewState.pokemonLiveData.value = emptyList()
+            }.onSuccess {
+                viewState.state.value = PokemonListViewState.State.SUCCESS
+                viewState.action.value = PokemonListViewState.Action.SetupPokemonList
+            }.onError {
+                when (it) {
+                    PokemonListDomainErrorModel.GenericError,
+                    PokemonListDomainErrorModel.NetworkError -> {
+                        viewState.state.value = PokemonListViewState.State.ERROR
+                        viewState.pokemonLiveData.value = emptyList()
+                    }
                 }
             }
         }

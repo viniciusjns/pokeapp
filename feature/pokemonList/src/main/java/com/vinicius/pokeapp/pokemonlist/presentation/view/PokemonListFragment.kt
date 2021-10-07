@@ -61,7 +61,6 @@ class PokemonListFragment : BaseFragment() {
                         binding.ivLoading.visibility = View.GONE
                         binding.tvEmptyResult.visibility = View.GONE
                     }
-                    PokemonListViewState.State.EMPTY,
                     PokemonListViewState.State.ERROR -> {
                         binding.ivLoading.visibility = View.GONE
                         binding.tvEmptyResult.visibility = View.VISIBLE

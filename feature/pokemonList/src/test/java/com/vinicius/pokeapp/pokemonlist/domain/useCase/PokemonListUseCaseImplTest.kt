@@ -3,7 +3,7 @@ package com.vinicius.pokeapp.pokemonlist.domain.useCase
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.pokemonlist.domain.repository.PokemonListRepository
 import com.vinicius.pokeapp.pokemonlist.domain.mapper.PokemonListDomainMapper
-import com.vinicius.pokeapp.service.response.Result
+import com.vinicius.pokeapp.core.util.Result
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -15,7 +15,7 @@ class PokemonListUseCaseImplTest {
     private val pokemonListRepository: PokemonListRepository = mockk()
     private val pokemonListDomainMapper: PokemonListDomainMapper = mockk()
 
-    private val pokemonListUseCase = PokemonListUseCaseImpl(
+    private val pokemonListUseCase = GetPokemonsUseCaseImpl(
         pokemonListRepository, pokemonListDomainMapper
     )
 

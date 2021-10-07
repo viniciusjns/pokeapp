@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.service.response
+package com.vinicius.pokeapp.core.util
 
 sealed class Result<out D, out E> {
     data class Success<D>(val value: D) : Result<D, Nothing>()
@@ -39,13 +39,5 @@ sealed class Result<out D, out E> {
     inline fun onError(block: (E) -> Unit): Result<D, E> {
         if (this is Error) block(value)
         return this
-    }
-
-    inline fun <T, F> flatMap(
-        transformSuccess: (D) -> Result<T, F>,
-        transformError: (E) -> Result<T, F>
-    ): Result<T, F> = when (this) {
-        is Success -> transformSuccess(value)
-        is Error -> transformError(value)
     }
 }
