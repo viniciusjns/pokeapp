@@ -1,9 +1,7 @@
 package com.vinicius.pokeapp.pokemondetail.data.datasource
 
-import com.vinicius.pokeapp.core.util.Result
-import com.vinicius.pokeapp.pokemondetail.data.model.PokemonDetailDataModel
+import com.vinicius.pokeapp.database.entity.PokemonEntity
 
 interface PokemonDetailLocalDataSource {
-
-    suspend fun getPokemonById(id: Int): Result<PokemonDetailDataModel, String>
+    suspend fun getPokemonById(id: Int): PokemonEntity?
 }

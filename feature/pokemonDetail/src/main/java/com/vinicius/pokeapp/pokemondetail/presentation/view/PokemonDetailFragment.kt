@@ -25,7 +25,7 @@ class PokemonDetailFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            viewModel.getPokemonById(it.getInt(POKEMON_ID))
+            viewModel.dispatchViewAction(PokemonDetailViewAction.GetPokemonById(it.getInt(POKEMON_ID)))
         }
     }
 
@@ -46,18 +46,25 @@ class PokemonDetailFragment : BaseFragment() {
             activity?.onBackPressed()
         }
 
+
+    }
+
+    private fun observeChanges() {
+        viewModel.viewState.pokemonLiveData.observe(viewLifecycleOwner, {
+            it?.let { pokemonUiModel ->
+                binding.pokemon = pokemonUiModel
+                setupViewPager(pokemonUiModel)
+            }
+        })
+    }
+
+    private fun setupViewPager(pokemonUiModel: PokemonDetailUiModel) {
         adapter = PokemonDetailPagerAdapter(requireActivity(), pagesTitles)
+        adapter.updatePokemon(pokemonUiModel)
         binding.vpPokemonDetail.adapter = adapter
         TabLayoutMediator(binding.tabLayout, binding.vpPokemonDetail) { tab, position ->
             tab.text = pagesTitles[position]
         }.attach()
-    }
-
-    private fun observeChanges() {
-        viewModel.pokemonDetailLiveData.observe(viewLifecycleOwner, {
-            binding.pokemon = it
-            it?.let { pokemonUiModel -> adapter.updatePokemon(pokemonUiModel) }
-        })
     }
 
     companion object {

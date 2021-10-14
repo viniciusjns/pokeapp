@@ -17,7 +17,7 @@
         android:id="@+id/cl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:bgColor="@{Colors.valueOf(pokemon.types[0].toUpperCase()).background}"
+        app:bgColor="@{pokemon.baseColor}"
         tools:background="@color/gray">
 
         <include
@@ -83,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_4dp"
+            android:visibility="@{pokemon.types.size() > 1 ? View.VISIBLE : View.GONE}"
             layout="@layout/type_item"
             app:type="@{pokemon.types[0]}"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"

@@ -27,11 +27,9 @@ class PokemonDetailPresentationMapper @Inject constructor(
                 baseExp = from.training?.baseExp.toString(),
                 growthRate = from.training?.growthRate,
                 gender = "${from.breedings?.gender?.male}%, ${from.breedings?.gender?.female}%",
-                eggGroups = from.breedings?.eggGroups?.joinToString(separator = ", ")?.capitalize(),
+                eggGroups = from.breedings?.eggGroups?.joinToString(separator = ", ")?.replaceFirstChar{ it.uppercase() },
                 eggCycles = "${from.breedings?.eggCycles?.value} (${from.breedings?.eggCycles?.text})",
-                baseColor = from.types?.let {
-                    Colors.valueOf(it[0].toUpperCase()).type.toColorInt()
-                } ?: "#000000".toColorInt()
+                baseColor = getBaseColor(from)
             ),
             pokemonStatsModel = PokemonStatsModel(
                 hp = from.baseStats?.hp?.map { hp -> hp.toString() },
@@ -60,11 +58,14 @@ class PokemonDetailPresentationMapper @Inject constructor(
                     Pair(TypeDefense.STEEL, from.typeDefenses?.steel?.toString() ?: ""),
                     Pair(TypeDefense.FAIRY, from.typeDefenses?.fairy?.toString() ?: ""),
                 ),
-                baseColor = from.types?.let {
-                    Colors.valueOf(it[0].toUpperCase()).type.toColorInt()
-                } ?: "#000000".toColorInt()
+                baseColor = getBaseColor(from)
             ),
             pokemonEvolutionModel = PokemonEvolutionModel()
         )
     }
+
+    private fun getBaseColor(from: PokemonDetailDomainModel): Int? =
+        from.types?.let {
+            Colors.valueOf(it[0].uppercase()).type.toColorInt()
+        }
 }

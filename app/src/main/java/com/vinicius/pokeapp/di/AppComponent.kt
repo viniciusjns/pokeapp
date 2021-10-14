@@ -3,6 +3,7 @@ package com.vinicius.pokeapp.di
 import android.app.Application
 import com.vinicius.pokeapp.PokeappApplication
 import com.vinicius.pokeapp.core.di.CoreModule
+import com.vinicius.pokeapp.database.di.DatabaseModule
 import com.vinicius.pokeapp.pokemondetail.di.PokemonDetailModule
 import com.vinicius.pokeapp.pokemonlist.di.PokemonListModule
 import com.vinicius.pokeapp.service.di.ServiceModule
@@ -23,6 +24,7 @@ import javax.inject.Singleton
         CoreModule::class,
         PokemonListModule::class,
         PokemonDetailModule::class,
+        DatabaseModule::class,
     ]
 )
 interface AppComponent {

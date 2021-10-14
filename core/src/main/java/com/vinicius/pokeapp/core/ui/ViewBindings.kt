@@ -1,6 +1,7 @@
 package com.vinicius.pokeapp.core.ui
 
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+
+private const val DEFAULT_COLOR = Color.GRAY
 
 @BindingAdapter("imageUrl")
 fun loadImage(imageView: ImageView, url: String?) {
@@ -21,13 +24,13 @@ fun loadImage(imageView: ImageView, url: String?) {
 
 @BindingAdapter("capitalize")
 fun capitalize(textView: TextView, text: String?) {
-    textView.text = text?.capitalize()
+    textView.text = text?.replaceFirstChar{ it.uppercase() }
 }
 
 @BindingAdapter("pokemonTypeIcon")
 fun setPokemonTypeIcon(imageView: ImageView, type: String?) {
     type?.let {
-        imageView.setImageResource(Icons.valueOf(it.toUpperCase()).icon)
+        imageView.setImageResource(Icons.valueOf(it.uppercase()).icon)
     }
 }
 
@@ -35,13 +38,17 @@ fun setPokemonTypeIcon(imageView: ImageView, type: String?) {
 fun setRoundedBackgroundColor(view: View, color: String?) {
     color?.let {
         view.backgroundTintList = ColorStateList.valueOf(it.toColorInt())
+    } ?: run {
+        view.setBackgroundColor(DEFAULT_COLOR)
     }
 }
 
 @BindingAdapter("bgColor")
-fun setBackgroundColor(view: View, color: String?) {
+fun setBackgroundColor(view: View, color: Int?) {
     color?.let {
-        view.setBackgroundColor(it.toColorInt())
+        view.setBackgroundColor(it)
+    } ?: run {
+        view.setBackgroundColor(DEFAULT_COLOR)
     }
 }
 
@@ -49,6 +56,8 @@ fun setBackgroundColor(view: View, color: String?) {
 fun setTextColor(textView: TextView, color: Int?) {
     color?.let {
         textView.setTextColor(color)
+    } ?: run {
+        textView.setBackgroundColor(DEFAULT_COLOR)
     }
 }
 
@@ -56,10 +65,12 @@ fun setTextColor(textView: TextView, color: Int?) {
 fun setProgressColor(progressBar: ProgressBar, color: Int?) {
     color?.let {
         progressBar.progressTintList = ColorStateList.valueOf(it)
+    } ?: run {
+        progressBar.progressTintList = ColorStateList.valueOf(DEFAULT_COLOR)
     }
 }
 
 @BindingAdapter("progressValue")
-fun setProgressValue(progressBar: ProgressBar, value: String) {
-    progressBar.progress = value.toInt()
+fun setProgressValue(progressBar: ProgressBar, value: String?) {
+    progressBar.progress = value?.toInt() ?: 0
 }

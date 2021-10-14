@@ -126,3 +126,14 @@ object Glide {
     const val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val palette = "com.github.florent37:glidepalette:${Versions.palette}"
 }
+
+object Room {
+    object Versions {
+        const val room = "2.3.0"
+    }
+
+    const val runtime = "androidx.room:room-runtime:${Versions.room}"
+    const val compiler = "androidx.room:room-compiler:${Versions.room}"
+    const val ktx = "androidx.room:room-ktx:${Versions.room}"
+    const val test = "androidx.room:room-testing:${Versions.room}"
+}

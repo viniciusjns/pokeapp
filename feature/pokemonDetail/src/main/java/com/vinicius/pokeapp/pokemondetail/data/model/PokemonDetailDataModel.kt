@@ -9,10 +9,10 @@ data class PokemonDetailDataModel(
     val species: String?,
     val height: Double?,
     val weight: Double?,
-    val training: Training?,
-    val breedings: Breedings?,
-    val baseStats: BaseStats?,
-    val typeDefenses: TypeDefenses?,
+    val training: Training? = null,
+    val breedings: Breedings? = null,
+    val baseStats: BaseStats? = null,
+    val typeDefenses: TypeDefenses? = null,
 )
 
 data class Training(

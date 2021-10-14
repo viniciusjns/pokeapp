@@ -74,7 +74,6 @@ dependencies {
     // glide
     implementation Glide.core
     implementation Glide.compiler
-    implementation Glide.palette
 
     // coroutines
     implementation Coroutines.core
@@ -84,6 +83,7 @@ dependencies {
     implementation project(":core")
     implementation project(":service")
     implementation project(":feature:pokemonDetail")
+    implementation project(":database")
 
     testImplementation UnitTest.junit
     testImplementation UnitTest.mockk

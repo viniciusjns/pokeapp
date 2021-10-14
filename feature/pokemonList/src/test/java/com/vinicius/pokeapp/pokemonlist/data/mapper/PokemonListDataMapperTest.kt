@@ -7,7 +7,7 @@ import kotlin.test.assertEquals
 
 class PokemonListDataMapperTest {
 
-    private val mapper = PokemonListDataMapper()
+    private val mapper = PokemonResponseToPokemonListDataMapper()
 
     @Test
     fun mapFromPokemonResponse_toPokemonListDataModel() {

@@ -69,6 +69,7 @@ dependencies {
     implementation project(":service")
     implementation project(":feature:pokemonList")
     implementation project(":feature:pokemonDetail")
+    implementation project(":database")
 
     testImplementation UnitTest.junit
     androidTestImplementation UnitTest.ext

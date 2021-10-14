@@ -5,7 +5,7 @@ import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.service.response.PokemonResponse
 import javax.inject.Inject
 
-class PokemonListDataMapper @Inject constructor(
+class PokemonResponseToPokemonListDataMapper @Inject constructor(
 
 ) : Mapper<PokemonResponse, PokemonListDataModel> {
     override fun mapFrom(from: PokemonResponse): PokemonListDataModel {

@@ -13,10 +13,10 @@ data class PokemonResponse(
     @field:Json(name = "species") val species: String?,
     @field:Json(name = "height") val height: Double?,
     @field:Json(name = "weight") val weight: Double?,
-    @field:Json(name = "training") val training: Training?,
-    @field:Json(name = "breedings") val breedings: Breedings?,
-    @field:Json(name = "baseStats") val baseStats: BaseStats?,
-    @field:Json(name = "typeDefences") val typeDefenses: TypeDefenses?,
+    @field:Json(name = "training") val training: Training? = null,
+    @field:Json(name = "breedings") val breedings: Breedings? = null,
+    @field:Json(name = "baseStats") val baseStats: BaseStats? = null,
+    @field:Json(name = "typeDefences") val typeDefenses: TypeDefenses? = null,
 )
 
 @JsonClass(generateAdapter = true)

@@ -2,8 +2,7 @@ package com.vinicius.pokeapp.pokemonlist.data.datasource
 
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
-import com.vinicius.pokeapp.pokemonlist.data.mapper.PokemonListDataMapper
-import com.vinicius.pokeapp.service.PokemonSingleton
+import com.vinicius.pokeapp.pokemonlist.data.mapper.PokemonResponseToPokemonListDataMapper
 import com.vinicius.pokeapp.service.response.PokemonResponse
 import io.mockk.every
 import io.mockk.mockk
@@ -13,7 +12,7 @@ import org.junit.Test
 
 class PokemonListLocalDataSourceImplTest {
 
-    private val pokemonListDataMapper: PokemonListDataMapper = mockk()
+    private val pokemonListDataMapper: PokemonResponseToPokemonListDataMapper = mockk()
 
     private val pokemonListLocalDataSource = PokemonListLocalDataSourceImpl(
         pokemonListDataMapper

@@ -13,6 +13,11 @@ data class PokemonDetailUiModel(
     val pokemonEvolutionModel: PokemonEvolutionModel,
 ) {
 
+    val baseColor: Int?
+        get() = types?.let {
+            Colors.valueOf(it[0].uppercase()).background.toColorInt()
+        }
+
     fun getNumber(): String {
         val number = id.padStart(3, '0')
         return "#${number}"

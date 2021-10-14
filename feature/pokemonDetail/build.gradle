@@ -73,11 +73,11 @@ dependencies {
     // glide
     implementation Glide.core
     implementation Glide.compiler
-    implementation Glide.palette
 
     // modules
     implementation project(":core")
     implementation project(":service")
+    implementation project(":database")
 
     testImplementation UnitTest.junit
     androidTestImplementation UnitTest.ext

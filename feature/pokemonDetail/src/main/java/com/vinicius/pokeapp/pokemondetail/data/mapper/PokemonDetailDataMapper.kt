@@ -1,14 +1,15 @@
 package com.vinicius.pokeapp.pokemondetail.data.mapper
 
 import com.vinicius.pokeapp.core.mapper.Mapper
+import com.vinicius.pokeapp.database.entity.PokemonEntity
 import com.vinicius.pokeapp.pokemondetail.data.model.*
 import com.vinicius.pokeapp.service.response.PokemonResponse
 import javax.inject.Inject
 
 class PokemonDetailDataMapper @Inject constructor(
     
-): Mapper<PokemonResponse, PokemonDetailDataModel> {
-    override fun mapFrom(from: PokemonResponse): PokemonDetailDataModel {
+): Mapper<PokemonEntity, PokemonDetailDataModel> {
+    override fun mapFrom(from: PokemonEntity): PokemonDetailDataModel {
         return PokemonDetailDataModel(
             id = from.id.toString(),
             name = from.name,

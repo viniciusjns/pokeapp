@@ -8,6 +8,7 @@ import dagger.Provides
 import dagger.Reusable
 import okhttp3.Cache
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -26,11 +27,23 @@ object ServiceModule {
     @Provides
     @Reusable
     @JvmStatic
-    internal fun provideOkHttpClient(cache: Cache): OkHttpClient {
+    internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY)
+    }
+
+    @Provides
+    @Reusable
+    @JvmStatic
+    internal fun provideOkHttpClient(
+        cache: Cache,
+        loggingInterceptor: HttpLoggingInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(cache)
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(10, TimeUnit.SECONDS)
+            .addInterceptor(loggingInterceptor)
             .build()
     }
 
