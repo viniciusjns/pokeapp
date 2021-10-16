@@ -1,25 +1,13 @@
 package com.vinicius.pokeapp.pokemondetail.presentation.model
 
-import androidx.core.graphics.toColorInt
-import com.vinicius.pokeapp.core.ui.Colors
+import com.vinicius.pokeapp.core.model.BasePokemonUiModel
 
 data class PokemonDetailUiModel(
-    val id: String,
-    val name: String,
-    val types: List<String>?,
-    val imageUrl: String?,
+    override val id: String,
+    override val name: String,
+    override val types: List<String>?,
+    override val imageUrl: String?,
     val pokemonAboutModel: PokemonAboutModel,
     val pokemonStatsModel: PokemonStatsModel,
     val pokemonEvolutionModel: PokemonEvolutionModel,
-) {
-
-    val baseColor: Int?
-        get() = types?.let {
-            Colors.valueOf(it[0].uppercase()).background.toColorInt()
-        }
-
-    fun getNumber(): String {
-        val number = id.padStart(3, '0')
-        return "#${number}"
-    }
-}
+) : BasePokemonUiModel(id, name, types, imageUrl)

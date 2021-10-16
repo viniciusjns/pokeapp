@@ -9,6 +9,10 @@
         <variable
             name="type"
             type="java.lang.String" />
+
+        <variable
+            name="bgColor"
+            type="Integer" />
     </data>
 
     <LinearLayout
@@ -18,7 +22,7 @@
         android:padding="@dimen/dimen_4dp"
         android:background="@drawable/rounded_type_bg"
         android:orientation="horizontal"
-        app:roundedBgColor="@{type != null ? Colors.valueOf(type.toUpperCase()).type : null}"
+        app:roundedBgColor="@{bgColor}"
         tools:background="@color/black">
 
         <ImageView

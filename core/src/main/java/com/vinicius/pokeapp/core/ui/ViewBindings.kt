@@ -35,9 +35,9 @@ fun setPokemonTypeIcon(imageView: ImageView, type: String?) {
 }
 
 @BindingAdapter("roundedBgColor")
-fun setRoundedBackgroundColor(view: View, color: String?) {
+fun setRoundedBackgroundColor(view: View, color: Int?) {
     color?.let {
-        view.backgroundTintList = ColorStateList.valueOf(it.toColorInt())
+        view.backgroundTintList = ColorStateList.valueOf(it)
     } ?: run {
         view.setBackgroundColor(DEFAULT_COLOR)
     }
@@ -73,4 +73,9 @@ fun setProgressColor(progressBar: ProgressBar, color: Int?) {
 @BindingAdapter("progressValue")
 fun setProgressValue(progressBar: ProgressBar, value: String?) {
     progressBar.progress = value?.toInt() ?: 0
+}
+
+@BindingAdapter("showView")
+fun showView(view: View, canShow: Boolean) {
+    view.visibility = if (canShow) View.VISIBLE else View.GONE
 }

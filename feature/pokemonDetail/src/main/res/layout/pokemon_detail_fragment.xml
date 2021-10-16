@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
-
-        <import type="com.vinicius.pokeapp.core.ui.Colors"/>
-
         <variable
             name="pokemon"
             type="com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonDetailUiModel" />
@@ -17,7 +13,7 @@
         android:id="@+id/cl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:bgColor="@{pokemon.baseColor}"
+        app:bgColor="@{pokemon.bgColor}"
         tools:background="@color/gray">
 
         <include
@@ -83,9 +79,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_4dp"
-            android:visibility="@{pokemon.types.size() > 1 ? View.VISIBLE : View.GONE}"
-            layout="@layout/type_item"
+            layout="@layout/pokemon_type_item"
             app:type="@{pokemon.types[0]}"
+            app:bgColor="@{pokemon.typeColors[0]}"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
             app:layout_constraintStart_toStartOf="@+id/tv_name" />
 
@@ -94,9 +90,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_8dp"
-            android:visibility="@{pokemon.types.size() > 1 ? View.VISIBLE : View.GONE}"
-            layout="@layout/type_item"
+            layout="@layout/pokemon_type_item"
+            app:showView="@{pokemon.canShowSecondType}"
             app:type="@{pokemon.types[1]}"
+            app:bgColor="@{pokemon.typeColors[1]}"
             app:layout_constraintStart_toEndOf="@+id/layout_type_1"
             app:layout_constraintTop_toTopOf="@+id/layout_type_1"
             app:layout_constraintBottom_toBottomOf="@+id/layout_type_1" />
