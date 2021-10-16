@@ -5,6 +5,7 @@ import com.vinicius.pokeapp.core.util.ResultError
 import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailLocalDataSource
 import com.vinicius.pokeapp.pokemondetail.data.mapper.PokemonDetailDataMapper
 import com.vinicius.pokeapp.pokemondetail.data.model.PokemonDetailDataModel
+import com.vinicius.pokeapp.pokemondetail.domain.repository.PokemonDetailRepository
 import javax.inject.Inject
 
 class PokemonDetailRepositoryImpl @Inject constructor(

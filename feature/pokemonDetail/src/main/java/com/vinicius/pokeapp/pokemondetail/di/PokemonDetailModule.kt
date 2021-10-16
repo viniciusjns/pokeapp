@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import com.vinicius.pokeapp.core.di.ViewModelKey
 import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailLocalDataSource
 import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailLocalDataSourceImpl
-import com.vinicius.pokeapp.pokemondetail.data.repository.PokemonDetailRepository
+import com.vinicius.pokeapp.pokemondetail.domain.repository.PokemonDetailRepository
 import com.vinicius.pokeapp.pokemondetail.data.repository.PokemonDetailRepositoryImpl
-import com.vinicius.pokeapp.pokemondetail.domain.useCase.PokemonDetailUseCase
-import com.vinicius.pokeapp.pokemondetail.domain.useCase.PokemonDetailUseCaseImpl
+import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonByIdUseCase
+import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonByIdUseCaseImpl
 import com.vinicius.pokeapp.pokemondetail.presentation.view.*
 import dagger.Binds
 import dagger.Module
@@ -43,8 +43,8 @@ interface PokemonDetailDomainModule {
 
     @[Binds Reusable]
     fun bindPokemonDetailUseCase(
-        pokemonDetailUseCase: PokemonDetailUseCaseImpl
-    ): PokemonDetailUseCase
+        pokemonDetailUseCase: GetPokemonByIdUseCaseImpl
+    ): GetPokemonByIdUseCase
 }
 
 @Module

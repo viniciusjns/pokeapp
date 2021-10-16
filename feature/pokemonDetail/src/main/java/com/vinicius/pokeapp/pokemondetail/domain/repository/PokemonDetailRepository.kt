@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.pokemondetail.data.repository
+package com.vinicius.pokeapp.pokemondetail.domain.repository
 
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
