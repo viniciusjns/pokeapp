@@ -55,15 +55,15 @@ class PokemonListFragment : BaseFragment() {
                 when (state) {
                     PokemonListViewState.State.LOADING -> {
                         binding.ivLoading.visibility = View.VISIBLE
-                        binding.tvEmptyResult.visibility = View.GONE
+                        binding.pokemonNotFoundScreen.root.visibility = View.GONE
                     }
                     PokemonListViewState.State.SUCCESS -> {
                         binding.ivLoading.visibility = View.GONE
-                        binding.tvEmptyResult.visibility = View.GONE
+                        binding.pokemonNotFoundScreen.root.visibility = View.GONE
                     }
                     PokemonListViewState.State.ERROR -> {
                         binding.ivLoading.visibility = View.GONE
-                        binding.tvEmptyResult.visibility = View.VISIBLE
+                        binding.pokemonNotFoundScreen.root.visibility = View.VISIBLE
                     }
                 }
             }

@@ -10,12 +10,10 @@ import dagger.Reusable
 @Module
 object DatabaseModule {
 
-    @JvmStatic
     @Provides
     fun providePokemonDatabase(application: Application): PokemonDatabase =
         PokemonDatabase.createDatabase(application.applicationContext)
 
-    @JvmStatic
     @Provides
     @Reusable
     fun providePokemonDao(database: PokemonDatabase): PokemonDao = database.pokemonDao()

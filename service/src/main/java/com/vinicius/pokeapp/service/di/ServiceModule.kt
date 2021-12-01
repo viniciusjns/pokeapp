@@ -16,25 +16,19 @@ import java.util.concurrent.TimeUnit
 @Module
 object ServiceModule {
 
-    @Provides
-    @Reusable
-    @JvmStatic
+    @[Provides Reusable]
     internal fun provideCache(application: Application): Cache {
         val cacheSize = (1024 * 1024 * 10).toLong() // 10MB
         return Cache(application.cacheDir, cacheSize)
     }
 
-    @Provides
-    @Reusable
-    @JvmStatic
+    @[Provides Reusable]
     internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
-    @Provides
-    @Reusable
-    @JvmStatic
+    @[Provides Reusable]
     internal fun provideOkHttpClient(
         cache: Cache,
         loggingInterceptor: HttpLoggingInterceptor
@@ -47,9 +41,7 @@ object ServiceModule {
             .build()
     }
 
-    @Provides
-    @Reusable
-    @JvmStatic
+    @[Provides Reusable]
     internal fun provideMoshiClient(): MoshiConverterFactory {
         val moshi = Moshi.Builder()
             .build()
@@ -57,11 +49,10 @@ object ServiceModule {
         return MoshiConverterFactory.create(moshi)
     }
 
-    @Provides
-    @Reusable
-    @JvmStatic
-    internal fun provideRetrofitInterface(okHttpClient: OkHttpClient,
-                                          moshiConverterFactory: MoshiConverterFactory,
+    @[Provides Reusable]
+    internal fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        moshiConverterFactory: MoshiConverterFactory,
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://pokemon-db-json.herokuapp.com/")
@@ -70,10 +61,8 @@ object ServiceModule {
             .build()
     }
 
-    @Provides
-    @Reusable
-    @JvmStatic
-    internal fun provideMarvelApi(retrofit: Retrofit): PokeappService {
+    @[Provides Reusable]
+    internal fun providePokeappService(retrofit: Retrofit): PokeappService {
         return retrofit.create(PokeappService::class.java)
     }
 

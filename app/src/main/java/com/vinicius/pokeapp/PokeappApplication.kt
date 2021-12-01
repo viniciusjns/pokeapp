@@ -11,9 +11,9 @@ import javax.inject.Inject
 class PokeappApplication : Application(), HasAndroidInjector {
 
     @Inject
-    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Any>
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
-    override fun androidInjector(): AndroidInjector<Any> = dispatchingActivityInjector
+    override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
     override fun onCreate() {
         super.onCreate()
