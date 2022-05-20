@@ -1,4 +1,4 @@
-package com.vinicius.pokeapp.service.response
+package com.vinicius.pokeapp.pokemonlist.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

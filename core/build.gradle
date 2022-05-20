@@ -56,6 +56,14 @@ dependencies {
     implementation Coroutines.core
     implementation Coroutines.android
 
+    // retrofit
+    implementation Retrofit.core
+    implementation Retrofit.moshiConverter
+    implementation Retrofit.coroutinesAdapter
+
+    implementation OkHttp.core
+    implementation OkHttp.loggingInterceptor
+
     // glide
     implementation Glide.core
     implementation Glide.compiler

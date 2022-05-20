@@ -6,6 +6,7 @@
         <entry key="core/src/main/res/drawable/rounded_type_bg.xml" value="0.3098958333333333" />
         <entry key="core/src/main/res/layout/type_item.xml" value="0.1" />
         <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_detail_fragment.xml" value="0.1" />
+        <entry key="feature/pokemonDetail/src/main/res/layout/pokemon_layout_attack.xml" value="0.1" />
         <entry key="feature/pokemonList/src/main/res/layout/pokemon_list_fragment.xml" value="0.25317028985507245" />
         <entry key="feature/pokemonList/src/main/res/layout/pokemon_list_item.xml" value="0.1" />
         <entry key="feature/pokemonList/src/main/res/layout/pokemon_not_found.xml" value="0.25" />

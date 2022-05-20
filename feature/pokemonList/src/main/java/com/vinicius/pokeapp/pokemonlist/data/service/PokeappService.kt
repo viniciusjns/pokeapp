@@ -1,8 +1,7 @@
-package com.vinicius.pokeapp.service.service
+package com.vinicius.pokeapp.pokemonlist.data.service
 
-import com.vinicius.pokeapp.service.response.PokemonResponse
+import com.vinicius.pokeapp.pokemonlist.data.model.PokemonResponse
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 interface PokeappService {
 

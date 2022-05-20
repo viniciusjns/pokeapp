@@ -17,7 +17,6 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/pokemonDetail" />
             <option value="$PROJECT_DIR$/feature/pokemonList" />
-            <option value="$PROJECT_DIR$/service" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

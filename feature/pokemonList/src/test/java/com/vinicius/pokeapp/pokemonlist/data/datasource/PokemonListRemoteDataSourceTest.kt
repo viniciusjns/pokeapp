@@ -1,10 +1,10 @@
 package com.vinicius.pokeapp.pokemonlist.data.datasource
 
 import com.vinicius.pokeapp.pokemonlist.data.mapper.PokemonResponseToPokemonListDataMapper
-import com.vinicius.pokeapp.service.response.PokemonResponse
+import com.vinicius.pokeapp.pokemonlist.data.model.PokemonResponse
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
-import com.vinicius.pokeapp.service.service.PokeappService
+import com.vinicius.pokeapp.pokemonlist.data.service.PokeappService
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Test

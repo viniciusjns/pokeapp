@@ -70,6 +70,7 @@ dependencies {
 
     // moshi
     implementation Moshi.core
+    kapt Moshi.codeGen
 
     // glide
     implementation Glide.core
@@ -81,7 +82,6 @@ dependencies {
 
     // modules
     implementation project(":core")
-    implementation project(":service")
     implementation project(":feature:pokemonDetail")
     implementation project(":database")
 

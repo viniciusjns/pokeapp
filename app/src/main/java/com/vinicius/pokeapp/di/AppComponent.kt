@@ -6,7 +6,6 @@ import com.vinicius.pokeapp.core.di.CoreModule
 import com.vinicius.pokeapp.database.di.DatabaseModule
 import com.vinicius.pokeapp.pokemondetail.di.PokemonDetailModule
 import com.vinicius.pokeapp.pokemonlist.di.PokemonListModule
-import com.vinicius.pokeapp.service.di.ServiceModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -20,7 +19,6 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AndroidSupportInjectionModule::class,
         ActivityModule::class,
-        ServiceModule::class,
         CoreModule::class,
         PokemonListModule::class,
         PokemonDetailModule::class,
