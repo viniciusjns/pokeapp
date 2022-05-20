@@ -3,13 +3,12 @@ package com.vinicius.pokeapp.pokemondetail.presentation.view
 import androidx.lifecycle.viewModelScope
 import com.vinicius.pokeapp.core.views.BaseViewModel
 import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonByIdUseCase
-import com.vinicius.pokeapp.pokemondetail.presentation.mapper.PokemonDetailPresentationMapper
+import com.vinicius.pokeapp.pokemondetail.presentation.mapper.toPokemonDetailUiModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PokemonDetailViewModel @Inject constructor(
     private val getPokemonByIdUseCase: GetPokemonByIdUseCase,
-    private val pokemonDetailPresentationMapper: PokemonDetailPresentationMapper,
 ) : BaseViewModel<PokemonDetailViewState, PokemonDetailViewAction>() {
 
     override val viewState = PokemonDetailViewState()
@@ -23,8 +22,7 @@ class PokemonDetailViewModel @Inject constructor(
     private fun getPokemonById(id: Int) {
         viewModelScope.launch {
             getPokemonByIdUseCase(id).onSuccess {
-                val pokemonUiModel = pokemonDetailPresentationMapper.mapFrom(it)
-                viewState.pokemonLiveData.value = pokemonUiModel
+                viewState.pokemonLiveData.value = it.toPokemonDetailUiModel()
             }.onError {
                 viewState.pokemonLiveData.value = null
             }
