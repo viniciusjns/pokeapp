@@ -5,6 +5,8 @@ import com.vinicius.pokeapp.core.ui.Colors
 import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonDetailDomainModel
 import com.vinicius.pokeapp.pokemondetail.presentation.model.*
 
+private const val EMPTY_STRING = ""
+
 fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = PokemonDetailUiModel(
     id = id,
     name = name,
@@ -21,43 +23,54 @@ fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = Po
         baseExp = training?.baseExp.toString(),
         growthRate = training?.growthRate,
         gender = "${breedings?.gender?.male}%, ${breedings?.gender?.female}%",
-        eggGroups = breedings?.eggGroups?.joinToString(separator = ", ")?.replaceFirstChar{ it.uppercase() },
+        eggGroups = breedings?.eggGroups?.joinToString(separator = ", ")
+            ?.replaceFirstChar { it.uppercase() },
         eggCycles = "${breedings?.eggCycles?.value} (${breedings?.eggCycles?.text})",
         baseColor = getBaseColor()
     ),
     pokemonStatsModel = PokemonStatsModel(
-        hp = baseStats?.hp?.map { hp -> hp.toString() },
-        attack = baseStats?.attack?.map { atk -> atk.toString() },
-        defense = baseStats?.defense?.map { def -> def.toString() },
-        specialAttack = baseStats?.specialAttack?.map { sAtk -> sAtk.toString() },
-        specialDefense = baseStats?.specialDefense?.map { sDef -> sDef.toString() },
-        speed = baseStats?.speed?.map { spd -> spd.toString() },
+        attributes = listOf(
+            getAttributes("HP", baseStats?.hp),
+            getAttributes("Attack", baseStats?.attack),
+            getAttributes("Defense", baseStats?.defense),
+            getAttributes("Sp. Atk", baseStats?.specialAttack),
+            getAttributes("Sp. Def", baseStats?.specialDefense),
+            getAttributes("Speed", baseStats?.speed),
+        ),
         typeDefenses = listOf(
-            Pair(TypeDefense.NORMAL, typeDefenses?.normal?.toString() ?: ""),
-            Pair(TypeDefense.FIRE, typeDefenses?.fire?.toString() ?: ""),
-            Pair(TypeDefense.WATER, typeDefenses?.water?.toString() ?: ""),
-            Pair(TypeDefense.ELECTRIC, typeDefenses?.electric?.toString() ?: ""),
-            Pair(TypeDefense.GRASS, typeDefenses?.grass?.toString() ?: ""),
-            Pair(TypeDefense.ICE, typeDefenses?.ice?.toString() ?: ""),
-            Pair(TypeDefense.FIGHTING, typeDefenses?.fighting?.toString() ?: ""),
-            Pair(TypeDefense.POISON, typeDefenses?.poison?.toString() ?: ""),
-            Pair(TypeDefense.GROUND, typeDefenses?.ground?.toString() ?: ""),
-            Pair(TypeDefense.FLYING, typeDefenses?.flying?.toString() ?: ""),
-            Pair(TypeDefense.PSYCHIC, typeDefenses?.psychic?.toString() ?: ""),
-            Pair(TypeDefense.BUG, typeDefenses?.bug?.toString() ?: ""),
-            Pair(TypeDefense.ROCK, typeDefenses?.rock?.toString() ?: ""),
-            Pair(TypeDefense.GHOST, typeDefenses?.ghost?.toString() ?: ""),
-            Pair(TypeDefense.DRAGON, typeDefenses?.dragon?.toString() ?: ""),
-            Pair(TypeDefense.DARK, typeDefenses?.dark?.toString() ?: ""),
-            Pair(TypeDefense.STEEL, typeDefenses?.steel?.toString() ?: ""),
-            Pair(TypeDefense.FAIRY, typeDefenses?.fairy?.toString() ?: ""),
+            Pair(TypeDefense.NORMAL, typeDefenses?.normal?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.FIRE, typeDefenses?.fire?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.WATER, typeDefenses?.water?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.ELECTRIC, typeDefenses?.electric?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.GRASS, typeDefenses?.grass?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.ICE, typeDefenses?.ice?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.FIGHTING, typeDefenses?.fighting?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.POISON, typeDefenses?.poison?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.GROUND, typeDefenses?.ground?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.FLYING, typeDefenses?.flying?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.PSYCHIC, typeDefenses?.psychic?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.BUG, typeDefenses?.bug?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.ROCK, typeDefenses?.rock?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.GHOST, typeDefenses?.ghost?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.DRAGON, typeDefenses?.dragon?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.DARK, typeDefenses?.dark?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.STEEL, typeDefenses?.steel?.toString() ?: EMPTY_STRING),
+            Pair(TypeDefense.FAIRY, typeDefenses?.fairy?.toString() ?: EMPTY_STRING),
         ),
         baseColor = getBaseColor()
     ),
     pokemonEvolutionModel = PokemonEvolutionModel()
 )
 
-private fun PokemonDetailDomainModel.getBaseColor(): Int? =
+private fun getAttributes(attributeName: String, stats: List<Int>?): PokemonAttributesUiModel =
+    PokemonAttributesUiModel(
+        attributeName = attributeName,
+        currentValue = stats?.get(0).toString(),
+        minValue = stats?.get(1).toString(),
+        maxValue = stats?.get(2).toString()
+    )
+
+private fun PokemonDetailDomainModel.getBaseColor(): Int =
     types?.let {
         Colors.valueOf(it[0].uppercase()).type.toColorInt()
-    }
+    } ?: 0

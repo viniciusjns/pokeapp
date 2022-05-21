@@ -17,6 +17,7 @@
 
     <!-- fragment stats pokemon -->
     <string name="frag_poke_stats_base_stats">Base Stats</string>
+    <string name="frag_poke_stats_base_stats_label">The ranges shown on the right are for a level 100 Pokémon. Maximum values are based on a beneficial nature, 252 EVs, 31 IVs; minimum values are based on a hindering nature, 0 EVs, 0 IVs.</string>
     <string name="frag_poke_stats_hp">HP</string>
     <string name="frag_poke_stats_attack">Attack</string>
     <string name="frag_poke_stats_defense">Defense</string>
@@ -24,8 +25,5 @@
     <string name="frag_poke_stats_special_defense">Sp. Def</string>
     <string name="frag_poke_stats_speed">Speed</string>
     <string name="frag_poke_stats_type_defenses">Type Defenses</string>
-    <string name="frag_poke_stats_type_defenses_label">The effectiveness of each type on Bulbasaur.</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="frag_poke_stats_type_defenses_label">The effectiveness of each type on %s.</string>
 </resources>

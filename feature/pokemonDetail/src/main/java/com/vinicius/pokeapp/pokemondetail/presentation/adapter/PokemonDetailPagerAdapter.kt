@@ -20,7 +20,7 @@ class PokemonDetailPagerAdapter(
     override fun createFragment(position: Int): Fragment =
         when (position) {
             0 -> PokemonAboutFragment.newInstance(pokemon.pokemonAboutModel)
-            1 -> PokemonStatsFragment.newInstance(pokemon.pokemonStatsModel)
+            1 -> PokemonStatsFragment.newInstance(pokemon.name, pokemon.pokemonStatsModel)
             2 -> PokemonEvolutionFragment.newInstance(pokemon.pokemonEvolutionModel)
             else -> PokemonAboutFragment.newInstance(pokemon.pokemonAboutModel)
         }

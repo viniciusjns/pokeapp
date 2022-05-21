@@ -9,8 +9,8 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,29 +29,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:txtColor="@{pokemon.baseColor}" />
 
-            <include
-                layout="@layout/pokemon_layout_hp"
-                app:pokemon="@{pokemon}" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_attributes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-            <include
-                layout="@layout/pokemon_layout_attack"
-                app:pokemon="@{pokemon}" />
-
-            <include
-                layout="@layout/pokemon_layout_defense"
-                app:pokemon="@{pokemon}" />
-
-            <include
-                layout="@layout/pokemon_layout_special_attack"
-                app:pokemon="@{pokemon}" />
-
-            <include
-                layout="@layout/pokemon_layout_special_defense"
-                app:pokemon="@{pokemon}" />
-
-            <include
-                layout="@layout/pokemon_layout_speed"
-                app:pokemon="@{pokemon}" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:text="@string/frag_poke_stats_base_stats_label"/>
 
             <TextView
                 android:id="@+id/tv_pokedex_type_defenses_title"
@@ -80,8 +69,6 @@
                 android:layout_marginTop="@dimen/dimen_16dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="9" />
-
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

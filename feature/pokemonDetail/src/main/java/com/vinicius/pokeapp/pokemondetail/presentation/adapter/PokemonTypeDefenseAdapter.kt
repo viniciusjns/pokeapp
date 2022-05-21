@@ -29,9 +29,5 @@ class PokemonTypeDefenseAdapter(
             Glide.with(binding.root.context).load(typeDefense.first.icon).into(binding.ivTypeDefense)
             binding.tvTypeDefenseLabel.text = typeDefense.second
         }
-
     }
-
-
-
 }

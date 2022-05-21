@@ -6,14 +6,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class PokemonStatsModel(
-    val hp: List<String>?,
-    val attack: List<String>?,
-    val defense: List<String>?,
-    val specialAttack: List<String>?,
-    val specialDefense: List<String>?,
-    val speed: List<String>?,
+    val attributes: List<PokemonAttributesUiModel>,
     val typeDefenses: List<Pair<TypeDefense, String?>>,
-    val baseColor: Int?
+    val baseColor: Int
 ) : Parcelable
 
 enum class TypeDefense(val icon: Int) {
