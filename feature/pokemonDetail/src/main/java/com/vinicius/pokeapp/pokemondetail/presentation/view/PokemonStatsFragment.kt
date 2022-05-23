@@ -47,9 +47,8 @@ class PokemonStatsFragment : BaseFragment() {
     }
 
     private fun setupView() = with(binding) {
-        pokemon = pokemonStatsModel
-
         pokemonStatsModel?.let { pokemonStatsModel ->
+            updateContent(pokemonStatsModel)
             setupAttributesAdapter(pokemonStatsModel)
             setupTypeDefensesAdapter(pokemonStatsModel)
         }
@@ -57,6 +56,13 @@ class PokemonStatsFragment : BaseFragment() {
             R.string.frag_poke_stats_type_defenses_label,
             pokemonName
         )
+    }
+
+    private fun PokemonStatsFragmentBinding.updateContent(
+        pokemonStatsModel: PokemonStatsModel
+    ) {
+        tvPokedexBaseStatsTitle.setTextColor(pokemonStatsModel.baseColor)
+        tvPokedexTypeDefensesTitle.setTextColor(pokemonStatsModel.baseColor)
     }
 
     private fun PokemonStatsFragmentBinding.setupTypeDefensesAdapter(

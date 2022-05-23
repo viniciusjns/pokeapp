@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.vinicius.pokeapp.core.extensions.tintProgress
 import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonAttributesUiModel
 import com.vinicius.pokemondetail.databinding.PokemonAttributesItemBinding
 
@@ -27,10 +28,14 @@ class PokemonAttributesAdapter(
 
     override fun getItemCount(): Int = currentList.size
 
-    inner class ViewHolder(val binding: PokemonAttributesItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(attributes: PokemonAttributesUiModel) {
-            binding.baseColor = baseColor
-            binding.attribute = attributes
+    inner class ViewHolder(private val binding: PokemonAttributesItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(attributes: PokemonAttributesUiModel) = with(binding) {
+            tvStatsTitle.text = attributes.attributeName
+            tvStatsLabel.text = attributes.currentValue.toString()
+            progressbar.progress = attributes.currentValue
+            progressbar.tintProgress(baseColor)
+            tvMinStatsLabel.text = attributes.minValue.toString()
+            tvMaxStatsLabel.text = attributes.maxValue.toString()
         }
     }
 }

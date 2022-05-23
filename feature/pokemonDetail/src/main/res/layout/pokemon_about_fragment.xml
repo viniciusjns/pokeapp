@@ -1,308 +1,282 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
 
-    <data>
-        <import type="com.vinicius.pokeapp.core.ui.Colors"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_16dp">
 
-        <variable
-            name="pokemon"
-            type="com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonAboutModel" />
-    </data>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.30" />
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvAboutDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger." />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/dimen_16dp">
+        <TextView
+            android:id="@+id/tvPokedexDataTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:text="@string/frag_poke_about_pokedex_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAboutDescription" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.30"/>
+        <TextView
+            android:id="@+id/tvSpeciesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_species"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPokedexDataTitle" />
 
-            <TextView
-                android:id="@+id/tv_about_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.description}"
-                android:textColor="@color/gray"
-                android:fontFamily="@font/sf_pro_display_regular"
-                tools:text="Bulbasaur can be seen napping in bright sunlight. There is a seed on its back. By soaking up the sun's rays, the seed grows progressively larger."
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/tvSpeciesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toBottomOf="@id/tvSpeciesTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvSpeciesTitle"
+            tools:text="Seed Pokemon" />
 
-            <TextView
-                android:id="@+id/tv_pokedex_data_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:fontFamily="@font/sf_pro_display_bold"
-                android:text="@string/frag_poke_about_pokedex_data"
-                app:txtColor="@{pokemon.baseColor}"
-                app:layout_constraintTop_toBottomOf="@+id/tv_about_description"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvHeightTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_height"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSpeciesTitle" />
 
-            <TextView
-                android:id="@+id/tv_species_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_species"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_pokedex_data_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvHeightLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvHeightTitle"
+            app:layout_constraintStart_toEndOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvHeightTitle"
+            tools:text="0.7m (2′04″)" />
 
-            <TextView
-                android:id="@+id/tv_species_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_display_regular"
-                android:textColor="@color/gray"
-                android:text="@{pokemon.species}"
-                tools:text="Seed Pokemon"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_species_title"
-                app:layout_constraintBottom_toBottomOf="@id/tv_species_title"/>
+        <TextView
+            android:id="@+id/tvWeightTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_weight"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHeightTitle" />
 
-            <TextView
-                android:id="@+id/tv_height_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_height"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_species_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvWeightLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvWeightTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvWeightTitle"
+            tools:text="6.9kg (15.2 lbs)" />
 
-            <TextView
-                android:id="@+id/tv_height_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.height}"
-                tools:text="0.7m (2′04″)"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_height_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_height_title"/>
+        <TextView
+            android:id="@+id/tvTrainingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:text="@string/frag_poke_about_training"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWeightLabel" />
 
-            <TextView
-                android:id="@+id/tv_weight_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_height"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_height_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvEvyieldTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_evyield"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTrainingTitle" />
 
-            <TextView
-                android:id="@+id/tv_weight_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.weight}"
-                tools:text="6.9kg (15.2 lbs)"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_weight_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_weight_title"/>
+        <TextView
+            android:id="@+id/tvEvyieldLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvEvyieldTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvEvyieldTitle"
+            tools:text="1 Special Attack" />
 
-            <TextView
-                android:id="@+id/tv_training_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:fontFamily="@font/sf_pro_display_bold"
-                android:text="@string/frag_poke_about_training"
-                app:txtColor="@{pokemon.baseColor}"
-                app:layout_constraintTop_toBottomOf="@+id/tv_weight_label"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvCatchRateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_catch_rate"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEvyieldTitle" />
 
-            <TextView
-                android:id="@+id/tv_evyield_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_evyield"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_training_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvCatchRateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvCatchRateTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvCatchRateTitle"
+            tools:text="45 (5.9% with Pokeball, full HP)" />
 
-            <TextView
-                android:id="@+id/tv_evyield_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.evYield}"
-                tools:text="1 Special Attack"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_evyield_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_evyield_title"/>
+        <TextView
+            android:id="@+id/tvBaseFriendshipTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_base_friendship"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCatchRateTitle" />
 
-            <TextView
-                android:id="@+id/tv_catch_rate_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_catch_rate"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_evyield_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvBaseFriendshipLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvBaseFriendshipTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvBaseFriendshipTitle"
+            tools:text="70 (normal)" />
 
-            <TextView
-                android:id="@+id/tv_catch_rate_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.catchRate}"
-                tools:text="45 (5.9% with Pokeball, full HP)"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_catch_rate_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_catch_rate_title"/>
+        <TextView
+            android:id="@+id/tvBaseExpTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_base_exp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBaseFriendshipTitle" />
 
-            <TextView
-                android:id="@+id/tv_base_friendship_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_base_friendship"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_catch_rate_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvBaseExpLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvBaseExpTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvBaseExpTitle"
+            tools:text="64" />
 
-            <TextView
-                android:id="@+id/tv_base_friendship_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.baseFriendship}"
-                tools:text="70 (normal)"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_base_friendship_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_base_friendship_title"/>
+        <TextView
+            android:id="@+id/tvGrowthRateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_growth_rate"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBaseExpTitle" />
 
-            <TextView
-                android:id="@+id/tv_base_exp_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_base_exp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_base_friendship_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvGrowthRateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvGrowthRateTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvGrowthRateTitle"
+            tools:text="Medium Slow" />
 
-            <TextView
-                android:id="@+id/tv_base_exp_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.baseExp}"
-                tools:text="64"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_base_exp_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_base_exp_title"/>
+        <TextView
+            android:id="@+id/tvBreedingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:text="@string/frag_poke_about_breeding"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvGrowthRateTitle" />
 
-            <TextView
-                android:id="@+id/tv_growth_rate_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_growth_rate"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_base_exp_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvGenderTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_gender"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvBreedingTitle" />
 
-            <TextView
-                android:id="@+id/tv_growth_rate_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.growthRate}"
-                tools:text="Medium Slow"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_growth_rate_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_growth_rate_title"/>
+        <TextView
+            android:id="@+id/tvGenderLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvGenderTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvGenderTitle"
+            tools:text="87,5%, 12,5%" />
 
-            <TextView
-                android:id="@+id/tv_breeding_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:fontFamily="@font/sf_pro_display_bold"
-                android:text="@string/frag_poke_about_breeding"
-                app:txtColor="@{pokemon.baseColor}"
-                app:layout_constraintTop_toBottomOf="@+id/tv_growth_rate_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvEggGroupsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_egg_groups"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvGenderTitle" />
 
-            <TextView
-                android:id="@+id/tv_gender_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_gender"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_breeding_title"
-                app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvEggGroupsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvEggGroupsTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvEggGroupsTitle"
+            tools:text="Grass, Monster" />
 
-            <TextView
-                android:id="@+id/tv_gender_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.gender}"
-                tools:text="87,5%, 12,5%"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_gender_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_gender_title"/>
+        <TextView
+            android:id="@+id/tvEggCyclesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:fontFamily="@font/sf_pro_display_regular"
+            android:text="@string/frag_poke_about_egg_cycles"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvEggGroupsTitle" />
 
-            <TextView
-                android:id="@+id/tv_egg_groups_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_egg_groups"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_gender_title"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:id="@+id/tv_egg_groups_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.eggGroups}"
-                tools:text="Grass, Monster"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_egg_groups_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_egg_groups_title"/>
-
-            <TextView
-                android:id="@+id/tv_egg_cycles_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/frag_poke_about_egg_cycles"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sf_pro_display_regular"
-                app:layout_constraintTop_toBottomOf="@+id/tv_egg_groups_title"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <TextView
-                android:id="@+id/tv_egg_cycles_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{pokemon.eggCycles}"
-                tools:text="20 (4,884 - 5,140 steps)"
-                app:layout_constraintStart_toEndOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/tv_egg_cycles_title"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_egg_cycles_title"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-</layout>
+        <TextView
+            android:id="@+id/tvEggCyclesLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvEggCyclesTitle"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/tvEggCyclesTitle"
+            tools:text="20 (4,884 - 5,140 steps)" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

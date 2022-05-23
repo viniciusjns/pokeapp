@@ -2,9 +2,14 @@ package com.vinicius.pokeapp.pokemonlist.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.vinicius.pokeapp.core.extensions.capitalize
+import com.vinicius.pokeapp.core.extensions.loadImage
+import com.vinicius.pokeapp.core.extensions.setIcon
+import com.vinicius.pokeapp.core.extensions.tintBackground
 import com.vinicius.pokeapp.pokemonlist.presentation.model.PokemonListUiModel
 import com.vinicius.pokemonlist.databinding.PokemonListItemBinding
 
@@ -30,10 +35,26 @@ class PokemonListAdapter(
         private val binding: PokemonListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun onBind(pokemon: PokemonListUiModel) {
-            binding.pokemon = pokemon
+        fun onBind(pokemon: PokemonListUiModel) = with(binding) {
+            flContainer.tintBackground(pokemon.bgColor)
+            ivPicture.loadImage(pokemon.imageUrl)
+            tvNumber.text = pokemon.getNumber()
+            tvName.capitalize(pokemon.name)
+            with(layoutType1) {
+                container.tintBackground(pokemon.typeColors?.get(0))
+                ivIcon.setIcon(pokemon.types?.get(0))
+                tvType.capitalize(pokemon.types?.get(0))
+            }
+            with(layoutType2) {
+                container.isVisible = pokemon.canShowSecondType
+                if (pokemon.canShowSecondType) {
+                    container.tintBackground(pokemon.typeColors?.get(1))
+                    ivIcon.setIcon(pokemon.types?.get(1))
+                    tvType.capitalize(pokemon.types?.get(1))
+                }
+            }
 
-            binding.root.setOnClickListener {
+            root.setOnClickListener {
                 showPokemonDetail(pokemon)
             }
         }

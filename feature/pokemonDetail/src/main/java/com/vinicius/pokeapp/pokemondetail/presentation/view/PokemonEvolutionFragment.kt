@@ -33,7 +33,6 @@ class PokemonEvolutionFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.pokemon = pokemon
     }
 
     companion object {

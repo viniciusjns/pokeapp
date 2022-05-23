@@ -1,11 +1,13 @@
 package com.vinicius.pokeapp.pokemondetail.presentation.mapper
 
+import android.graphics.Color
 import androidx.core.graphics.toColorInt
 import com.vinicius.pokeapp.core.ui.Colors
 import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonDetailDomainModel
 import com.vinicius.pokeapp.pokemondetail.presentation.model.*
 
 private const val EMPTY_STRING = ""
+private const val DEFAULT_COLOR = Color.GRAY
 
 fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = PokemonDetailUiModel(
     id = id,
@@ -65,12 +67,12 @@ fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = Po
 private fun getAttributes(attributeName: String, stats: List<Int>?): PokemonAttributesUiModel =
     PokemonAttributesUiModel(
         attributeName = attributeName,
-        currentValue = stats?.get(0).toString(),
-        minValue = stats?.get(1).toString(),
-        maxValue = stats?.get(2).toString()
+        currentValue = stats?.get(0) ?: 0,
+        minValue = stats?.get(1) ?: 0,
+        maxValue = stats?.get(2) ?: 0
     )
 
 private fun PokemonDetailDomainModel.getBaseColor(): Int =
     types?.let {
         Colors.valueOf(it[0].uppercase()).type.toColorInt()
-    } ?: 0
+    } ?: DEFAULT_COLOR

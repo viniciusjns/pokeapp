@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PokemonAttributesUiModel(
     val attributeName: String,
-    val currentValue: String,
-    val minValue: String,
-    val maxValue: String
+    val currentValue: Int,
+    val minValue: Int,
+    val maxValue: Int
 ) : Parcelable

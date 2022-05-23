@@ -1,5 +1,6 @@
 package com.vinicius.pokeapp.pokemondetail.presentation.view
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,27 @@ class PokemonAboutFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.pokemon = pokemon
+        setupView(pokemon)
+    }
+
+    private fun setupView(pokemon: PokemonAboutModel?) = with(binding) {
+        pokemon?.run {
+            tvAboutDescription.text = description
+            tvPokedexDataTitle.setTextColor(baseColor)
+            tvSpeciesLabel.text = species
+            tvHeightLabel.text = height
+            tvWeightLabel.text = weight
+            tvTrainingTitle.setTextColor(baseColor)
+            tvEvyieldLabel.text = evYield
+            tvCatchRateLabel.text = catchRate
+            tvBaseFriendshipLabel.text = baseFriendship
+            tvBaseExpLabel.text = pokemon.baseExp
+            tvGrowthRateLabel.text = growthRate
+            tvBreedingTitle.setTextColor(baseColor)
+            tvGenderLabel.text = gender
+            tvEggGroupsLabel.text = eggGroups
+            tvEggCyclesLabel.text = eggCycles
+        }
     }
 
     companion object {

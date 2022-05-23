@@ -1,112 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/dimen_24dp"
+    android:paddingEnd="@dimen/dimen_24dp">
 
-    <data>
-        <variable
-            name="pokemon"
-            type="com.vinicius.pokeapp.pokemonlist.presentation.model.PokemonListUiModel" />
-    </data>
+    <FrameLayout
+        android:id="@+id/flContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_bg"
+        app:layout_constraintBottom_toBottomOf="@id/ivPokeballBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivPokeballBg"
+        tools:background="@color/black" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/ivPokeballBg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dimen_24dp"
-        android:paddingEnd="@dimen/dimen_24dp">
+        android:src="@drawable/ic_pokeball"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/fl_container"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/rounded_bg"
-            tools:background="@color/black"
-            app:roundedBgColor="@{pokemon.bgColor}"
-            app:layout_constraintTop_toTopOf="@+id/iv_pokeball_bg"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_pokeball_bg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+    <ImageView
+        android:id="@+id/ivBallsBg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:src="@drawable/ic_balls"
+        app:layout_constraintEnd_toEndOf="@id/flContainer"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="@id/flContainer"
+        app:layout_constraintTop_toTopOf="@id/flContainer" />
 
-        <ImageView
-            android:id="@+id/iv_pokeball_bg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_pokeball"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+    <ImageView
+        android:id="@+id/ivPicture"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/iv_balls_bg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8dp"
-            android:src="@drawable/ic_balls"
-            app:layout_constraintEnd_toEndOf="@+id/fl_container"
-            app:layout_constraintHorizontal_bias="0.3"
-            app:layout_constraintStart_toStartOf="@+id/fl_container"
-            app:layout_constraintTop_toTopOf="@+id/fl_container" />
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@color/dark_gray"
+        android:textSize="@dimen/dimen_12sp"
+        app:layout_constraintStart_toStartOf="@id/flContainer"
+        app:layout_constraintTop_toTopOf="@id/flContainer"
+        tools:text="#001"
+        tools:textColor="@android:color/white" />
 
-        <ImageView
-            android:id="@+id/iv_picture"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginBottom="@dimen/dimen_16dp"
-            android:layout_marginEnd="@dimen/dimen_16dp"
-            app:imageUrl="@{pokemon.imageUrl}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_24sp"
+        app:layout_constraintStart_toStartOf="@id/flContainer"
+        app:layout_constraintTop_toBottomOf="@id/tvNumber"
+        tools:text="Bulbasaur" />
 
-        <TextView
-            android:id="@+id/tv_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_16dp"
-            android:textSize="@dimen/dimen_12sp"
-            android:textColor="@color/dark_gray"
-            android:fontFamily="@font/sf_pro_display_bold"
-            android:text="@{pokemon.getNumber()}"
-            tools:text="#001"
-            tools:textColor="@android:color/white"
-            app:layout_constraintTop_toTopOf="@+id/fl_container"
-            app:layout_constraintStart_toStartOf="@+id/fl_container" />
+    <include
+        android:id="@+id/layoutType1"
+        layout="@layout/pokemon_type_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName" />
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_16dp"
-            android:textSize="@dimen/dimen_24sp"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/sf_pro_display_bold"
-            app:capitalize="@{pokemon.name}"
-            app:layout_constraintTop_toBottomOf="@+id/tv_number"
-            app:layout_constraintStart_toStartOf="@+id/fl_container"
-            tools:text="Bulbasaur" />
+    <include
+        android:id="@+id/layoutType2"
+        layout="@layout/pokemon_type_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_8dp"
+        app:layout_constraintBottom_toBottomOf="@id/layoutType1"
+        app:layout_constraintStart_toEndOf="@+id/layoutType1"
+        app:layout_constraintTop_toTopOf="@+id/layoutType1" />
 
-        <include
-            android:id="@+id/layout_type_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_4dp"
-            layout="@layout/pokemon_type_item"
-            app:type="@{pokemon.types[0]}"
-            app:bgColor="@{pokemon.typeColors[0]}"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name"
-            app:layout_constraintStart_toStartOf="@+id/tv_name" />
-
-        <include
-            android:id="@+id/layout_type_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_8dp"
-            layout="@layout/pokemon_type_item"
-            app:showView="@{pokemon.canShowSecondType}"
-            app:type="@{pokemon.types[1]}"
-            app:bgColor="@{pokemon.typeColors[1]}"
-            app:layout_constraintStart_toEndOf="@+id/layout_type_1"
-            app:layout_constraintTop_toTopOf="@+id/layout_type_1"
-            app:layout_constraintBottom_toBottomOf="@+id/layout_type_1" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
