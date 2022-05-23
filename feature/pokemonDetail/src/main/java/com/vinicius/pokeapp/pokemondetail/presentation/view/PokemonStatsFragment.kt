@@ -17,6 +17,10 @@ private const val POKEMON_STATS = "POKEMON_STATS"
 class PokemonStatsFragment : BaseFragment() {
     private var pokemonName: String = ""
     private var pokemonStatsModel: PokemonStatsModel? = null
+    private lateinit var pokemonAttributesAdapter: PokemonAttributesAdapter
+    private val pokemonTypeDefensesAdapter: PokemonTypeDefenseAdapter by lazy {
+        PokemonTypeDefenseAdapter()
+    }
 
     private lateinit var binding: PokemonStatsFragmentBinding
 
@@ -46,15 +50,30 @@ class PokemonStatsFragment : BaseFragment() {
         pokemon = pokemonStatsModel
 
         pokemonStatsModel?.let { pokemonStatsModel ->
-            rvTypeDefenses.adapter =  PokemonTypeDefenseAdapter(pokemonStatsModel.typeDefenses)
-            rvAttributes.adapter = PokemonAttributesAdapter(
-                pokemonStatsModel.baseColor,
-                pokemonStatsModel.attributes)
+            setupAttributesAdapter(pokemonStatsModel)
+            setupTypeDefensesAdapter(pokemonStatsModel)
         }
         tvPokedexTypeDefensesLabel.text = getString(
             R.string.frag_poke_stats_type_defenses_label,
             pokemonName
         )
+    }
+
+    private fun PokemonStatsFragmentBinding.setupTypeDefensesAdapter(
+        pokemonStatsModel: PokemonStatsModel
+    ) {
+        pokemonTypeDefensesAdapter.submitList(pokemonStatsModel.typeDefenses)
+        rvTypeDefenses.adapter = pokemonTypeDefensesAdapter
+    }
+
+    private fun PokemonStatsFragmentBinding.setupAttributesAdapter(
+        pokemonStatsModel: PokemonStatsModel
+    ) {
+        pokemonAttributesAdapter = PokemonAttributesAdapter(
+            pokemonStatsModel.baseColor
+        )
+        pokemonAttributesAdapter.submitList(pokemonStatsModel.attributes)
+        rvAttributes.adapter = pokemonAttributesAdapter
     }
 
     companion object {
