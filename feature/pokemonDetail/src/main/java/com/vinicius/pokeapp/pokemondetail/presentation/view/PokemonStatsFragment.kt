@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.vinicius.pokeapp.core.views.BaseFragment
 import com.vinicius.pokeapp.pokemondetail.presentation.adapter.PokemonAttributesAdapter
 import com.vinicius.pokeapp.pokemondetail.presentation.adapter.PokemonTypeDefenseAdapter
-import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsModel
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonStatsUiModel
 import com.vinicius.pokemondetail.R
 import com.vinicius.pokemondetail.databinding.PokemonStatsFragmentBinding
 
@@ -16,7 +16,7 @@ private const val POKEMON_STATS = "POKEMON_STATS"
 
 class PokemonStatsFragment : BaseFragment() {
     private var pokemonName: String = ""
-    private var pokemonStatsModel: PokemonStatsModel? = null
+    private var pokemonStatsModel: PokemonStatsUiModel? = null
     private lateinit var pokemonAttributesAdapter: PokemonAttributesAdapter
     private val pokemonTypeDefensesAdapter: PokemonTypeDefenseAdapter by lazy {
         PokemonTypeDefenseAdapter()
@@ -59,21 +59,21 @@ class PokemonStatsFragment : BaseFragment() {
     }
 
     private fun PokemonStatsFragmentBinding.updateContent(
-        pokemonStatsModel: PokemonStatsModel
+        pokemonStatsModel: PokemonStatsUiModel
     ) {
         tvPokedexBaseStatsTitle.setTextColor(pokemonStatsModel.baseColor)
         tvPokedexTypeDefensesTitle.setTextColor(pokemonStatsModel.baseColor)
     }
 
     private fun PokemonStatsFragmentBinding.setupTypeDefensesAdapter(
-        pokemonStatsModel: PokemonStatsModel
+        pokemonStatsModel: PokemonStatsUiModel
     ) {
         pokemonTypeDefensesAdapter.submitList(pokemonStatsModel.typeDefenses)
         rvTypeDefenses.adapter = pokemonTypeDefensesAdapter
     }
 
     private fun PokemonStatsFragmentBinding.setupAttributesAdapter(
-        pokemonStatsModel: PokemonStatsModel
+        pokemonStatsModel: PokemonStatsUiModel
     ) {
         pokemonAttributesAdapter = PokemonAttributesAdapter(
             pokemonStatsModel.baseColor
@@ -83,7 +83,7 @@ class PokemonStatsFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(pokemonName: String, pokemon: PokemonStatsModel?) =
+        fun newInstance(pokemonName: String, pokemon: PokemonStatsUiModel?) =
             PokemonStatsFragment().apply {
                 arguments = Bundle().apply {
                     putString(POKEMON_NAME, pokemonName)

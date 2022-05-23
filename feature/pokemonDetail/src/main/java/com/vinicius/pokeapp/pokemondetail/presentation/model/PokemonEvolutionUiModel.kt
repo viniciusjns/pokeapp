@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class PokemonEvolutionModel(
+class PokemonEvolutionUiModel(
 
 ) : Parcelable

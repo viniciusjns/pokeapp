@@ -1,5 +1,7 @@
-package com.vinicius.pokeapp.core.util
+package com.vinicius.pokeapp.core.extensions
 
+import com.vinicius.pokeapp.core.util.Result
+import com.vinicius.pokeapp.core.util.ResultError
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

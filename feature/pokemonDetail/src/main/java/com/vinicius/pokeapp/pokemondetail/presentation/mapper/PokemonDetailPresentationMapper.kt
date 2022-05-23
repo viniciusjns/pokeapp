@@ -7,6 +7,7 @@ import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonDetailDomainModel
 import com.vinicius.pokeapp.pokemondetail.presentation.model.*
 
 private const val EMPTY_STRING = ""
+private const val EMPTY_VALUE = 0
 private const val DEFAULT_COLOR = Color.GRAY
 
 fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = PokemonDetailUiModel(
@@ -14,23 +15,33 @@ fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = Po
     name = name,
     types = types,
     imageUrl = imageUrl,
-    pokemonAboutModel = PokemonAboutModel(
+    pokemonAboutUiModel = PokemonAboutUiModel(
         description = description,
         species = species,
-        height = "${height}m",
-        weight = "${weight}kg",
+        height = height,
+        weight = weight,
         evYield = training?.evYield,
-        catchRate = "${training?.catchRate?.value} (${training?.catchRate?.text})",
-        baseFriendship = "${training?.baseFriendship?.value} (${training?.baseFriendship?.text})",
+        catchRate = DefaultDataUiModel(
+            value = training?.catchRate?.value,
+            text = training?.catchRate?.text
+        ),
+        baseFriendship = DefaultDataUiModel(
+            value = training?.baseFriendship?.value,
+            text = training?.baseFriendship?.text
+        ),
         baseExp = training?.baseExp.toString(),
         growthRate = training?.growthRate,
-        gender = "${breedings?.gender?.male}%, ${breedings?.gender?.female}%",
+        male = breedings?.gender?.male,
+        female = breedings?.gender?.female,
         eggGroups = breedings?.eggGroups?.joinToString(separator = ", ")
             ?.replaceFirstChar { it.uppercase() },
-        eggCycles = "${breedings?.eggCycles?.value} (${breedings?.eggCycles?.text})",
+        eggCycles = DefaultDataUiModel(
+            value = breedings?.eggCycles?.value,
+            text = breedings?.eggCycles?.text
+        ),
         baseColor = getBaseColor()
     ),
-    pokemonStatsModel = PokemonStatsModel(
+    pokemonStatsUiModel = PokemonStatsUiModel(
         attributes = listOf(
             getAttributes("HP", baseStats?.hp),
             getAttributes("Attack", baseStats?.attack),
@@ -61,15 +72,15 @@ fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = Po
         ),
         baseColor = getBaseColor()
     ),
-    pokemonEvolutionModel = PokemonEvolutionModel()
+    pokemonEvolutionUiModel = PokemonEvolutionUiModel()
 )
 
 private fun getAttributes(attributeName: String, stats: List<Int>?): PokemonAttributesUiModel =
     PokemonAttributesUiModel(
         attributeName = attributeName,
-        currentValue = stats?.get(0) ?: 0,
-        minValue = stats?.get(1) ?: 0,
-        maxValue = stats?.get(2) ?: 0
+        currentValue = stats?.get(0) ?: EMPTY_VALUE,
+        minValue = stats?.get(1) ?: EMPTY_VALUE,
+        maxValue = stats?.get(2) ?: EMPTY_VALUE
     )
 
 private fun PokemonDetailDomainModel.getBaseColor(): Int =

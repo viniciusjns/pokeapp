@@ -15,6 +15,14 @@
     <string name="frag_poke_about_egg_groups">Egg Groups</string>
     <string name="frag_poke_about_egg_cycles">Egg Cycles</string>
 
+    <string name="frag_poke_about_height_label">%.1fm</string>
+    <string name="frag_poke_about_weight_label">%.1fkg</string>
+    <string name="frag_poke_about_catch_rate_label">%1$d (%2$s)</string>
+    <string name="frag_poke_about_base_friendship_label">%1$d (%2$s)</string>
+    <string name="frag_poke_about_gender_male_label">♂ %.1f%%</string>
+    <string name="frag_poke_about_gender_female_label">♀ %.1f%%</string>
+    <string name="frag_poke_about_egg_cycles_label">%1$d (%2$s)</string>
+
     <!-- fragment stats pokemon -->
     <string name="frag_poke_stats_base_stats">Base Stats</string>
     <string name="frag_poke_stats_base_stats_label">The ranges shown on the right are for a level 100 Pokémon. Maximum values are based on a beneficial nature, 252 EVs, 31 IVs; minimum values are based on a hindering nature, 0 EVs, 0 IVs.</string>

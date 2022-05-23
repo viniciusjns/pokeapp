@@ -7,7 +7,7 @@ data class PokemonDetailUiModel(
     override val name: String,
     override val types: List<String>?,
     override val imageUrl: String?,
-    val pokemonAboutModel: PokemonAboutModel,
-    val pokemonStatsModel: PokemonStatsModel,
-    val pokemonEvolutionModel: PokemonEvolutionModel,
+    val pokemonAboutUiModel: PokemonAboutUiModel,
+    val pokemonStatsUiModel: PokemonStatsUiModel,
+    val pokemonEvolutionUiModel: PokemonEvolutionUiModel,
 ) : BasePokemonUiModel(id, name, types, imageUrl)

@@ -4,7 +4,7 @@ import com.vinicius.pokeapp.core.util.ResultError
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonResponse
 import com.vinicius.pokeapp.pokemonlist.data.service.PokeappService
-import com.vinicius.pokeapp.core.util.safeApiCall
+import com.vinicius.pokeapp.core.extensions.safeApiCall
 import javax.inject.Inject
 
 class PokemonListRemoteDataSourceImpl @Inject constructor(

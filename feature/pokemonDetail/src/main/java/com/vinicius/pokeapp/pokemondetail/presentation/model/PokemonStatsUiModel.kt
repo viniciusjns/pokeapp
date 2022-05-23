@@ -5,7 +5,7 @@ import com.vinicius.pokemondetail.R
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class PokemonStatsModel(
+class PokemonStatsUiModel(
     val attributes: List<PokemonAttributesUiModel>,
     val typeDefenses: List<Pair<TypeDefense, String?>>,
     val baseColor: Int
