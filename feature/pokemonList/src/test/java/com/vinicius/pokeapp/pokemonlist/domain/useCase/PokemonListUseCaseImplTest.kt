@@ -1,12 +1,10 @@
 package com.vinicius.pokeapp.pokemonlist.domain.useCase
 
-import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.pokemonlist.domain.repository.PokemonListRepository
 import com.vinicius.pokeapp.pokemonlist.domain.mapper.PokemonListDomainMapper
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
 import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainErrorModel
-import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk

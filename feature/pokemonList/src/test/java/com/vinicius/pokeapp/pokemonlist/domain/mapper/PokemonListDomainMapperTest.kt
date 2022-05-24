@@ -1,6 +1,5 @@
 package com.vinicius.pokeapp.pokemonlist.domain.mapper
 
-import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
 import org.junit.Test
 

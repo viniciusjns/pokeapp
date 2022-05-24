@@ -5,7 +5,6 @@ import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainErrorModel
 import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
-import com.vinicius.pokeapp.pokemonlist.domain.mapper.toPokemonListDomainModel
 import javax.inject.Inject
 
 class GetPokemonsUseCaseImpl @Inject constructor(
@@ -14,7 +13,6 @@ class GetPokemonsUseCaseImpl @Inject constructor(
 
     override suspend fun invoke(): Result<List<PokemonListDomainModel>, PokemonListDomainErrorModel> {
         return pokemonListRepository.getPokemons()
-            .mapSuccess { it.map { pokemonDataModel-> pokemonDataModel.toPokemonListDomainModel() } }
             .mapError(::mapDataError)
     }
 

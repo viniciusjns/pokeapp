@@ -1,6 +1,5 @@
 package com.vinicius.pokeapp.pokemonlist.data.mapper
 
-import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.pokemonlist.data.model.PokemonResponse
 import org.junit.Test
 import kotlin.test.assertEquals

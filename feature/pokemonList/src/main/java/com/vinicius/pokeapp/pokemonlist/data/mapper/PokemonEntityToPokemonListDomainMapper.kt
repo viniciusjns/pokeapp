@@ -1,9 +1,9 @@
 package com.vinicius.pokeapp.pokemonlist.data.mapper
 
 import com.vinicius.pokeapp.database.entity.PokemonEntity
-import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
+import com.vinicius.pokeapp.pokemonlist.domain.model.PokemonListDomainModel
 
-fun PokemonEntity.toPokemonListDataModel() = PokemonListDataModel(
+fun PokemonEntity.toPokemonListDomainModel() = PokemonListDomainModel(
     id = id.toString(),
     name = name,
     types = types,

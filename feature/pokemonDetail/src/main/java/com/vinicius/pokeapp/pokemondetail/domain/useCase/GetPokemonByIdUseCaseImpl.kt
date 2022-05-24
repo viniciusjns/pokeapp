@@ -2,7 +2,6 @@ package com.vinicius.pokeapp.pokemondetail.domain.useCase
 
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
-import com.vinicius.pokeapp.pokemondetail.domain.mapper.toPokemonDetailDomainModel
 import com.vinicius.pokeapp.pokemondetail.domain.repository.PokemonDetailRepository
 import com.vinicius.pokeapp.pokemondetail.domain.model.*
 import javax.inject.Inject
@@ -13,8 +12,5 @@ class GetPokemonByIdUseCaseImpl @Inject constructor(
 
     override suspend operator fun invoke(id: Int): Result<PokemonDetailDomainModel, ResultError> =
         pokemonDetailRepository.getPokemonById(id)
-            .mapSuccess { pokemonDetailDataModel ->
-                pokemonDetailDataModel.toPokemonDetailDomainModel()
-            }
             .mapError { ResultError.GenericError }
 }

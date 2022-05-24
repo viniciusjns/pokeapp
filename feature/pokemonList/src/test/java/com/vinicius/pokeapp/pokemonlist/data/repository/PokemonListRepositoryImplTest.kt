@@ -2,14 +2,12 @@ package com.vinicius.pokeapp.pokemonlist.data.repository
 
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListLocalDataSource
 import com.vinicius.pokeapp.pokemonlist.data.datasource.PokemonListRemoteDataSource
-import com.vinicius.pokeapp.pokemonlist.data.model.PokemonListDataModel
 import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class PokemonListRepositoryImplTest {
