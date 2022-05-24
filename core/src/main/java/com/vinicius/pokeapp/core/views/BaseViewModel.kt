@@ -2,9 +2,9 @@ package com.vinicius.pokeapp.core.views
 
 import androidx.lifecycle.ViewModel
 
-interface PresentationModel<T, A> {
-    val viewState: T
-    fun dispatchViewAction(viewAction: A)
+abstract class BaseViewModel<State, Action>(
+    initialState: State
+) : ViewModel() {
+    val viewState: State = initialState
+    abstract fun dispatchViewAction(viewAction: Action)
 }
-
-abstract class BaseViewModel<T, A> : ViewModel(), PresentationModel<T, A>

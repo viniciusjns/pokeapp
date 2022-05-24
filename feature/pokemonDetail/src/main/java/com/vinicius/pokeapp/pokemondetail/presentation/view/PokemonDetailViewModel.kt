@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class PokemonDetailViewModel @Inject constructor(
     private val getPokemonByIdUseCase: GetPokemonByIdUseCase,
-) : BaseViewModel<PokemonDetailViewState, PokemonDetailViewAction>() {
-
-    override val viewState = PokemonDetailViewState()
+) : BaseViewModel<PokemonDetailViewState, PokemonDetailViewAction>(
+    PokemonDetailViewState()
+) {
 
     override fun dispatchViewAction(viewAction: PokemonDetailViewAction) {
         when(viewAction) {
