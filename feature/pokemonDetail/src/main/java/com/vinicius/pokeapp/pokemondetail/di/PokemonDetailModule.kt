@@ -4,22 +4,30 @@ import androidx.lifecycle.ViewModel
 import com.vinicius.pokeapp.core.di.ViewModelKey
 import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailLocalDataSource
 import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailLocalDataSourceImpl
+import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailRemoteDataSource
+import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailRemoteDataSourceImpl
 import com.vinicius.pokeapp.pokemondetail.domain.repository.PokemonDetailRepository
 import com.vinicius.pokeapp.pokemondetail.data.repository.PokemonDetailRepositoryImpl
+import com.vinicius.pokeapp.pokemondetail.data.service.PokeappEvolutionService
 import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonByIdUseCase
 import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonByIdUseCaseImpl
+import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonSpecieUseCase
+import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonSpecieUseCaseImpl
 import com.vinicius.pokeapp.pokemondetail.presentation.view.*
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.Reusable
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
+import retrofit2.Retrofit
 
 @Module(
     includes = [
         PokemonDetailDataModule::class,
         PokemonDetailDomainModule::class,
         PokemonDetailPresentationModule::class,
+        PokemonDetailServiceModule::class
     ]
 )
 object PokemonDetailModule
@@ -31,6 +39,11 @@ interface PokemonDetailDataModule{
     fun bindPokemonDetailLocalDataSource(
         pokemonDetailLocalDataSource: PokemonDetailLocalDataSourceImpl
     ): PokemonDetailLocalDataSource
+
+    @[Binds Reusable]
+    fun bindPokemonDetailRemoteDataSource(
+        pokemonDetailRemoteDataSource: PokemonDetailRemoteDataSourceImpl
+    ): PokemonDetailRemoteDataSource
 
     @[Binds Reusable]
     fun bindPokemonDetailRepository(
@@ -45,6 +58,11 @@ interface PokemonDetailDomainModule {
     fun bindPokemonDetailUseCase(
         pokemonDetailUseCase: GetPokemonByIdUseCaseImpl
     ): GetPokemonByIdUseCase
+
+    @[Binds Reusable]
+    fun bindPokemonSpecieUseCase(
+        pokemonSpecieUseCase: GetPokemonSpecieUseCaseImpl
+    ): GetPokemonSpecieUseCase
 }
 
 @Module
@@ -66,5 +84,15 @@ interface PokemonDetailPresentationModule {
     fun bindPokemonDetailViewModel(
         pokemonDetailViewModel: PokemonDetailViewModel
     ): ViewModel
+
+}
+
+@Module
+object PokemonDetailServiceModule {
+
+    @[Provides Reusable]
+    internal fun providePokeappEvolutionService(retrofit: Retrofit): PokeappEvolutionService {
+        return retrofit.create(PokeappEvolutionService::class.java)
+    }
 
 }
