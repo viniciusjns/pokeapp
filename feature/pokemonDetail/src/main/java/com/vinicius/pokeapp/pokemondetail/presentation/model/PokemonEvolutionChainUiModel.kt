@@ -1,10 +1,9 @@
-package com.vinicius.pokeapp.pokemondetail.domain.model
+package com.vinicius.pokeapp.pokemondetail.presentation.model
 
-data class PokemonEvolutionDomainModel(
+data class PokemonEvolutionChainUiModel(
     val idBasePokemon: Int,
     val nameBasePokemon: String,
     val levelToEvolve: Int?,
-    val idEvolvedPokemon: Int,
     val nameEvolvedPokemon: String,
     val basePokemonImageUrl: String = "",
     val evolvedPokemonImageUrl: String = ""

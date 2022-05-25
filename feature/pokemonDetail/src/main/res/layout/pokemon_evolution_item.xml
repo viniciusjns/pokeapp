@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dimen_16dp">
+
+    <View
+        android:id="@+id/basePokemonBg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_pokeball_full"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    
+    <ImageView
+        android:id="@+id/ivBasePokemonImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintTop_toTopOf="@id/basePokemonBg"
+        app:layout_constraintStart_toStartOf="@id/basePokemonBg"
+        app:layout_constraintEnd_toEndOf="@id/basePokemonBg"
+        app:layout_constraintBottom_toBottomOf="@id/basePokemonBg"/>
+
+    <TextView
+        android:id="@+id/tvBasePokemonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Charmander"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sf_pro_display_bold"
+        app:layout_constraintTop_toBottomOf="@id/ivBasePokemonImage"
+        app:layout_constraintStart_toStartOf="@id/basePokemonBg"
+        app:layout_constraintEnd_toEndOf="@id/basePokemonBg"/>
+
+    <ImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_arrow_right"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/basePokemonBg"
+        app:layout_constraintEnd_toStartOf="@id/evolvedPokemonBg"/>
+
+    <TextView
+        android:id="@+id/tvLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="(Level 16)"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sf_pro_display_bold"
+        app:layout_constraintTop_toBottomOf="@id/ivArrow"
+        app:layout_constraintStart_toStartOf="@id/ivArrow"
+        app:layout_constraintEnd_toEndOf="@id/ivArrow"/>
+
+    <View
+        android:id="@+id/evolvedPokemonBg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_pokeball_full"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivEvolvedPokemonImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintTop_toTopOf="@id/evolvedPokemonBg"
+        app:layout_constraintStart_toStartOf="@id/evolvedPokemonBg"
+        app:layout_constraintEnd_toEndOf="@id/evolvedPokemonBg"
+        app:layout_constraintBottom_toBottomOf="@id/evolvedPokemonBg"/>
+
+    <TextView
+        android:id="@+id/tvEvolvedPokemonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Charmeleon"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sf_pro_display_bold"
+        app:layout_constraintTop_toBottomOf="@id/ivEvolvedPokemonImage"
+        app:layout_constraintStart_toStartOf="@id/evolvedPokemonBg"
+        app:layout_constraintEnd_toEndOf="@id/evolvedPokemonBg"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

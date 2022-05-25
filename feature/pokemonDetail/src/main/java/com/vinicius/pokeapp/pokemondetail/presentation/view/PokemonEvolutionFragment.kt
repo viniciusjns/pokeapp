@@ -5,20 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vinicius.pokeapp.core.views.BaseFragment
+import com.vinicius.pokeapp.pokemondetail.presentation.adapter.PokemonEvolutionAdapter
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonDetailUiModel
+import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonEvolutionUiModel
 import com.vinicius.pokemondetail.databinding.PokemonEvolutionFragmentBinding
 
-private const val POKEMON_ID = "POKEMON_ID"
+private const val POKEMON = "POKEMON"
 
 class PokemonEvolutionFragment : BaseFragment() {
-    private var pokemonId: Int = -1
 
+    private var pokemon: PokemonEvolutionUiModel? = null
     private lateinit var binding: PokemonEvolutionFragmentBinding
     private val viewModel by lazy { getViewModel(PokemonEvolutionViewModel::class.java) }
+    private val adapter: PokemonEvolutionAdapter by lazy {
+        PokemonEvolutionAdapter()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            pokemonId = it.getString(POKEMON_ID)?.toInt() ?: -1
+            pokemon = it.getParcelable(POKEMON)
         }
     }
 
@@ -34,22 +40,32 @@ class PokemonEvolutionFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeChanges()
-        viewModel.dispatchViewAction(PokemonEvolutionViewAction.GetPokemonSpecie(pokemonId))
+        setupView()
+        viewModel.dispatchViewAction(
+            PokemonEvolutionViewAction.GetPokemonSpecie(pokemon?.id ?: 0)
+        )
+    }
+
+    private fun setupView() = with(binding) {
+        rvEvolution.adapter = adapter
+        pokemon?.let {
+            tvEvolutionTitle.setTextColor(it.baseColor)
+        }
     }
 
     private fun observeChanges() {
         viewModel.viewState.pokemonLiveData.observe(viewLifecycleOwner) {
             it?.let { pokemonUiModel ->
-                binding.tvEvolution.text = pokemonUiModel.evolutionChainId.toString()
+                adapter.submitList(pokemonUiModel)
             }
         }
     }
 
     companion object {
-        fun newInstance(pokemonId: String) =
+        fun newInstance(pokemon: PokemonEvolutionUiModel) =
             PokemonEvolutionFragment().apply {
                 arguments = Bundle().apply {
-                    putString(POKEMON_ID, pokemonId)
+                    putParcelable(POKEMON, pokemon)
                 }
             }
     }

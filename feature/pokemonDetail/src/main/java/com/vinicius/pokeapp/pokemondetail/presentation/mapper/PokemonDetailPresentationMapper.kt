@@ -71,6 +71,10 @@ fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = Po
             Pair(TypeDefense.FAIRY, typeDefenses?.fairy?.toString() ?: EMPTY_STRING),
         ),
         baseColor = getBaseColor()
+    ),
+    pokemonEvolutionUiModel = PokemonEvolutionUiModel(
+        id = id.toInt(),
+        baseColor = getBaseColor()
     )
 )
 

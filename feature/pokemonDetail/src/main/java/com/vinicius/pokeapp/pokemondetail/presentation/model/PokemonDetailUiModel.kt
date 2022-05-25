@@ -1,7 +1,10 @@
 package com.vinicius.pokeapp.pokemondetail.presentation.model
 
+import android.os.Parcelable
 import com.vinicius.pokeapp.core.model.BasePokemonUiModel
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class PokemonDetailUiModel(
     override val id: String,
     override val name: String,
@@ -9,4 +12,5 @@ data class PokemonDetailUiModel(
     override val imageUrl: String?,
     val pokemonAboutUiModel: PokemonAboutUiModel,
     val pokemonStatsUiModel: PokemonStatsUiModel,
-) : BasePokemonUiModel(id, name, types, imageUrl)
+    val pokemonEvolutionUiModel: PokemonEvolutionUiModel
+) : BasePokemonUiModel(id, name, types, imageUrl), Parcelable

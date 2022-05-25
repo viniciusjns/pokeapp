@@ -34,4 +34,9 @@
     <string name="frag_poke_stats_speed">Speed</string>
     <string name="frag_poke_stats_type_defenses">Type Defenses</string>
     <string name="frag_poke_stats_type_defenses_label">The effectiveness of each type on %s.</string>
+
+    <!-- fragment evolution pokemon -->
+    <string name="frag_evolution_title">Evolution Chart</string>
+    <string name="frag_evolution_level_to_evolve">(Level %d)</string>
+    <string name="frag_evolution_level_not_found">(Level not found)</string>
 </resources>

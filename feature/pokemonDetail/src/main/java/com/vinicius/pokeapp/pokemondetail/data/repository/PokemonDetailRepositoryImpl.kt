@@ -41,7 +41,14 @@ class PokemonDetailRepositoryImpl @Inject constructor(
 
     override suspend fun getPokemonEvolutionChain(chainId: Int): Result<List<PokemonEvolutionDomainModel>, ResultError> =
         remoteDataSource.getPokemonEvolutionChain(chainId).mapSuccess {
-            it.toPokemonEvolutionDomainModel()
+            it.toPokemonEvolutionDomainModel().map { evolutionModel ->
+                evolutionModel.copy(
+                    basePokemonImageUrl = localDataSource
+                        .getPokemonById(evolutionModel.idBasePokemon)?.imageUrl ?: "",
+                    evolvedPokemonImageUrl = localDataSource
+                        .getPokemonById(evolutionModel.idEvolvedPokemon)?.imageUrl ?: ""
+                )
+            }
         }.onSuccess {
             Result.Success(it)
         }.onSuccess {

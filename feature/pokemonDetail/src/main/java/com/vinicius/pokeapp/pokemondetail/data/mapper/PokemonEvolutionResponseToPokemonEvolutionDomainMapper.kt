@@ -8,22 +8,28 @@ fun PokemonEvolutionResponse.toPokemonEvolutionDomainModel(): List<PokemonEvolut
     getPokemonDomain(mutableListOf(), chain)
 
 private fun getPokemonDomain(list: MutableList<PokemonEvolutionDomainModel>, chain: ChainResponse): List<PokemonEvolutionDomainModel> {
-    val idBasePokemon: Int? = chain.species.url.getIdByUrl()
+    val idBasePokemon: Int = chain.species.url.getIdByUrl()
+    val nameBasePokemon: String = chain.species.name
 
     if (chain.evolvesTo.isNotEmpty()) {
-        val levelToEvolve = chain.evolvesTo.first().evolutionDetails.first().minLevel
-        val idEvolvedPokemon = chain.evolvesTo.first().species.url.getIdByUrl()
-        list.add(
-            PokemonEvolutionDomainModel(
-                idBasePokemon = idBasePokemon,
-                levelToEvolve = levelToEvolve ?: 0,
-                idEvolvedPokemon = idEvolvedPokemon
+        chain.evolvesTo.first().run {
+            val levelToEvolve = evolutionDetails.first().minLevel
+            val idEvolvedPokemon = species.url.getIdByUrl()
+            val nameEvolvedPokemon = species.name
+            list.add(
+                PokemonEvolutionDomainModel(
+                    idBasePokemon = idBasePokemon,
+                    nameBasePokemon = nameBasePokemon,
+                    levelToEvolve = levelToEvolve,
+                    idEvolvedPokemon = idEvolvedPokemon,
+                    nameEvolvedPokemon = nameEvolvedPokemon
+                )
             )
-        )
-        return getPokemonDomain(list, chain.evolvesTo.first())
+            return getPokemonDomain(list, this)
+        }
     }
 
     return list
 }
 
-private fun String.getIdByUrl() = split("/".toRegex()).dropLast(1).last().toIntOrNull()
+private fun String.getIdByUrl() = split("/".toRegex()).dropLast(1).last().toInt()
