@@ -5,8 +5,11 @@ import com.vinicius.pokeapp.core.util.ResultError
 import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailLocalDataSource
 import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailRemoteDataSource
 import com.vinicius.pokeapp.pokemondetail.data.mapper.toPokemonDetailDomainModel
+import com.vinicius.pokeapp.pokemondetail.data.mapper.toPokemonEvolutionDomainModel
 import com.vinicius.pokeapp.pokemondetail.data.mapper.toPokemonSpecieDomainModel
+import com.vinicius.pokeapp.pokemondetail.data.model.ChainResponse
 import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonDetailDomainModel
+import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonEvolutionDomainModel
 import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonSpecieDomainModel
 import com.vinicius.pokeapp.pokemondetail.domain.repository.PokemonDetailRepository
 import javax.inject.Inject
@@ -36,7 +39,12 @@ class PokemonDetailRepositoryImpl @Inject constructor(
             Result.Error(ResultError.GenericError)
         }
 
-//    override suspend fun getPokemonEvolutionChain(chainId: Int): Result<PokemonEvolutionDomainModel, ResultError> {
-//
-//    }
+    override suspend fun getPokemonEvolutionChain(chainId: Int): Result<List<PokemonEvolutionDomainModel>, ResultError> =
+        remoteDataSource.getPokemonEvolutionChain(chainId).mapSuccess {
+            it.toPokemonEvolutionDomainModel()
+        }.onSuccess {
+            Result.Success(it)
+        }.onSuccess {
+            Result.Error(ResultError.GenericError)
+        }
 }

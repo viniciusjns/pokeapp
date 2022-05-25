@@ -9,5 +9,4 @@ data class PokemonDetailUiModel(
     override val imageUrl: String?,
     val pokemonAboutUiModel: PokemonAboutUiModel,
     val pokemonStatsUiModel: PokemonStatsUiModel,
-    val pokemonEvolutionUiModel: PokemonEvolutionUiModel,
 ) : BasePokemonUiModel(id, name, types, imageUrl)

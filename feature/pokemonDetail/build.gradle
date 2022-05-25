@@ -68,6 +68,7 @@ dependencies {
 
     // moshi
     implementation Moshi.core
+    kapt Moshi.codeGen
 
     // glide
     implementation Glide.core

@@ -71,8 +71,7 @@ fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = Po
             Pair(TypeDefense.FAIRY, typeDefenses?.fairy?.toString() ?: EMPTY_STRING),
         ),
         baseColor = getBaseColor()
-    ),
-    pokemonEvolutionUiModel = PokemonEvolutionUiModel()
+    )
 )
 
 private fun getAttributes(attributeName: String, stats: List<Int>?): PokemonAttributesUiModel =

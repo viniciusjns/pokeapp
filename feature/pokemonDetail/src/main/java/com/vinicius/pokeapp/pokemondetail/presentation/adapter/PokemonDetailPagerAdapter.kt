@@ -21,7 +21,7 @@ class PokemonDetailPagerAdapter(
         when (position) {
             0 -> PokemonAboutFragment.newInstance(pokemon.pokemonAboutUiModel)
             1 -> PokemonStatsFragment.newInstance(pokemon.name, pokemon.pokemonStatsUiModel)
-            2 -> PokemonEvolutionFragment.newInstance(pokemon.pokemonEvolutionUiModel)
+            2 -> PokemonEvolutionFragment.newInstance(pokemon.id)
             else -> PokemonAboutFragment.newInstance(pokemon.pokemonAboutUiModel)
         }
 

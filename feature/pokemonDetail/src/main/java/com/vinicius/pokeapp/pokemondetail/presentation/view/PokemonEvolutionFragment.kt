@@ -5,20 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.vinicius.pokeapp.core.views.BaseFragment
-import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonEvolutionUiModel
 import com.vinicius.pokemondetail.databinding.PokemonEvolutionFragmentBinding
 
-private const val POKEMON = "POKEMON"
+private const val POKEMON_ID = "POKEMON_ID"
 
 class PokemonEvolutionFragment : BaseFragment() {
-    private var pokemon: PokemonEvolutionUiModel? = null
+    private var pokemonId: Int = -1
 
     private lateinit var binding: PokemonEvolutionFragmentBinding
+    private val viewModel by lazy { getViewModel(PokemonEvolutionViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            pokemon = it.getParcelable(POKEMON)
+            pokemonId = it.getString(POKEMON_ID)?.toInt() ?: -1
         }
     }
 
@@ -33,13 +33,23 @@ class PokemonEvolutionFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeChanges()
+        viewModel.dispatchViewAction(PokemonEvolutionViewAction.GetPokemonSpecie(pokemonId))
+    }
+
+    private fun observeChanges() {
+        viewModel.viewState.pokemonLiveData.observe(viewLifecycleOwner) {
+            it?.let { pokemonUiModel ->
+                binding.tvEvolution.text = pokemonUiModel.evolutionChainId.toString()
+            }
+        }
     }
 
     companion object {
-        fun newInstance(pokemon: PokemonEvolutionUiModel?) =
+        fun newInstance(pokemonId: String) =
             PokemonEvolutionFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(POKEMON, pokemon)
+                    putString(POKEMON_ID, pokemonId)
                 }
             }
     }

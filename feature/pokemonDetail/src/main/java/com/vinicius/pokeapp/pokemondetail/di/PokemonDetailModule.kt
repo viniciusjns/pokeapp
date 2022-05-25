@@ -9,10 +9,7 @@ import com.vinicius.pokeapp.pokemondetail.data.datasource.PokemonDetailRemoteDat
 import com.vinicius.pokeapp.pokemondetail.domain.repository.PokemonDetailRepository
 import com.vinicius.pokeapp.pokemondetail.data.repository.PokemonDetailRepositoryImpl
 import com.vinicius.pokeapp.pokemondetail.data.service.PokeappEvolutionService
-import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonByIdUseCase
-import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonByIdUseCaseImpl
-import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonSpecieUseCase
-import com.vinicius.pokeapp.pokemondetail.domain.useCase.GetPokemonSpecieUseCaseImpl
+import com.vinicius.pokeapp.pokemondetail.domain.useCase.*
 import com.vinicius.pokeapp.pokemondetail.presentation.view.*
 import dagger.Binds
 import dagger.Module
@@ -63,6 +60,11 @@ interface PokemonDetailDomainModule {
     fun bindPokemonSpecieUseCase(
         pokemonSpecieUseCase: GetPokemonSpecieUseCaseImpl
     ): GetPokemonSpecieUseCase
+
+    @[Binds Reusable]
+    fun bindPokemonEvolutionChainUseCase(
+        pokemonEvolutionChainUseCase: GetPokemonEvolutionChainUseCaseImpl
+    ): GetPokemonEvolutionChainUseCase
 }
 
 @Module
@@ -83,6 +85,11 @@ interface PokemonDetailPresentationModule {
     @[Binds IntoMap ViewModelKey(PokemonDetailViewModel::class)]
     fun bindPokemonDetailViewModel(
         pokemonDetailViewModel: PokemonDetailViewModel
+    ): ViewModel
+
+    @[Binds IntoMap ViewModelKey(PokemonEvolutionViewModel::class)]
+    fun bindPokemonEvolutionViewModel(
+        pokemonEvolutionViewModel: PokemonEvolutionViewModel
     ): ViewModel
 
 }

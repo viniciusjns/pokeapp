@@ -4,8 +4,9 @@ import com.vinicius.pokeapp.core.util.Result
 import com.vinicius.pokeapp.core.util.ResultError
 import com.vinicius.pokeapp.pokemondetail.domain.model.PokemonSpecieDomainModel
 import com.vinicius.pokeapp.pokemondetail.domain.repository.PokemonDetailRepository
+import javax.inject.Inject
 
-class GetPokemonSpecieUseCaseImpl(
+class GetPokemonSpecieUseCaseImpl @Inject constructor(
     private val repository: PokemonDetailRepository
 ) : GetPokemonSpecieUseCase {
 

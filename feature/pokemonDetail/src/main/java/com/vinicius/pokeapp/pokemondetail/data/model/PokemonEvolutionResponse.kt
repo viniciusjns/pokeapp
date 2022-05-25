@@ -9,6 +9,7 @@ data class PokemonEvolutionResponse(
     @field:Json(name = "chain") val chain: ChainResponse
 )
 
+@JsonClass(generateAdapter = true)
 data class ChainResponse(
     @field:Json(name = "is_baby") val isBaby: Boolean,
     @field:Json(name = "evolution_details") val evolutionDetails: List<EvolutionDetails>,
@@ -16,10 +17,12 @@ data class ChainResponse(
     @field:Json(name = "species") val species: SpeciesResponse
 )
 
+@JsonClass(generateAdapter = true)
 data class EvolutionDetails(
-    @field:Json(name = "min_level") val minLevel: Int
+    @field:Json(name = "min_level") val minLevel: Int?
 )
 
+@JsonClass(generateAdapter = true)
 data class SpeciesResponse(
     @field:Json(name = "name") val name: String,
     @field:Json(name = "url") val url: String
