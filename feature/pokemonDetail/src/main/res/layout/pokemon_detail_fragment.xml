@@ -99,8 +99,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivPicture"
         app:tabIndicatorHeight="0dp"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@android:color/white" />
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="@color/white_transparent"
+        app:tabTextAppearance="@style/PokemonDetailTabTextAppearance" />
 
     <View
         android:id="@+id/viewInfo"
