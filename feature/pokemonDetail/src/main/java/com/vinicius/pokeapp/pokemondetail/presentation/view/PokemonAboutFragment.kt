@@ -43,6 +43,7 @@ class PokemonAboutFragment : BaseFragment() {
     private fun setupView(pokemon: PokemonAboutUiModel?) = with(binding) {
         pokemon?.apply {
             tvAboutDescription.text = description
+                ?: getString(R.string.frag_poke_about_description_not_found)
             tvPokedexDataTitle.setTextColor(baseColor)
             tvSpeciesLabel.text = species
             tvHeightLabel.text = getString(R.string.frag_poke_about_height_label, height)
@@ -57,7 +58,8 @@ class PokemonAboutFragment : BaseFragment() {
                 R.string.frag_poke_about_base_friendship_label,
                 baseFriendship?.value, baseFriendship?.text
             )
-            tvBaseExpLabel.text = pokemon.baseExp
+            tvBaseExpLabel.text = (pokemon.baseExp
+                ?: getString(R.string.frag_poke_about_attribute_not_found)).toString()
             tvGrowthRateLabel.text = growthRate
             tvBreedingTitle.setTextColor(baseColor)
             tvGenderLabel.text = getFormattedGenderLabel(male, female)
@@ -72,11 +74,11 @@ class PokemonAboutFragment : BaseFragment() {
     private fun getFormattedGenderLabel(male: Double?, female: Double?): SpannableStringBuilder {
         return SpannableStringBuilder()
             .color(ContextCompat.getColor(requireContext(), R.color.gender_male)) {
-                append(getString(R.string.frag_poke_about_gender_male_label, male))
+                append(getString(R.string.frag_poke_about_gender_male_label, male ?: 0.0))
             }
             .append(", ")
             .color(ContextCompat.getColor(requireContext(), R.color.gender_female)) {
-                append(getString(R.string.frag_poke_about_gender_female_label, female))
+                append(getString(R.string.frag_poke_about_gender_female_label, female ?: 0.0))
             }
     }
 

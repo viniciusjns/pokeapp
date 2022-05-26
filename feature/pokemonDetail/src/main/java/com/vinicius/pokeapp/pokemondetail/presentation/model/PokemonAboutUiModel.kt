@@ -12,7 +12,7 @@ data class PokemonAboutUiModel(
     val evYield: String?,
     val catchRate: DefaultDataUiModel?,
     val baseFriendship: DefaultDataUiModel?,
-    val baseExp: String?,
+    val baseExp: Int?,
     val growthRate: String?,
     val male: Double?,
     val female: Double?,

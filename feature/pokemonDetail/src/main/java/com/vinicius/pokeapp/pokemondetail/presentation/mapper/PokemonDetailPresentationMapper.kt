@@ -16,20 +16,20 @@ fun PokemonDetailDomainModel.toPokemonDetailUiModel(): PokemonDetailUiModel = Po
     types = types,
     imageUrl = imageUrl,
     pokemonAboutUiModel = PokemonAboutUiModel(
-        description = description,
+        description = if (description?.isEmpty() == true) null else description,
         species = species,
         height = height,
         weight = weight,
         evYield = training?.evYield,
         catchRate = DefaultDataUiModel(
-            value = training?.catchRate?.value,
-            text = training?.catchRate?.text
+            value = training?.catchRate?.value ?: EMPTY_VALUE,
+            text = training?.catchRate?.text ?: EMPTY_STRING
         ),
         baseFriendship = DefaultDataUiModel(
-            value = training?.baseFriendship?.value,
-            text = training?.baseFriendship?.text
+            value = training?.baseFriendship?.value ?: EMPTY_VALUE,
+            text = training?.baseFriendship?.text ?: EMPTY_STRING
         ),
-        baseExp = training?.baseExp.toString(),
+        baseExp = training?.baseExp,
         growthRate = training?.growthRate,
         male = breedings?.gender?.male,
         female = breedings?.gender?.female,

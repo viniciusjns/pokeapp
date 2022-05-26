@@ -22,6 +22,8 @@
     <string name="frag_poke_about_gender_male_label">♂ %.1f%%</string>
     <string name="frag_poke_about_gender_female_label">♀ %.1f%%</string>
     <string name="frag_poke_about_egg_cycles_label">%1$d (%2$s)</string>
+    <string name="frag_poke_about_description_not_found">Description not found</string>
+    <string name="frag_poke_about_attribute_not_found">Not found</string>
 
     <!-- fragment stats pokemon -->
     <string name="frag_poke_stats_base_stats">Base Stats</string>
