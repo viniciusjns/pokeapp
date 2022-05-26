@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
+import com.vinicius.pokeapp.core.extensions.loadGif
+import com.vinicius.pokeapp.core.extensions.loadImage
 import com.vinicius.pokeapp.core.views.BaseFragment
 import com.vinicius.pokeapp.pokemondetail.presentation.view.PokemonDetailFragment
 import com.vinicius.pokeapp.pokemonlist.presentation.adapter.PokemonListAdapter
@@ -40,9 +43,7 @@ class PokemonListFragment : BaseFragment() {
     }
 
     private fun setupView() = with(binding) {
-        Glide.with(requireActivity()).asGif()
-            .load(R.drawable.pikachu_running)
-            .into(ivLoading)
+        ivLoading.loadGif(R.drawable.pikachu_running)
 
         rvPokemonList.adapter = pokemonListAdapter
     }
@@ -53,16 +54,16 @@ class PokemonListFragment : BaseFragment() {
         ) { state ->
             when (state) {
                 PokemonListViewState.State.LOADING -> {
-                    binding.ivLoading.visibility = View.VISIBLE
-                    binding.pokemonNotFoundScreen.root.visibility = View.GONE
+                    binding.ivLoading.isVisible = true
+                    binding.pokemonNotFoundScreen.root.isVisible = false
                 }
                 PokemonListViewState.State.SUCCESS -> {
-                    binding.ivLoading.visibility = View.GONE
-                    binding.pokemonNotFoundScreen.root.visibility = View.GONE
+                    binding.ivLoading.isVisible = false
+                    binding.pokemonNotFoundScreen.root.isVisible = false
                 }
                 PokemonListViewState.State.ERROR -> {
-                    binding.ivLoading.visibility = View.GONE
-                    binding.pokemonNotFoundScreen.root.visibility = View.VISIBLE
+                    binding.ivLoading.isVisible = false
+                    binding.pokemonNotFoundScreen.root.isVisible = true
                 }
             }
         }

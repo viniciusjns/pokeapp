@@ -37,6 +37,12 @@ fun ImageView.loadImage(icon: Int?) {
     }
 }
 
+fun ImageView.loadGif(icon: Int) {
+    Glide.with(context).asGif()
+        .load(icon)
+        .into(this)
+}
+
 fun ImageView.setIcon(icon: String?) {
     icon?.let {
         setImageResource(Icons.valueOf(it.uppercase()).icon)

@@ -4,10 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import com.vinicius.pokeapp.core.extensions.loadGif
+import com.vinicius.pokeapp.core.extensions.loadImage
 import com.vinicius.pokeapp.core.views.BaseFragment
 import com.vinicius.pokeapp.pokemondetail.presentation.adapter.PokemonEvolutionAdapter
 import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonDetailUiModel
 import com.vinicius.pokeapp.pokemondetail.presentation.model.PokemonEvolutionUiModel
+import com.vinicius.pokemondetail.R
 import com.vinicius.pokemondetail.databinding.PokemonEvolutionFragmentBinding
 
 private const val POKEMON = "POKEMON"
@@ -47,6 +51,7 @@ class PokemonEvolutionFragment : BaseFragment() {
     }
 
     private fun setupView() = with(binding) {
+        ivLoading.loadGif(R.drawable.pikachu_running)
         rvEvolution.adapter = adapter
         pokemon?.let {
             tvEvolutionTitle.setTextColor(it.baseColor)
@@ -59,6 +64,17 @@ class PokemonEvolutionFragment : BaseFragment() {
                 adapter.submitList(pokemonUiModel)
             }
         }
+        viewModel.viewState.state.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                PokemonEvolutionViewState.State.LOADING -> showLoading(show = true)
+                PokemonEvolutionViewState.State.SUCCESS -> showLoading(show = false)
+                PokemonEvolutionViewState.State.ERROR -> showLoading(show = false)
+            }
+        }
+    }
+
+    private fun showLoading(show: Boolean) {
+        binding.ivLoading.isVisible = show
     }
 
     companion object {

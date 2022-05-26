@@ -23,16 +23,18 @@ class PokemonEvolutionViewModel @Inject constructor(
 
     private fun getPokemonSpecie(pokemonId: Int) {
         viewModelScope.launch {
+            viewState.state.value = PokemonEvolutionViewState.State.LOADING
             getPokemonSpecieUseCase(pokemonId).onSuccess { pokemonSpecieDomainModel ->
                 getPokemonEvolutionChainUseCase(pokemonSpecieDomainModel.evolutionChainId).onSuccess { pokemonEvolutionDomain ->
                     viewState.pokemonLiveData.value = pokemonEvolutionDomain.map {
                         it.toPokemonEvolutionUiModel()
                     }
+                    viewState.state.value = PokemonEvolutionViewState.State.SUCCESS
                 }.onError {
-
+                    viewState.state.value = PokemonEvolutionViewState.State.ERROR
                 }
             }.onError {
-
+                viewState.state.value = PokemonEvolutionViewState.State.ERROR
             }
         }
     }
