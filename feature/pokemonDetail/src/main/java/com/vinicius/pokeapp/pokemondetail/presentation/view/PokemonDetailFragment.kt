@@ -63,7 +63,7 @@ class PokemonDetailFragment : BaseFragment() {
     }
 
     private fun setupView(pokemonUiModel: PokemonDetailUiModel) = with(binding) {
-        pokemonUiModel.run {
+        pokemonUiModel.apply {
             clContainer.tintBackground(bgColor)
             tvNameBackground.text = name
             ivPicture.loadImage(imageUrl)

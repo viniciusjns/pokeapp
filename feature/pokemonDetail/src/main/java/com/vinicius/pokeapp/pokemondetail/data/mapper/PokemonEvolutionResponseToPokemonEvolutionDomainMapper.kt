@@ -12,22 +12,6 @@ private fun getPokemonDomain(list: MutableList<PokemonEvolutionDomainModel>, cha
     val nameBasePokemon: String = chain.species.name
 
     if (chain.evolvesTo.isNotEmpty()) {
-//        chain.evolvesTo.first().run {
-//            val levelToEvolve = evolutionDetails.first().minLevel
-//            val idEvolvedPokemon = species.url.getIdByUrl()
-//            val nameEvolvedPokemon = species.name
-//            list.add(
-//                PokemonEvolutionDomainModel(
-//                    idBasePokemon = idBasePokemon,
-//                    nameBasePokemon = nameBasePokemon,
-//                    levelToEvolve = levelToEvolve,
-//                    idEvolvedPokemon = idEvolvedPokemon,
-//                    nameEvolvedPokemon = nameEvolvedPokemon
-//                )
-//            )
-//            return getPokemonDomain(list, this)
-//        }
-
         chain.evolvesTo.forEach {
             val levelToEvolve = it.evolutionDetails.first().minLevel
             val idEvolvedPokemon = it.species.url.getIdByUrl()

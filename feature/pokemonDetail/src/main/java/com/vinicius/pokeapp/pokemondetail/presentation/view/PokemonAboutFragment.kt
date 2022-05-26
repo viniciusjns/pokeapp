@@ -41,7 +41,7 @@ class PokemonAboutFragment : BaseFragment() {
     }
 
     private fun setupView(pokemon: PokemonAboutUiModel?) = with(binding) {
-        pokemon?.run {
+        pokemon?.apply {
             tvAboutDescription.text = description
             tvPokedexDataTitle.setTextColor(baseColor)
             tvSpeciesLabel.text = species
